@@ -1,0 +1,19 @@
+{
+  "name": "vishwa-ai-consulting",
+  "version": "1.0.0",
+  "deployment": {
+    "platform": "vercel",
+    "region": "us-east-1",
+    "framework": "nextjs"
+  },
+  "environment": {
+    "required": [
+      "NEXT_PUBLIC_SUPABASE_URL",
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY"
+    ]
+  },
+  "routes": {
+    "public": ["/", "/services", "/contact"],
+    "api": ["/api/contact"]
+  }
+}
