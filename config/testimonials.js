@@ -2,7 +2,7 @@ export const testimonials = [
   {
     quote:
       "Honestly I was skeptical at first — we'd tried a few AI tools before and they never really stuck. Vishwa came in, actually learned how we operated, and built something that fit. Our team uses it every day now without thinking about it. That's when you know it worked.",
-    author: "Michael Loftin",
+    author: "James Loftin",
     role: "CEO",
     company: "Loftin Wealth Partners",
   },
