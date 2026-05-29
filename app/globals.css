@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0A1628;
-  --color-navy-hover: #142844;
+  --color-crimson: #C41A1A;
+  --color-crimson-light: #FF2D2D;
+  --color-dark: #0A0A0A;
+  --color-dark-card: #111111;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -11,8 +13,8 @@ html {
 }
 
 body {
-  background-color: #ffffff;
-  color: #171717;
+  background-color: #0A0A0A;
+  color: #ffffff;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
@@ -24,4 +26,24 @@ body {
 @keyframes marquee-reverse {
   from { transform: translateX(-50%); }
   to { transform: translateX(0); }
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) scale(1); opacity: 0.06; }
+  50% { transform: translateY(-20px) scale(1.05); opacity: 0.1; }
+}
+
+@keyframes float-med {
+  0%, 100% { transform: translateY(0px); opacity: 0.08; }
+  50% { transform: translateY(15px); opacity: 0.12; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.4); }
 }

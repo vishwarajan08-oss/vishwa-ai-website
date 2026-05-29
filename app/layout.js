@@ -8,18 +8,18 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Vishwa Rajan | AI Consulting",
+  title: "Core Consulting | AI for Wealth Management",
   description: "Implementing intelligent systems across wealth management, financial research, and operations — so your team spends less time on process and more time on clients.",
   metadataBase: new URL("https://vishwa-ai-consulting.vercel.app"),
   openGraph: {
-    title: "Vishwa Rajan | AI Consulting",
+    title: "Core Consulting | AI for Wealth Management",
     description: "Implementing intelligent systems across wealth management, financial research, and operations.",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vishwa Rajan | AI Consulting",
+    title: "Core Consulting | AI for Wealth Management",
     description: "Implementing intelligent systems across wealth management, financial research, and operations.",
   },
 };
@@ -27,7 +27,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
-      <body className="font-sans antialiased text-[#171717] bg-[#ffffff] min-h-screen flex flex-col">
+      <body className="font-sans antialiased text-white bg-[#0A0A0A] min-h-screen flex flex-col">
         {children}
       </body>
     </html>

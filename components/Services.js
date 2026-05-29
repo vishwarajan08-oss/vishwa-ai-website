@@ -2,91 +2,97 @@
 
 import { motion } from "framer-motion";
 import { content } from "@/config/content";
-import { fadeInUp, stagger, viewport } from "@/lib/animations";
+import { viewport, staggerMed } from "@/lib/animations";
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: "easeOut" } },
+};
 
 export default function Services() {
-  const { items } = content.services;
+  const { label, title, items } = content.services;
 
   const handleScrollTo = (e, href) => {
     e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    const el = document.querySelector(href);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: "smooth" });
     }
   };
 
   return (
-    <section id="services" className="py-24 bg-white">
+    <section id="services" className="py-24 bg-[#0A0A0A] border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          variants={stagger}
           initial="hidden"
           whileInView="visible"
           viewport={viewport}
+          transition={{ staggerChildren: 0.08 }}
           className="mb-16"
         >
           <motion.h2
-            variants={fadeInUp}
-            className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3"
+            variants={slideInLeft}
+            className="text-xs font-bold uppercase tracking-widest text-[#C41A1A] mb-3"
           >
-            Services
+            {label}
           </motion.h2>
           <motion.p
-            variants={fadeInUp}
-            className="text-3xl font-extrabold tracking-tight text-[#0A1628]"
+            variants={slideInLeft}
+            className="text-3xl font-extrabold tracking-tight text-white"
           >
-            What I Offer
+            {title}
           </motion.p>
         </motion.div>
 
-        <div className="border-t border-neutral-100">
+        <motion.div
+          variants={staggerMed}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          className="border-t border-white/5"
+        >
           {items.map((service, index) => (
             <motion.div
               key={index}
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-              viewport={viewport}
-              className="grid grid-cols-12 gap-6 py-10 border-b border-neutral-100 group"
+              variants={slideInLeft}
+              className="grid grid-cols-12 gap-6 py-10 border-b border-white/5 group"
             >
               <div className="col-span-12 md:col-span-1">
-                <span className="text-xs font-black text-neutral-300 tracking-wider">
+                <span className="text-xs font-black text-white/20 tracking-wider">
                   {String(index + 1).padStart(2, "0")}
                 </span>
               </div>
-              <div className="col-span-12 md:col-span-4">
-                <h3 className="text-lg font-bold text-[#0A1628] leading-snug group-hover:opacity-70 transition-opacity">
+              <div className="col-span-12 md:col-span-4 space-y-2">
+                <h3 className="text-base font-bold text-white leading-snug group-hover:text-[#FF2D2D] transition-colors duration-200">
                   {service.title}
                 </h3>
+                <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-[#C41A1A]/40 text-[#C41A1A]">
+                  {service.tag}
+                </span>
               </div>
               <div className="col-span-12 md:col-span-7">
-                <p className="text-sm text-neutral-500 leading-relaxed font-normal">
+                <p className="text-sm text-white/50 leading-relaxed font-normal">
                   {service.description}
                 </p>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           viewport={viewport}
           className="mt-12 flex justify-end"
         >
           <a
             href="#contact"
             onClick={(e) => handleScrollTo(e, "#contact")}
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#0A1628] hover:opacity-60 transition-opacity"
+            className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#FF2D2D] transition-colors duration-200"
           >
-            Work With Us <span aria-hidden>→</span>
+            Work With Us <span aria-hidden="true">→</span>
           </a>
         </motion.div>
       </div>

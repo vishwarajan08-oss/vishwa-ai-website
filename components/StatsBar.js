@@ -1,33 +1,65 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { useInView } from "framer-motion";
 import { content } from "@/config/content";
-import { fadeInUp, stagger, viewport } from "@/lib/animations";
+
+function CountUp({ value, prefix, suffix, inView }) {
+  const [display, setDisplay] = useState("0");
+  const num = parseFloat(value);
+  const isDecimal = value.includes(".");
+
+  useEffect(() => {
+    if (!inView) return;
+    const duration = 1800;
+    const startTime = performance.now();
+
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = num * eased;
+      setDisplay(isDecimal ? current.toFixed(1) : Math.floor(current).toString());
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  }, [inView, num, isDecimal]);
+
+  return (
+    <>
+      {prefix}
+      {display}
+      {suffix}
+    </>
+  );
+}
 
 export default function StatsBar() {
   const { stats } = content.trackRecord;
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section className="border-y border-neutral-100 py-12 bg-white">
+    <section ref={ref} className="border-y border-white/5 py-14 bg-[#111111]">
       <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-10"
-        >
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
           {stats.map((stat, i) => (
-            <motion.div key={i} variants={fadeInUp} className="space-y-1">
-              <div className="text-3xl md:text-4xl font-black text-[#0A1628] tracking-tight">
-                {stat.value}
+            <div key={i} className="space-y-1">
+              <div className="text-3xl md:text-4xl font-black text-white tracking-tight tabular-nums">
+                <CountUp
+                  value={stat.value}
+                  prefix={stat.prefix}
+                  suffix={stat.suffix}
+                  inView={inView}
+                />
               </div>
-              <div className="text-xs font-medium text-neutral-400 leading-snug">
+              <div className="text-xs font-medium text-white/40 leading-snug">
                 {stat.label}
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

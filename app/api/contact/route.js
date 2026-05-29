@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseClient } from "@/lib/supabase";
 
 // In-memory rate limiting store
 const rateLimitStore = new Map();
@@ -56,6 +56,7 @@ export async function POST(request) {
     }
 
     // Insert into contact_submissions
+    const supabase = getSupabaseClient();
     const { error } = await supabase
       .from("contact_submissions")
       .insert([

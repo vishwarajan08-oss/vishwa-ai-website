@@ -1,43 +1,42 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
     { name: "Services", href: "#services" },
-    { name: "Track Record", href: "#track-record" },
+    { name: "Results", href: "#track-record" },
     { name: "Vision", href: "#vision" },
-    { name: "Testimonials", href: "#testimonials" },
+    { name: "Contact", href: "#contact" },
   ];
 
   const handleScrollTo = (e, href) => {
     e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
+    const el = document.querySelector(href);
+    if (el) {
       const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
     }
   };
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-neutral-100 py-4"
+          ? "bg-[#0A0A0A]/95 backdrop-blur-md border-b border-white/5 py-4"
           : "bg-transparent py-6"
       }`}
     >
@@ -45,18 +44,19 @@ export default function Navbar() {
         <a
           href="#"
           onClick={(e) => handleScrollTo(e, "#top")}
-          className="font-semibold tracking-tight text-base text-[#0A1628] hover:opacity-70 transition-opacity"
+          className="font-bold tracking-tight text-base text-white hover:text-[#FF2D2D] transition-colors duration-200"
         >
-          Vishwa Rajan <span className="font-light text-neutral-400">AI Consulting</span>
+          Core{" "}
+          <span className="font-light text-white/60">Consulting</span>
         </a>
 
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => handleScrollTo(e, link.href)}
-              className="text-sm font-medium text-neutral-500 hover:text-[#0A1628] transition-colors"
+              className="text-sm font-medium text-white/60 hover:text-white transition-colors duration-200"
             >
               {link.name}
             </a>
@@ -64,12 +64,21 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={(e) => handleScrollTo(e, "#contact")}
-            className="text-sm font-semibold px-5 py-2 bg-[#0A1628] text-white hover:bg-[#142844] transition-colors"
+            className="text-sm font-semibold px-5 py-2.5 bg-[#C41A1A] text-white hover:bg-[#FF2D2D] transition-colors duration-200"
           >
-            Get in Touch
+            Book a Call
           </a>
         </nav>
+
+        {/* Mobile CTA */}
+        <a
+          href="#contact"
+          onClick={(e) => handleScrollTo(e, "#contact")}
+          className="md:hidden text-sm font-semibold px-4 py-2 bg-[#C41A1A] text-white hover:bg-[#FF2D2D] transition-colors duration-200"
+        >
+          Book a Call
+        </a>
       </div>
-    </header>
+    </motion.header>
   );
 }
