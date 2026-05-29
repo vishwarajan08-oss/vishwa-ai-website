@@ -18,23 +18,18 @@ export default function Navbar() {
     { name: "Track Record", href: "#track-record" },
     { name: "Vision", href: "#vision" },
     { name: "Testimonials", href: "#testimonials" },
-    { name: "Contact", href: "#contact" },
   ];
 
   const handleScrollTo = (e, href) => {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
-      const offset = 80; // height of fixed navbar
+      const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
       const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   };
 
@@ -42,15 +37,15 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#ffffff]/80 backdrop-blur-md border-b border-[#efefef] py-4"
-          : "bg-[#ffffff] py-6"
+          ? "bg-white/95 backdrop-blur-md border-b border-neutral-100 py-4"
+          : "bg-transparent py-6"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
         <a
           href="#"
           onClick={(e) => handleScrollTo(e, "#top")}
-          className="font-sans font-semibold tracking-tight text-lg text-[#0A1628] hover:opacity-85 transition-opacity"
+          className="font-semibold tracking-tight text-base text-[#0A1628] hover:opacity-70 transition-opacity"
         >
           Vishwa Rajan <span className="font-light text-neutral-400">AI Consulting</span>
         </a>
@@ -61,14 +56,19 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={(e) => handleScrollTo(e, link.href)}
-              className="text-sm font-medium text-neutral-600 hover:text-[#0A1628] transition-colors"
+              className="text-sm font-medium text-neutral-500 hover:text-[#0A1628] transition-colors"
             >
               {link.name}
             </a>
           ))}
+          <a
+            href="#contact"
+            onClick={(e) => handleScrollTo(e, "#contact")}
+            className="text-sm font-semibold px-5 py-2 bg-[#0A1628] text-white hover:bg-[#142844] transition-colors"
+          >
+            Get in Touch
+          </a>
         </nav>
-
-        {/* Mobile menu button could be added here if needed, but let's keep the nav highly premium, clean and minimalist */}
       </div>
     </header>
   );
