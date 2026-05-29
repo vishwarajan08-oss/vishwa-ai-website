@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { content } from "@/config/content";
+import { fadeInUp, stagger, viewport } from "@/lib/animations";
 
 export default function Services() {
   const { items } = content.services;
@@ -22,23 +23,36 @@ export default function Services() {
   return (
     <section id="services" className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="mb-16">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          className="mb-16"
+        >
+          <motion.h2
+            variants={fadeInUp}
+            className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3"
+          >
             Services
-          </h2>
-          <p className="text-3xl font-extrabold tracking-tight text-[#0A1628]">
+          </motion.h2>
+          <motion.p
+            variants={fadeInUp}
+            className="text-3xl font-extrabold tracking-tight text-[#0A1628]"
+          >
             What I Offer
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         <div className="border-t border-neutral-100">
           {items.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
               transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={viewport}
               className="grid grid-cols-12 gap-6 py-10 border-b border-neutral-100 group"
             >
               <div className="col-span-12 md:col-span-1">
@@ -60,7 +74,13 @@ export default function Services() {
           ))}
         </div>
 
-        <div className="mt-12 flex justify-end">
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          className="mt-12 flex justify-end"
+        >
           <a
             href="#contact"
             onClick={(e) => handleScrollTo(e, "#contact")}
@@ -68,7 +88,7 @@ export default function Services() {
           >
             Work With Us <span aria-hidden>→</span>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,5 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { fadeInUp, viewport } from "@/lib/animations";
+
 export default function Footer() {
   const handleScrollTo = (e, href) => {
     e.preventDefault();
@@ -24,7 +27,13 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-neutral-100 py-10 bg-white">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewport}
+        className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6"
+      >
         <p className="text-xs text-neutral-400 font-medium tracking-wide">
           &copy; 2026 Vishwa Rajan AI Consulting
         </p>
@@ -40,7 +49,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { content } from "@/config/content";
+import { fadeInUp, stagger, viewport } from "@/lib/animations";
 
 export default function Contact() {
   const { title, subtitle, email, linkedin } = content.contact;
@@ -47,8 +48,14 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 bg-white border-t border-neutral-100">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-          <div className="space-y-6">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24"
+        >
+          <motion.div variants={fadeInUp} className="space-y-6">
             <div>
               <h2 className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3">
                 Get In Touch
@@ -73,9 +80,9 @@ export default function Contact() {
                 {linkedin}
               </a>
             </div>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div variants={fadeInUp}>
             <form onSubmit={handleSubmit} className="space-y-5">
               <AnimatePresence mode="wait">
                 {status.message && (
@@ -166,8 +173,8 @@ export default function Contact() {
                 {loading ? "Submitting..." : "Get in Touch"}
               </button>
             </form>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

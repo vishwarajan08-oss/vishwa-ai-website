@@ -1,7 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { testimonials } from "@/config/testimonials";
+import { fadeInUp, stagger, viewport } from "@/lib/animations";
 
 function TestimonialCard({ quote, author, role, company }) {
   return (
@@ -51,19 +53,37 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="py-24 bg-white border-t border-neutral-100 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 mb-16">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3">
+      <motion.div
+        variants={stagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewport}
+        className="max-w-6xl mx-auto px-6 mb-16"
+      >
+        <motion.h2
+          variants={fadeInUp}
+          className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3"
+        >
           Feedback
-        </h2>
-        <p className="text-3xl font-extrabold tracking-tight text-[#0A1628]">
+        </motion.h2>
+        <motion.p
+          variants={fadeInUp}
+          className="text-3xl font-extrabold tracking-tight text-[#0A1628]"
+        >
           What Firms Are Saying
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
-      <div className="space-y-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
+        viewport={viewport}
+        className="space-y-4"
+      >
         <MarqueeRow items={row1} duration={35} />
         <MarqueeRow items={row2} duration={45} reverse />
-      </div>
+      </motion.div>
     </section>
   );
 }
