@@ -246,11 +246,11 @@ export default function AboutPage() {
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                className="flex flex-col items-center text-center max-w-xs w-full sm:w-auto"
+                className="flex flex-col items-center text-center w-full sm:w-80"
               >
                 {/* Photo with burgundy ring */}
                 <div
-                  className="relative w-[200px] h-[200px] rounded-full overflow-hidden flex-shrink-0 mb-5"
+                  className="relative w-[200px] h-[200px] rounded-full overflow-hidden flex-shrink-0 mb-5 mx-auto"
                   style={{ outline: "3px solid #6B1E2E", outlineOffset: "3px" }}
                 >
                   <Image
@@ -269,7 +269,7 @@ export default function AboutPage() {
                 </p>
 
                 {/* Bio */}
-                <p className="text-sm text-[#1A1A1A]/60 leading-relaxed text-left">
+                <p className="text-sm text-[#1A1A1A]/60 leading-relaxed text-center">
                   {founder.bio}
                 </p>
               </motion.div>
