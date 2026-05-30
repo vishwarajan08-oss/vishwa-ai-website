@@ -36,15 +36,6 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4 pt-1">
               <a
-                href="https://linkedin.com/in/vishwarajan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C9B8A8] hover:text-white transition-colors duration-200 cursor-pointer"
-                aria-label="LinkedIn"
-              >
-                <ExternalLink size={15} />
-              </a>
-              <a
                 href="mailto:coreconsulting.ai@gmail.com"
                 className="text-[#C9B8A8] hover:text-white transition-colors duration-200 cursor-pointer"
                 aria-label="Email"

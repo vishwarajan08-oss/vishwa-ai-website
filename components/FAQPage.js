@@ -1,118 +1,240 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { faqs } from "@/config/faq";
-import { fadeInUp, stagger, staggerMed, viewport } from "@/lib/animations";
-import { Plus, Minus } from "lucide-react";
 import Link from "next/link";
+import { faqs } from "@/config/faq";
+import { fadeInUp, stagger, viewport } from "@/lib/animations";
+import { Plus, Minus, Search } from "lucide-react";
 
-function FAQItem({ question, answer, index }) {
+const EASE = [0.25, 0.46, 0.45, 0.94];
+const CATEGORIES = ["All", "Getting Started", "Implementation", "Pricing", "Results"];
+
+const CATEGORY_MAP = [
+  "Getting Started", "Getting Started", "Getting Started", "Implementation",
+  "Getting Started", "Implementation", "Getting Started", "Pricing",
+  "Results", "Implementation", "Implementation", "Results",
+  "Pricing", "Getting Started", "Implementation", "Getting Started", "Pricing",
+];
+
+const categorizedFaqs = faqs.map((faq, i) => ({
+  ...faq,
+  category: CATEGORY_MAP[i] ?? "Getting Started",
+}));
+
+function AnswerText({ text }) {
+  const dot = text.indexOf(". ");
+  if (dot === -1) {
+    return <p className="text-sm text-[#C9B8A8] leading-relaxed">{text}</p>;
+  }
+  const first = text.slice(0, dot + 1);
+  const rest = text.slice(dot + 2);
+  return (
+    <p className="text-sm leading-relaxed">
+      <span className="text-[#C9B8A8]">{first} </span>
+      <span className="text-[#1A1A1A]/65">{rest}</span>
+    </p>
+  );
+}
+
+function FAQItem({ faq, index }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className={`border-b border-[#E8E0DA] transition-colors duration-200 ${
-        open ? "bg-[#F5F0EE]" : "hover:bg-[#F5F0EE]/50"
+        open ? "bg-white border-l-[3px] border-l-[#6B1E2E]" : "bg-transparent"
       }`}
     >
       <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-6 px-6 text-left cursor-pointer group"
+        onClick={() => setOpen((v) => !v)}
+        className="w-full flex items-start justify-between py-5 px-5 text-left cursor-pointer group gap-4"
         aria-expanded={open}
       >
-        <div className="flex items-start gap-4 flex-1 pr-4">
-          <span className="text-xs font-black text-[#C9B8A8] tracking-wider flex-shrink-0 mt-0.5">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <span className={`text-sm font-bold leading-snug transition-colors duration-200 ${
-            open ? "text-[#6B1E2E]" : "text-[#1A1A1A] group-hover:text-[#1A1A1A]/80"
-          }`}>
-            {question}
-          </span>
-        </div>
-        <div className={`flex-shrink-0 w-5 h-5 flex items-center justify-center transition-colors duration-200 ${
-          open ? "text-[#6B1E2E]" : "text-[#C9B8A8]"
-        }`}>
+        <span
+          className={`text-sm font-bold leading-snug transition-colors duration-200 flex-1 ${
+            open ? "text-[#6B1E2E]" : "text-[#1A1A1A] group-hover:text-[#6B1E2E]"
+          }`}
+        >
+          {faq.question}
+        </span>
+        <span
+          className={`flex-shrink-0 mt-0.5 transition-colors duration-200 ${
+            open ? "text-[#6B1E2E]" : "text-[#C9B8A8]"
+          }`}
+        >
           {open ? <Minus size={15} aria-hidden="true" /> : <Plus size={15} aria-hidden="true" />}
-        </div>
+        </span>
       </button>
 
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            key="content"
+            key="answer"
             initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
             animate={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}
             exit={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.32, ease: EASE }}
             className="overflow-hidden"
           >
-            <p className="text-sm text-[#1A1A1A]/60 leading-relaxed px-6 pb-6 pl-16">
-              {answer}
-            </p>
+            <div className="px-5 pb-5 pl-5">
+              <AnswerText text={faq.answer} />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
 export default function FAQPage() {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filtered = useMemo(() => {
+    return categorizedFaqs.filter((faq) => {
+      const matchCat = activeCategory === "All" || faq.category === activeCategory;
+      const q = searchQuery.toLowerCase();
+      const matchSearch =
+        !q ||
+        faq.question.toLowerCase().includes(q) ||
+        faq.answer.toLowerCase().includes(q);
+      return matchCat && matchSearch;
+    });
+  }, [activeCategory, searchQuery]);
+
   return (
-    <div className="pt-20">
-      <section className="py-24 bg-[#FAFAFA] border-t border-[#E8E0DA]">
-        <div className="max-w-4xl mx-auto px-6">
+    <div className="pt-20 bg-[#F5F0EE] min-h-screen">
+
+      {/* Page header */}
+      <section className="py-16 bg-[#6B1E2E]">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="mb-16"
+            className="space-y-4 max-w-2xl"
           >
-            <motion.h2 variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3">
+            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#C9B8A8]">
               FAQ
-            </motion.h2>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-extrabold tracking-tight text-[#1A1A1A] mb-4">
+            </motion.p>
+            <motion.h1 variants={fadeInUp} className="text-4xl font-extrabold tracking-tight text-white">
               Common Questions
             </motion.h1>
-            <motion.p variants={fadeInUp} className="text-sm text-[#1A1A1A]/55 max-w-lg">
-              Everything you need to know about working with Core Consulting. Don't see your question? Reach out directly.
+            <motion.p variants={fadeInUp} className="text-sm text-[#C9B8A8] max-w-md leading-relaxed">
+              Everything you need to know about working with Core Consulting. Don&rsquo;t see your question? Reach out directly.
             </motion.p>
           </motion.div>
+        </div>
+      </section>
 
-          <motion.div
-            variants={staggerMed}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            className="border-t border-[#E8E0DA]"
-          >
-            {faqs.map((faq, i) => (
-              <FAQItem key={i} index={i} question={faq.question} answer={faq.answer} />
-            ))}
-          </motion.div>
+      {/* Two-column layout */}
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10">
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            viewport={viewport}
-            className="mt-16 p-8 bg-[#F5F0EE] border border-[#E8E0DA] space-y-4"
-          >
-            <p className="text-sm font-bold text-[#1A1A1A]">Still have questions?</p>
-            <p className="text-sm text-[#1A1A1A]/55">
-              We're happy to answer anything before you commit to a conversation. Reach out directly and we'll get back to you within one business day.
-            </p>
-            <Link
-              href="/contact"
-              className="relative inline-flex items-center gap-2 text-sm font-bold text-white bg-[#6B1E2E] overflow-hidden group px-6 py-3 cursor-pointer"
-            >
-              <span className="absolute inset-0 bg-[#3D0D18] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out" aria-hidden="true" />
-              <span className="relative">Book a Consultation <span aria-hidden="true">→</span></span>
-            </Link>
-          </motion.div>
+            {/* Left — search + filter pills */}
+            <div className="space-y-6">
+
+              {/* Search */}
+              <div className="relative">
+                <Search
+                  size={14}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#1A1A1A]/30"
+                  aria-hidden="true"
+                />
+                <input
+                  type="text"
+                  placeholder="Search questions…"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-9 pr-4 py-2.5 text-sm bg-white border border-[#E8E0DA] text-[#1A1A1A] placeholder-[#1A1A1A]/30 focus:outline-none focus:border-[#6B1E2E] transition-colors duration-200"
+                  aria-label="Search FAQ questions"
+                />
+              </div>
+
+              {/* Category filter pills */}
+              <div className="flex flex-col gap-2">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#1A1A1A]/35 mb-1">
+                  Topics
+                </p>
+                {CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`text-left text-sm font-semibold px-4 py-2.5 transition-all duration-200 cursor-pointer ${
+                      activeCategory === cat
+                        ? "bg-[#6B1E2E] text-white"
+                        : "bg-white border border-[#E8E0DA] text-[#1A1A1A]/60 hover:border-[#6B1E2E] hover:text-[#6B1E2E]"
+                    }`}
+                    aria-pressed={activeCategory === cat}
+                  >
+                    {cat}
+                    {cat !== "All" && (
+                      <span
+                        className={`ml-2 text-[11px] font-normal ${
+                          activeCategory === cat ? "text-white/60" : "text-[#1A1A1A]/30"
+                        }`}
+                      >
+                        {categorizedFaqs.filter((f) => f.category === cat).length}
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Right — FAQ items */}
+            <div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeCategory + searchQuery}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25, ease: EASE }}
+                  className="border-t border-[#E8E0DA]"
+                >
+                  {filtered.length > 0 ? (
+                    filtered.map((faq, i) => (
+                      <FAQItem key={faq.question} faq={faq} index={i} />
+                    ))
+                  ) : (
+                    <div className="py-12 text-center text-sm text-[#1A1A1A]/40">
+                      No questions match your search.
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Still have questions? */}
+              <motion.div
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                className="mt-12 p-8 bg-white border border-[#E8E0DA] space-y-4"
+              >
+                <p className="text-sm font-bold text-[#1A1A1A]">Still have questions?</p>
+                <p className="text-sm text-[#1A1A1A]/55 leading-relaxed">
+                  We&rsquo;re happy to answer anything before you commit to a conversation. Reach out directly and we&rsquo;ll get back to you within one business day.
+                </p>
+                <Link
+                  href="/contact"
+                  className="relative inline-flex items-center gap-2 text-sm font-bold text-white bg-[#6B1E2E] overflow-hidden group px-6 py-3 cursor-pointer"
+                >
+                  <span
+                    className="absolute inset-0 bg-[#3D0D18] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"
+                    style={{ transitionTimingFunction: "cubic-bezier(0.25,0.46,0.45,0.94)" }}
+                    aria-hidden="true"
+                  />
+                  <span className="relative">Book a Consultation →</span>
+                </Link>
+              </motion.div>
+            </div>
+
+          </div>
         </div>
       </section>
     </div>

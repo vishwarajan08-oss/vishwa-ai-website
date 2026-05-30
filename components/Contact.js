@@ -7,7 +7,7 @@ import { fadeInUp, stagger, viewport } from "@/lib/animations";
 import { Send } from "lucide-react";
 
 export default function Contact() {
-  const { label, title, subtitle, subtitle2, responseNote, ctaLabel, email, linkedin } = content.contact;
+  const { label, title, subtitle, subtitle2, responseNote, ctaLabel, email } = content.contact;
 
   const [formData, setFormData] = useState({ name: "", firm: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
@@ -85,14 +85,6 @@ export default function Contact() {
                 className="block text-sm font-semibold text-[#1A1A1A]/60 hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
               >
                 {email}
-              </a>
-              <a
-                href={`https://${linkedin}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm font-semibold text-[#1A1A1A]/60 hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
-              >
-                {linkedin}
               </a>
             </div>
           </motion.div>

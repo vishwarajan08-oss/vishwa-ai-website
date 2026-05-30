@@ -134,7 +134,6 @@ export const content = {
     responseNote: "We typically respond within one business day.",
     ctaLabel: "Send Message",
     email: "coreconsulting.ai@gmail.com",
-    linkedin: "linkedin.com/in/vishwarajan",
   },
   about: {
     label: "About",

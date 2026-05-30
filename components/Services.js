@@ -3,32 +3,50 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { content } from "@/config/content";
-import { viewport, staggerMed } from "@/lib/animations";
+import { viewport } from "@/lib/animations";
 import { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search } from "lucide-react";
 
-const iconMap = {
-  Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search,
-};
+const iconMap = { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search };
+
+const EASE = [0.25, 0.46, 0.45, 0.94];
 
 const slideInLeft = {
-  hidden: { opacity: 0, x: -40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: "easeOut" } },
+  hidden: { opacity: 0, x: -32 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE } },
+};
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: EASE, delay: i * 0.08 },
+  }),
 };
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
 };
 
-function PreviewCard({ service, index }) {
+// Card used in both preview (homepage) and full (services page)
+function ServiceCard({ service, index, variant = "preview" }) {
   const Icon = iconMap[service.icon];
+  const isFullPage = variant === "full";
 
   return (
     <motion.div
-      variants={fadeUp}
-      className="relative bg-white border border-[#E8E0DA] p-7 group cursor-default overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+      custom={index}
+      variants={cardVariant}
+      className="relative bg-white border border-[#E8E0DA] group cursor-default overflow-hidden"
+      style={{ padding: isFullPage ? "2rem" : "1.75rem" }}
+      whileHover={{
+        y: -6,
+        boxShadow: "0 16px 48px rgba(107,30,46,0.10)",
+        transition: { duration: 0.25, ease: EASE },
+      }}
     >
-      {/* Top accent line — reveals on hover */}
+      {/* Top accent — draws left to right on hover */}
       <div
         className="absolute top-0 left-0 right-0 h-[2px] bg-[#6B1E2E] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
         aria-hidden="true"
@@ -36,25 +54,37 @@ function PreviewCard({ service, index }) {
 
       {/* Icon */}
       {Icon && (
-        <div className="mb-5">
-          <Icon size={18} className="text-[#6B1E2E]" aria-hidden="true" />
+        <div className={isFullPage ? "mb-5" : "mb-4"}>
+          <Icon
+            size={isFullPage ? 20 : 18}
+            className="text-[#6B1E2E]"
+            aria-hidden="true"
+          />
         </div>
       )}
 
-      {/* Tag */}
-      <div className="mb-3">
+      {/* Tag pill */}
+      <div className={isFullPage ? "mb-3.5" : "mb-3"}>
         <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#6B1E2E] text-white leading-none">
           {service.tag}
         </span>
       </div>
 
       {/* Title */}
-      <h3 className="text-base font-bold text-[#1A1A1A] leading-snug mb-3 group-hover:text-[#6B1E2E] transition-colors duration-200">
+      <h3
+        className={`font-bold text-[#1A1A1A] leading-snug group-hover:text-[#6B1E2E] transition-colors duration-200 ${
+          isFullPage ? "text-lg mb-3" : "text-base mb-3"
+        }`}
+      >
         {service.title}
       </h3>
 
       {/* Description */}
-      <p className="text-sm text-[#1A1A1A]/55 leading-relaxed">
+      <p
+        className={`text-[#1A1A1A]/55 leading-relaxed ${
+          isFullPage ? "text-sm" : "text-sm"
+        }`}
+      >
         {service.description}
       </p>
     </motion.div>
@@ -64,137 +94,147 @@ function PreviewCard({ service, index }) {
 export default function Services({ preview = false }) {
   const { label, title, items } = content.services;
   const displayItems = preview ? items.slice(0, 3) : items;
-  const sectionClass = preview
-    ? "py-24 bg-[#FAFAFA] border-t border-[#E8E0DA]"
-    : "pt-44 pb-24 bg-[#FAFAFA] border-t border-[#E8E0DA]";
 
+  // ── Preview mode (homepage 3-card grid) ────────────────────────────────
+  if (preview) {
+    return (
+      <section id="services" className="py-24 bg-[#FAFAFA] border-t border-[#E8E0DA]">
+        <div className="max-w-6xl mx-auto px-6">
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            transition={{ staggerChildren: 0.08 }}
+            className="mb-14"
+          >
+            <motion.p
+              variants={slideInLeft}
+              className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3"
+            >
+              {label}
+            </motion.p>
+            <motion.h2
+              variants={slideInLeft}
+              className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]"
+            >
+              {title}
+            </motion.h2>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            transition={{ staggerChildren: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-5"
+          >
+            {displayItems.map((service, index) => (
+              <ServiceCard key={index} service={service} index={index} variant="preview" />
+            ))}
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            className="mt-10 flex justify-between items-center"
+          >
+            <p className="text-sm text-[#1A1A1A]/35">
+              {items.length - displayItems.length} more services available
+            </p>
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#1A1A1A] hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
+            >
+              View All Services <span aria-hidden="true">→</span>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+
+  // ── Full services page (2-column card grid) ────────────────────────────
   return (
-    <section id="services" className={sectionClass}>
-      <div className="max-w-6xl mx-auto px-6">
-
-        {/* Section header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          transition={{ staggerChildren: 0.08 }}
-          className="mb-14"
-        >
-          <motion.p
-            variants={slideInLeft}
-            className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3"
+    <div className="pt-20">
+      <section className="py-24 bg-[#6B1E2E]">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            transition={{ staggerChildren: 0.1 }}
+            className="max-w-3xl space-y-5"
           >
-            {label}
-          </motion.p>
-          <motion.h2
-            variants={slideInLeft}
-            className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]"
+            <motion.p
+              variants={slideInLeft}
+              className="text-xs font-bold uppercase tracking-widest text-[#C9B8A8]"
+            >
+              {label}
+            </motion.p>
+            <motion.h1
+              variants={slideInLeft}
+              className="text-4xl md:text-5xl font-black tracking-tight text-white leading-tight"
+            >
+              {title}
+            </motion.h1>
+            <motion.p
+              variants={slideInLeft}
+              className="text-base text-[#C9B8A8] leading-relaxed max-w-2xl"
+            >
+              We don&rsquo;t start with tools. We start with your workflows, identify where time is being lost, and build AI systems around those friction points. Each engagement is scoped to what creates real impact, not what looks impressive in a proposal.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-[#FAFAFA] border-t border-[#E8E0DA]">
+        <div className="max-w-6xl mx-auto px-6">
+
+          {/* 2-column grid — stagger entrance */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            transition={{ staggerChildren: 0.08 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-5"
           >
-            {title}
-          </motion.h2>
-        </motion.div>
+            {displayItems.map((service, index) => (
+              <ServiceCard key={index} service={service} index={index} variant="full" />
+            ))}
+          </motion.div>
 
-        {/* Preview: 3-column card grid */}
-        {preview ? (
-          <>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewport}
-              transition={{ staggerChildren: 0.1 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-5"
+          {/* CTA banner */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            className="mt-16 py-12 px-10 bg-[#3D0D18] text-center space-y-5"
+          >
+            <p className="text-xl md:text-2xl font-bold text-white leading-snug">
+              Not sure where to start?
+            </p>
+            <p className="text-sm text-[#C9B8A8] max-w-sm mx-auto">
+              Book a free workflow audit. We&rsquo;ll map where your firm loses time and show you exactly where AI creates real value.
+            </p>
+            <Link
+              href="/contact"
+              className="relative inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-[#1A1A1A] bg-[#C9B8A8] overflow-hidden group cursor-pointer"
             >
-              {displayItems.map((service, index) => (
-                <PreviewCard key={index} service={service} index={index} />
-              ))}
-            </motion.div>
+              <span
+                className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"
+                style={{ transitionTimingFunction: "cubic-bezier(0.25,0.46,0.45,0.94)" }}
+                aria-hidden="true"
+              />
+              <span className="relative">Book a Free Workflow Audit</span>
+            </Link>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              viewport={viewport}
-              className="mt-10 flex justify-between items-center"
-            >
-              <p className="text-sm text-[#1A1A1A]/35">
-                {items.length - displayItems.length} more services available
-              </p>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#1A1A1A] hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
-              >
-                View All Services <span aria-hidden="true">→</span>
-              </Link>
-            </motion.div>
-          </>
-        ) : (
-          /* Full services page: row table layout */
-          <>
-            <motion.div
-              variants={staggerMed}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewport}
-              className="border-t border-[#E8E0DA]"
-            >
-              {displayItems.map((service, index) => {
-                const Icon = iconMap[service.icon];
-                return (
-                  <motion.div
-                    key={index}
-                    variants={slideInLeft}
-                    className="relative grid grid-cols-12 gap-6 py-10 border-b border-[#E8E0DA] group hover:bg-[#F5F0EE]/60 transition-colors duration-300 overflow-hidden"
-                  >
-                    <div className="absolute right-4 bottom-2 opacity-[0.03] pointer-events-none select-none" aria-hidden="true">
-                      <svg width="80" height="80" viewBox="0 0 28 28" fill="none">
-                        <circle cx="14" cy="5" r="2.5" fill="#1A1A1A" />
-                        <circle cx="22.5" cy="20" r="2.5" fill="#1A1A1A" />
-                        <circle cx="5.5" cy="20" r="2.5" fill="#1A1A1A" />
-                        <line x1="14" y1="5" x2="22.5" y2="20" stroke="#1A1A1A" strokeWidth="1" />
-                        <line x1="14" y1="5" x2="5.5" y2="20" stroke="#1A1A1A" strokeWidth="1" />
-                        <line x1="5.5" y1="20" x2="22.5" y2="20" stroke="#1A1A1A" strokeWidth="1" />
-                      </svg>
-                    </div>
-                    <div className="col-span-12 md:col-span-4 space-y-2">
-                      <div className="flex items-center gap-2.5">
-                        {Icon && (
-                          <Icon size={16} className="text-[#6B1E2E] flex-shrink-0" aria-hidden="true" />
-                        )}
-                        <h3 className="text-base font-bold text-[#1A1A1A] leading-snug group-hover:text-[#6B1E2E] transition-colors duration-200">
-                          {service.title}
-                        </h3>
-                      </div>
-                      <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#6B1E2E] text-white leading-none">
-                        {service.tag}
-                      </span>
-                    </div>
-                    <div className="col-span-12 md:col-span-8">
-                      <p className="text-sm text-[#1A1A1A]/60 leading-relaxed font-normal">
-                        {service.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              viewport={viewport}
-              className="mt-12 flex justify-end"
-            >
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#1A1A1A] hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
-              >
-                Work With Us <span aria-hidden="true">→</span>
-              </Link>
-            </motion.div>
-          </>
-        )}
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
   );
 }
