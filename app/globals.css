@@ -1,10 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-crimson: #C41A1A;
-  --color-crimson-light: #FF2D2D;
+  --color-site-black: #0A0A0A;
+  --color-site-charcoal: #171717;
+  --color-site-gray: #A1A1AA;
+  --color-site-divider: #2A2A2A;
+  --color-site-red: #DC2626;
+  --color-site-burgundy: #991B1B;
+  --color-site-offwhite: #F5F5F5;
+  --color-crimson: #DC2626;
+  --color-crimson-light: #EF4444;
   --color-dark: #0A0A0A;
-  --color-dark-card: #111111;
+  --color-dark-card: #171717;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -46,4 +53,9 @@ body {
 @keyframes pulse-dot {
   0%, 100% { opacity: 0.3; transform: scale(1); }
   50% { opacity: 0.6; transform: scale(1.4); }
+}
+
+@keyframes logo-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
 }

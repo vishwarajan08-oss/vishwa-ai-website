@@ -1,0 +1,23 @@
+export const article = {
+  slug: "how-to-cut-client-reporting-time-in-half",
+  title: "How to Cut Client Reporting Time in Half With AI",
+  category: "Operations",
+  date: "2026-05-25",
+  excerpt: "Client reporting is one of the most time-consuming parts of running an advisory practice. It's also one of the most automatable.",
+  content: [
+    { type: "p", text: "If you ask advisors what eats the most time in their week, reporting comes up constantly. Quarterly reviews. Portfolio summaries. Year-end statements. Performance updates. Each one requires pulling data, formatting it, adding context, and making it readable for the client." },
+    { type: "p", text: "Most of those steps don't require an advisor's judgment. They require an advisor's time." },
+    { type: "h2", text: "Where the time actually goes" },
+    { type: "p", text: "A typical quarterly report for one client might take two to three hours to produce. Some of that is data gathering from the portfolio system. Some is formatting. Some is writing the commentary." },
+    { type: "p", text: "For a firm with 100 clients doing quarterly reports, that's 200 to 300 hours of work per quarter just in report generation. About 10 to 15 hours per week, on average. That's basically a part-time hire, just for reports." },
+    { type: "h2", text: "What AI handles in the reporting workflow" },
+    { type: "p", text: "Data aggregation is the first win. AI tools that connect to your portfolio management system can pull performance data, benchmark comparisons, and allocation summaries automatically. No manual export and reformatting." },
+    { type: "p", text: "Commentary drafting is the second win. A prompt that includes the client's portfolio performance, their stated goals, and any relevant market context can produce a reasonable first draft of the narrative section. The advisor reads it, adjusts anything that needs adjusting, and that's the report." },
+    { type: "h2", text: "What a realistic time reduction looks like" },
+    { type: "p", text: "A report that used to take two hours can realistically be produced in 30 to 45 minutes with AI. For a firm doing 100 quarterly reports, that's a reduction from 200 hours to 50 hours. That's 150 hours back every quarter." },
+    { type: "p", text: "Firms we work with have seen reductions on the higher end of this range when the workflow is set up properly. The key is having clean, connected data sources and well-crafted templates the AI works from." },
+    { type: "h2", text: "What you shouldn't automate" },
+    { type: "p", text: "The advisor review step. Every client-facing document should be read by the advisor before it goes out. AI speeds up the draft, not the judgment. That distinction matters." },
+    { type: "p", text: "The other thing worth noting: AI commentary can sound generic if the templates aren't specific. Personalization still requires a human hand. But the volume of work required to get there drops dramatically." },
+  ],
+};

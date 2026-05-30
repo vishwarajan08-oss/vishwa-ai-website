@@ -1,0 +1,23 @@
+export const article = {
+  slug: "using-ai-to-improve-client-communication",
+  title: "Using AI to Improve Client Communication Without Losing the Personal Touch",
+  category: "Client Relations",
+  date: "2026-05-23",
+  excerpt: "AI-assisted communication doesn't have to feel automated. The goal is better communication, not faster templates.",
+  content: [
+    { type: "p", text: "The fear with AI-assisted client communication is that it becomes generic. Clients get polished emails that feel like they were written by a software system, not by the person they trust with their financial future." },
+    { type: "p", text: "That outcome is real, but it's not inevitable. It's a design choice." },
+    { type: "h2", text: "The right use of AI in client communication" },
+    { type: "p", text: "AI is good at reducing the effort required to produce a communication, not at replacing the judgment behind it. A good use of AI in client communication looks like this: the advisor decides what needs to be communicated and why, and the AI produces a first draft. The advisor reads it, adjusts the tone, adds any specific detail that the AI couldn't know, and sends it." },
+    { type: "p", text: "The client receives a thoughtful, well-written message. The advisor spent 5 minutes instead of 20. The personal element comes from the judgment and the edits, not from typing the whole thing from scratch." },
+    { type: "h2", text: "Where the personal element lives" },
+    { type: "p", text: "The parts of client communication that matter most, the relationship, the trust, the tailored advice, aren't things AI produces. They come from the advisor's knowledge of the client's situation, their goals, their concerns, their family." },
+    { type: "p", text: "AI can draft a follow-up after a meeting. It can't know that this client is worried about their daughter's college situation coming up, or that they mentioned being nervous about a market development. Those details come from the advisor." },
+    { type: "h2", text: "Frequency matters more than length" },
+    { type: "p", text: "One thing AI reliably improves is the frequency of client communication. When drafting a message takes five minutes instead of twenty, advisors contact clients more often. Clients get a check-in during a volatile week. They get a brief note following a major portfolio event. They feel like their advisor is paying attention." },
+    { type: "p", text: "That frequency has more impact on client experience than any single piece of communication. AI makes it affordable in terms of time." },
+    { type: "h2", text: "What to avoid" },
+    { type: "p", text: "The failure mode is using AI to produce mass communications that feel identical across all clients. Generic market updates. Identical quarterly notes. Copy-paste congratulations on milestones." },
+    { type: "p", text: "Use AI to save time on drafts. Don't use it to avoid the personalization work entirely. Clients can tell when something wasn't written with them in mind." },
+  ],
+};

@@ -1,0 +1,23 @@
+export const article = {
+  slug: "meeting-note-ai-tools-compared",
+  title: "Meeting Note AI Tools Compared: Which One Is Worth It",
+  category: "Technology",
+  date: "2026-05-27",
+  excerpt: "There are more meeting AI tools than anyone needs. Here's how to think about which one belongs in your practice.",
+  content: [
+    { type: "p", text: "Fireflies, Otter, Fathom, Grain, tl;dv, and a handful of others all do versions of the same thing: record a meeting, transcribe it, and produce a summary. They're not identical, and the differences matter depending on what you need." },
+    { type: "h2", text: "What they all do" },
+    { type: "p", text: "Every major meeting AI tool handles transcription, basic summary generation, and action item extraction. If those are your only requirements, the differences between them are mostly about interface preferences and price. Any of the major options will work." },
+    { type: "h2", text: "Where they differ" },
+    { type: "p", text: "CRM integration is the first meaningful differentiator. Some tools push summaries to Salesforce, HubSpot, or Redtail automatically. Others require manual export. If you want the notes to land in your CRM without extra steps, check the integration list before committing." },
+    { type: "p", text: "Summary quality varies more than the marketing suggests. Some tools produce clean, readable summaries with meaningful structure. Others produce a long block of text that still requires significant editing. Test the summary output before you buy." },
+    { type: "p", text: "Privacy and data handling matters in wealth management. Check where recordings are stored, who can access them, and whether the tool's data policies are compatible with your firm's compliance requirements. Some tools store recordings on their servers indefinitely. Others offer client-side storage or deletion policies." },
+    { type: "h2", text: "The tools worth knowing" },
+    { type: "p", text: "Fathom is free for basic use and has strong summary quality. Good starting point for advisors who haven't tried meeting AI before." },
+    { type: "p", text: "Fireflies has the best ecosystem integrations. If you need it to connect with multiple tools in your stack, Fireflies usually has the integration you need." },
+    { type: "p", text: "Otter is well-known and has a clear interface, but summary quality can be inconsistent on complex financial conversations." },
+    { type: "h2", text: "The recommendation" },
+    { type: "p", text: "Start with Fathom or a free trial of Fireflies. Use them on 10 to 15 real meetings before deciding. Look at the summaries: are they accurate? Do they capture the things that matter? Would you be comfortable using them as your official meeting record?" },
+    { type: "p", text: "If the answer is yes, you have your tool. If not, the next one on the list is probably worth trying." },
+  ],
+};

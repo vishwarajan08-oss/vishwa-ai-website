@@ -1,0 +1,22 @@
+export const article = {
+  slug: "hidden-cost-of-manual-processes",
+  title: "The Hidden Cost of Manual Processes in Advisory Firms",
+  category: "Operations",
+  date: "2026-05-23",
+  excerpt: "The cost of manual work isn't just the time it takes. It's the capacity you never had to begin with.",
+  content: [
+    { type: "p", text: "When firms calculate the cost of manual processes, they usually look at hours. How long does this take? What's that time worth?" },
+    { type: "p", text: "That's a fine starting point, but it understates the problem significantly." },
+    { type: "h2", text: "The capacity ceiling" },
+    { type: "p", text: "Every manual workflow has a capacity ceiling. There's only so much time in a week, and every hour spent on administrative work is an hour that can't go to clients, to business development, or to the kind of strategic work that actually grows a firm." },
+    { type: "p", text: "The hidden cost isn't just what the manual work costs. It's the growth that didn't happen because the team was too busy maintaining existing operations to build new ones." },
+    { type: "h2", text: "The error rate no one tracks" },
+    { type: "p", text: "Manual processes introduce errors. Not often, but consistently. A CRM record that doesn't get updated. A follow-up email that doesn't go out because someone forgot. A research note that never made it into the client file." },
+    { type: "p", text: "These errors are hard to track and easy to dismiss as inevitable. But they compound. A CRM that's 70% accurate is a CRM that's partially misleading you. That has downstream consequences for client service quality that are real but invisible in any cost calculation." },
+    { type: "h2", text: "The experience problem" },
+    { type: "p", text: "Clients can't see your back office, but they feel the effects of it. A firm that's overwhelmed with administrative work is slower to respond, more likely to drop things, and less consistent in its communication. These things show up as client experience issues, not operational issues. That's why they're hard to trace back to the root cause." },
+    { type: "h2", text: "What changes when you fix the workflow" },
+    { type: "p", text: "When firms clean up their operational workflows with AI, the most frequent observation isn't that they saved time. It's that they finally feel like they're in control of the operation. Things don't fall through. The team isn't firefighting. There's capacity to think about what comes next." },
+    { type: "p", text: "That shift in experience is harder to quantify than hours saved, but it's often the outcome that matters most." },
+  ],
+};

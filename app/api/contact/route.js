@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server";
-import { getSupabaseClient } from "@/lib/supabase";
+import { createClient } from "@supabase/supabase-js";
 
-// In-memory rate limiting store
 const rateLimitStore = new Map();
 
-// Lazy cleanup helper to prevent memory leaks in long-running instances
 function cleanExpiredLimits(now) {
   if (rateLimitStore.size > 1000) {
     for (const [ip, data] of rateLimitStore.entries()) {
@@ -20,7 +18,6 @@ export async function POST(request) {
     const now = Date.now();
     cleanExpiredLimits(now);
 
-    // Get client IP address
     const ip = request.headers.get("x-forwarded-for") || "127.0.0.1";
     const oneHour = 3600000;
 
@@ -30,13 +27,11 @@ export async function POST(request) {
       rateLimitStore.set(ip, clientData);
     }
 
-    // Reset window if more than 1 hour has passed
     if (now - clientData.windowStart > oneHour) {
       clientData.count = 0;
       clientData.windowStart = now;
     }
 
-    // Enforce rate limit (max 3 submissions per hour)
     if (clientData.count >= 3) {
       return NextResponse.json(
         { error: "Too many submissions. Please try again in an hour." },
@@ -44,7 +39,6 @@ export async function POST(request) {
       );
     }
 
-    // Parse payload
     const body = await request.json();
     const { name, firm, email, message } = body;
 
@@ -55,33 +49,26 @@ export async function POST(request) {
       );
     }
 
-    // Insert into contact_submissions
-    const supabase = getSupabaseClient();
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
     const { error } = await supabase
       .from("contact_submissions")
-      .insert([
-        {
-          name,
-          firm: firm || "",
-          email,
-          message,
-        }
-      ]);
+      .insert([{ name, firm: firm || "", email, message }]);
 
     if (error) {
-      console.error("Supabase Database error:", error);
+      console.error("Supabase error:", error);
       return NextResponse.json(
         { error: "Failed to save submission." },
         { status: 500 }
       );
     }
 
-    // Increment rate limit count on success
     clientData.count += 1;
-
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
-    console.error("Contact API Server Error:", error);
+    console.error("Contact API error:", error);
     return NextResponse.json(
       { error: "An unexpected error occurred." },
       { status: 500 }

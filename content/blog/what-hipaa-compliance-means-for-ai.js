@@ -1,0 +1,26 @@
+export const article = {
+  slug: "what-hipaa-compliance-means-for-ai",
+  title: "What HIPAA Compliance Means for AI in Wealth Management",
+  category: "Technology",
+  date: "2026-05-19",
+  excerpt: "HIPAA doesn't apply to financial advisors in the same way it applies to healthcare. But the principles behind it should guide how you handle client data in AI systems.",
+  content: [
+    { type: "p", text: "The term HIPAA comes up frequently in discussions about AI and sensitive data. It's worth being precise about what it actually means for wealth management firms and what it implies for how you build AI systems." },
+    { type: "h2", text: "Does HIPAA apply to financial advisors?" },
+    { type: "p", text: "HIPAA primarily governs healthcare providers, health plans, and their business associates. Most independent financial advisors don't fall under HIPAA's direct jurisdiction the way a hospital or insurance company does." },
+    { type: "p", text: "However, the framework HIPAA provides, protecting sensitive personal information, limiting data exposure, and ensuring data is only accessible to those who need it, is a useful standard to apply to any firm handling client data. Which is every advisory firm." },
+    { type: "h2", text: "What HIPAA-aware data handling looks like in practice" },
+    { type: "p", text: "When we describe implementations as HIPAA-aware, we mean they follow the spirit of those principles: sensitive data is encrypted in transit and at rest, access is limited to authorized users, tools with client data retention policies are carefully vetted, and client information is not fed into public AI systems that retain data for training." },
+    { type: "p", text: "That last point is important. Standard consumer AI tools like the public versions of ChatGPT may use your inputs to train future models. This is a real data handling concern for any client information." },
+    { type: "h2", text: "Enterprise tiers change the equation" },
+    { type: "p", text: "Enterprise versions of major AI tools typically include data privacy agreements that prevent your inputs from being used for training. If you're using AI tools with client data, enterprise tier or a tool with an explicit privacy commitment is the appropriate choice." },
+    { type: "h2", text: "The practical checklist" },
+    { type: "ul", items: [
+      "Use enterprise versions of AI tools for anything involving client data",
+      "Review the data retention and privacy policies of every tool in your stack",
+      "Ensure client data stored in AI systems is covered by appropriate security controls",
+      "Document your data handling practices for audit purposes",
+    ]},
+    { type: "p", text: "This isn't a reason to avoid AI. It's a reason to be thoughtful about how you implement it. The firms doing this well are moving forward and being careful, not waiting on the sidelines because compliance feels complicated." },
+  ],
+};

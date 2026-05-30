@@ -1,0 +1,23 @@
+export const article = {
+  slug: "how-smaller-rias-can-compete-with-larger-firms",
+  title: "How Smaller RIAs Can Compete With Larger Firms Using AI",
+  category: "Operations",
+  date: "2026-05-19",
+  excerpt: "Size used to be an advantage in wealth management operations. AI is changing that equation.",
+  content: [
+    { type: "p", text: "For a long time, being a small RIA meant accepting certain operational disadvantages. Larger firms had dedicated operations staff, custom software, and the headcount to handle administrative work that solo advisors or small teams couldn't absorb efficiently." },
+    { type: "p", text: "That gap is narrowing." },
+    { type: "h2", text: "The operations gap was real" },
+    { type: "p", text: "A large wirehouse or RIA aggregator could dedicate full-time staff to CRM maintenance, report production, compliance documentation, and client communication. A three-person RIA had to do all of that themselves, on top of the actual advisory work." },
+    { type: "p", text: "This created real capacity differences. A larger firm could serve more clients with the same advisor headcount because the support infrastructure was in place. Smaller firms hit a ceiling faster." },
+    { type: "h2", text: "AI as an operational equalizer" },
+    { type: "p", text: "AI tools available today are accessible to any firm, regardless of size. The meeting transcription tool a solo advisor uses is functionally the same as what a 50-person firm uses. The CRM automation works the same way. The research summarization capability is identical." },
+    { type: "p", text: "What this means in practice is that a well-organized small RIA can now operate with the same operational sophistication as a much larger firm. The work still gets done. It just doesn't require the headcount." },
+    { type: "h2", text: "What smaller firms can do better" },
+    { type: "p", text: "There's actually an advantage smaller firms have in AI adoption. They can move faster. There's no IT department to get approvals from. No procurement process. No multi-quarter rollout plan required." },
+    { type: "p", text: "A solo advisor can test a new tool this week and decide whether it's worth keeping by next week. That speed compounds. The small firm that started in 2024 and kept iterating is in a genuinely better operational position than the large firm that ran a committee for six months and then launched a limited pilot." },
+    { type: "h2", text: "What to focus on" },
+    { type: "p", text: "For smaller firms, the highest-value AI investments are usually the ones that remove the most administrative friction per advisor. Meeting documentation, CRM maintenance, and research prep tend to have the highest impact-to-effort ratio." },
+    { type: "p", text: "Start there. Get one workflow working well. Then build from that foundation." },
+  ],
+};

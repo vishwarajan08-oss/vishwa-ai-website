@@ -1,0 +1,22 @@
+export const article = {
+  slug: "how-ai-helps-advisors-spend-more-time-with-clients",
+  title: "How AI Helps Advisors Spend More Time With Clients",
+  category: "Client Relations",
+  date: "2026-05-26",
+  excerpt: "The irony of AI in advisory work is that the best outcome is spending more time on the part of the job that can't be automated.",
+  content: [
+    { type: "p", text: "People assume AI would reduce time with clients. The advisors actually using it report the opposite." },
+    { type: "h2", text: "Where the time currently goes" },
+    { type: "p", text: "A typical advisor's week is split unevenly. Client-facing time, the meetings, the calls, the relationship-building work, probably represents a smaller percentage of total hours than most advisors would like. The rest goes to everything around it." },
+    { type: "p", text: "Meeting prep. Note-writing. Follow-up emails. CRM updates. Internal reporting. Research for the next meeting. These tasks aren't optional, but none of them require being with the client." },
+    { type: "h2", text: "What happens when you automate the admin" },
+    { type: "p", text: "When the administrative work around client meetings becomes substantially faster, time opens up. The question is where it goes." },
+    { type: "p", text: "For most advisors, it tends to go in two directions. Some of it goes to more client contact: proactive outreach to clients who haven't been touched recently, deeper quarterly reviews, new client intake. The rest goes to business development work that was previously being crowded out." },
+    { type: "h2", text: "Quality, not just quantity" },
+    { type: "p", text: "It's not just that advisors have more time for clients. It's that the time they do have is better prepared. When the research briefing is ready before the meeting, when the CRM has current notes, when the follow-up draft is already written, the advisor can focus entirely on the conversation." },
+    { type: "p", text: "Clients notice this. Not because they understand what's happening behind the scenes, but because the interaction feels more organized and more focused." },
+    { type: "h2", text: "The compound effect on client relationships" },
+    { type: "p", text: "Over time, advisors who have more capacity for client contact tend to have stronger client relationships and higher retention. This isn't surprising. Clients who hear from their advisor regularly, who feel like their situation is being actively monitored, don't leave." },
+    { type: "p", text: "AI doesn't create that relationship. But it creates the conditions where the advisor can sustain it at scale." },
+  ],
+};

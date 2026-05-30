@@ -1,0 +1,22 @@
+export const article = {
+  slug: "what-the-next-five-years-look-like-for-advisory-firms",
+  title: "What the Next Five Years Look Like for Advisory Firms",
+  category: "Industry",
+  date: "2026-05-24",
+  excerpt: "Five years from now, the operational gap between AI-enabled firms and everyone else is going to be hard to close.",
+  content: [
+    { type: "p", text: "Five years is both a short and a long time in this industry. Short enough that most firms don't think it warrants major changes to how they operate. Long enough that the ones who start now will be in a completely different position than the ones who don't." },
+    { type: "h2", text: "2027 to 2028: the efficiency gap widens" },
+    { type: "p", text: "The next two years are mostly about operational efficiency. Firms that have invested in AI workflows will start finishing more work with the same headcount. Client communication becomes faster, more consistent, and better documented. Internal reporting stops eating half of someone's week." },
+    { type: "p", text: "For clients, none of this is visible. The experience just feels smoother." },
+    { type: "h2", text: "2029 to 2030: personalization becomes the differentiator" },
+    { type: "p", text: "The middle of the decade is where things get more interesting. Advisors who have mature AI systems in place will be able to serve more clients without proportionally more overhead, and they'll be doing it with more context and more personalization than firms operating manually." },
+    { type: "p", text: "A firm with 150 clients that was previously stretched thin will be able to handle 250 without hiring, while knowing more about each client's situation than they ever did before. That's a competitive advantage that compounds quickly." },
+    { type: "h2", text: "What the non-adopters are facing" },
+    { type: "p", text: "For firms that haven't built any AI infrastructure by 2030, the math gets uncomfortable. They'll be competing against operations that move faster, cost less per client, and have deeper client knowledge. It's not that they'll disappear. But the growth ceiling drops." },
+    { type: "p", text: "This isn't hypothetical. You can already see early versions of this gap in the data from firms that started implementing AI systems in 2024 and 2025." },
+    { type: "h2", text: "The smart move right now" },
+    { type: "p", text: "You don't need a five-year AI roadmap. You need to start somewhere that creates real value this year. Meeting notes. CRM maintenance. Research prep. Client follow-up drafts." },
+    { type: "p", text: "Pick the workflow that's costing you the most time, build around it, and iterate from there. The firms that will be in the best position in five years are mostly the ones that started with something small and kept going." },
+  ],
+};

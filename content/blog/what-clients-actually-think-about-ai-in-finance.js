@@ -1,0 +1,22 @@
+export const article = {
+  slug: "what-clients-actually-think-about-ai-in-finance",
+  title: "What Clients Actually Think About AI in Finance",
+  category: "Client Relations",
+  date: "2026-05-20",
+  excerpt: "Clients are more open to AI in their advisory relationship than most advisors assume. The concern isn't the technology. It's being replaced by it.",
+  content: [
+    { type: "p", text: "There's a persistent assumption in the advisory world that clients will push back on AI. That they'll want to know their financial plan wasn't touched by a machine. That they'll see AI involvement as a reduction in the personal attention they're paying for." },
+    { type: "p", text: "The reality, based on what we hear from advisors who've navigated this, is more nuanced." },
+    { type: "h2", text: "What clients actually worry about" },
+    { type: "p", text: "Most clients don't care what tools their advisor uses. They care about outcomes. Is their portfolio performing? Is their plan current? Does their advisor know their situation?" },
+    { type: "p", text: "The specific worry about AI isn't the technology itself. It's being handed off to a tool instead of a person. Clients don't want to feel like they're talking to a chatbot or that their advisor has been replaced by software. That's a legitimate concern. It's also one that a well-run AI implementation doesn't create." },
+    { type: "h2", text: "What transparency looks like" },
+    { type: "p", text: "Some advisors are open with clients about using AI for meeting notes or research prep. Most find that clients react positively. They see it as the advisor investing in better service, not cutting corners." },
+    { type: "p", text: "The framing matters. \"We use AI to handle the administrative work so we can spend more of our time on your actual situation\" lands very differently than \"we use AI to summarize our calls.\"" },
+    { type: "h2", text: "Where clients do draw lines" },
+    { type: "p", text: "Clients are less comfortable with AI generating personalized advice without human oversight. They want to know that a human reviewed the recommendation. This is appropriate. AI as a tool for advice generation without advisor review isn't something anyone should be doing yet." },
+    { type: "p", text: "Clients also notice if communication feels generic. If the quarterly email looks identical to what every other client got, that registers even if the client can't articulate why." },
+    { type: "h2", text: "The bottom line" },
+    { type: "p", text: "Client sentiment about AI in wealth management is mostly positive when it's positioned as improving the quality of service rather than reducing the advisor's involvement. The relationship is still the product. AI just makes it easier to maintain." },
+  ],
+};

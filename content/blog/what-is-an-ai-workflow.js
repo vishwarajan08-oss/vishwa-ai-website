@@ -1,0 +1,23 @@
+export const article = {
+  slug: "what-is-an-ai-workflow",
+  title: "What Is an AI Workflow and Why Does It Matter for Advisors",
+  category: "Technology",
+  date: "2026-05-28",
+  excerpt: "An AI workflow isn't just having an AI tool. It's the structured process that makes the tool actually useful.",
+  content: [
+    { type: "p", text: "A lot of advisors have tried AI tools. Most of them have opened a chat window, typed a question, and gotten an answer that was interesting but not quite what they needed. They closed the tab and went back to what they were doing." },
+    { type: "p", text: "That's not an AI workflow. That's an experiment." },
+    { type: "h2", text: "What an AI workflow actually is" },
+    { type: "p", text: "An AI workflow is a repeatable process that uses AI at specific steps to reduce manual work, improve output quality, or both. It has a defined input, a defined output, and a clear path between them." },
+    { type: "p", text: "For an advisory firm, a meeting notes workflow might look like this: client call happens, transcription tool records and transcribes it, AI produces a structured summary, advisor reviews and approves, summary is logged in CRM and sent as follow-up. Every step is defined. The AI is doing specific work at specific points." },
+    { type: "h2", text: "Why the difference matters" },
+    { type: "p", text: "Ad hoc AI use produces ad hoc results. Sometimes useful, sometimes not, and almost never consistent. A workflow produces consistent results because the inputs and the process are consistent." },
+    { type: "p", text: "Consistency is what makes AI valuable at scale. One good meeting summary is nice. Two hundred good meeting summaries per year, with minimal advisor time spent producing them, is a material operational improvement." },
+    { type: "h2", text: "How to build a workflow, not just use a tool" },
+    { type: "p", text: "Start with the outcome you want. What does a good output look like? Then work backwards. What inputs does the AI need to produce that output? What does the advisor need to do before, during, and after the AI step?" },
+    { type: "p", text: "Document the process. Even a one-page description of the workflow is enough to ensure consistency, train new team members, and identify improvement opportunities later." },
+    { type: "h2", text: "The compounding effect" },
+    { type: "p", text: "Good workflows get better over time. You refine the prompts, improve the templates, identify the edge cases and handle them. A workflow that takes 20 minutes in month one takes 10 minutes by month six." },
+    { type: "p", text: "An ad hoc use case never compounds. It produces roughly the same result every time you run it, if you remember to run it at all." },
+  ],
+};

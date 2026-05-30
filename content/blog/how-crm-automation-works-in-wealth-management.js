@@ -1,0 +1,22 @@
+export const article = {
+  slug: "how-crm-automation-works-in-wealth-management",
+  title: "How CRM Automation Works in Wealth Management",
+  category: "Technology",
+  date: "2026-05-25",
+  excerpt: "CRM automation isn't about removing the human from client relationships. It's about keeping the system current without requiring constant manual input.",
+  content: [
+    { type: "p", text: "Most advisory firms have a CRM. Far fewer have a CRM that's actually current and useful. The gap between those two situations is usually not a technology problem. It's an automation problem." },
+    { type: "h2", text: "How CRM automation works" },
+    { type: "p", text: "CRM automation in wealth management typically works by connecting the tools you already use to the CRM you already have. Email activity, meeting notes, calendar events, and client communications feed into the CRM automatically rather than requiring manual data entry." },
+    { type: "p", text: "When you finish a client meeting, the notes from that meeting can land in the CRM without anyone typing them in. When a follow-up email is sent, it gets logged against the client record. When a next meeting is scheduled, it shows up on the client timeline." },
+    { type: "h2", text: "The technical setup" },
+    { type: "p", text: "Most of this is achieved through native integrations or tools like Zapier or Make that connect systems together. Your meeting transcription tool sends the summary to a Zapier workflow that logs it in Redtail or Salesforce. Your email client connects directly to the CRM." },
+    { type: "p", text: "For firms on common CRM platforms, there are usually purpose-built integrations available. The setup isn't complicated. It's mostly a matter of knowing which connections to make and configuring the mapping correctly." },
+    { type: "h2", text: "What AI adds to CRM automation" },
+    { type: "p", text: "AI adds intelligence to the logging process. Rather than just storing raw transcripts, AI can extract the key information: what was discussed, what was decided, what follow-up is needed, whether any account information needs updating." },
+    { type: "p", text: "It can also surface recommendations. If a client hasn't been contacted in 60 days and they have a portfolio event coming up, an AI system can flag that before anyone manually notices." },
+    { type: "h2", text: "The result" },
+    { type: "p", text: "A CRM that stays current automatically is a fundamentally different operational asset. You can trust the data. You can build workflows on top of it. You can prepare for client conversations with real context rather than hoping you can find the right notes." },
+    { type: "p", text: "For most firms, this is one of the highest-value AI implementations available. It's not glamorous. But the impact on daily operations is immediate and measurable." },
+  ],
+};

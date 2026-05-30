@@ -1,0 +1,21 @@
+export const article = {
+  slug: "how-to-use-ai-for-client-onboarding",
+  title: "How to Use AI for Client Onboarding Without It Feeling Robotic",
+  category: "Client Relations",
+  date: "2026-05-17",
+  excerpt: "Onboarding is the first real experience a new client has with your firm. AI can make it smoother without making it feel impersonal.",
+  content: [
+    { type: "p", text: "Client onboarding is operationally complex. There's a lot of data to collect, a lot of documentation to process, a lot of communication to manage, and all of it needs to happen while also starting the relationship on the right foot." },
+    { type: "p", text: "AI can help with the operational side without making the client feel like they're being processed." },
+    { type: "h2", text: "Where AI fits in onboarding" },
+    { type: "p", text: "Document collection and review is a natural fit. AI tools can review completed forms, flag missing information, and organize incoming documents without someone manually going through everything. This speeds up the process and reduces the chance that something gets missed." },
+    { type: "p", text: "Communication sequencing is another good application. The series of emails a new client receives, welcome notes, document requests, next steps, can be automated while remaining personalized to the specific client's situation." },
+    { type: "p", text: "First meeting prep is where AI adds real value. An AI-generated briefing that pulls together everything the firm knows about the new client's situation, including their stated goals, their existing holdings, any notable context from the intake process, helps the advisor walk into that first meeting fully prepared." },
+    { type: "h2", text: "What keeps it from feeling robotic" },
+    { type: "p", text: "The difference between a robotic onboarding experience and a smooth one is usually personalization at the critical touch points." },
+    { type: "p", text: "The welcome call should be human. The first meeting should feel personal. The communication throughout should reference specific things the client mentioned in their intake. AI handles the operational scaffolding. The advisor handles the moments that define the relationship." },
+    { type: "h2", text: "The outcome worth measuring" },
+    { type: "p", text: "A well-designed onboarding process should accomplish two things: get all the necessary information and documentation in place correctly, and make the new client feel like they made a good choice. AI helps with the first one. The advisor's presence and attention handles the second." },
+    { type: "p", text: "Done well, clients often describe well-run AI-enabled onboarding as feeling more organized and more attentive, not less personal. The automation removes the friction. The advisor fills the space it creates." },
+  ],
+};

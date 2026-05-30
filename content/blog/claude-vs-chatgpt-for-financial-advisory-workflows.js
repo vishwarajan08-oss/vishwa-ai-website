@@ -1,0 +1,23 @@
+export const article = {
+  slug: "claude-vs-chatgpt-for-financial-advisory-workflows",
+  title: "Claude vs ChatGPT for Financial Advisory Workflows",
+  category: "Strategy",
+  date: "2026-05-29",
+  excerpt: "Both tools are genuinely useful. They're also different in ways that matter for advisory work.",
+  content: [
+    { type: "p", text: "This comes up a lot. Advisors want to know which AI tool to use, and the Claude vs ChatGPT question is usually near the top of the list." },
+    { type: "p", text: "The honest answer is that both are good, and the right choice depends on what you're doing." },
+    { type: "h2", text: "Where ChatGPT tends to excel" },
+    { type: "p", text: "ChatGPT's strength is breadth. It handles a wide range of tasks reasonably well, has a large library of custom GPTs available, and integrates with a growing number of third-party tools through the plugin ecosystem. For general-purpose use, it's flexible and familiar to most people." },
+    { type: "p", text: "For tasks like drafting marketing content, creating general templates, or handling routine Q&A, it performs well. It's also the tool more of your team is likely to have used before, which means the adoption curve is lower." },
+    { type: "h2", text: "Where Claude tends to excel" },
+    { type: "p", text: "Claude handles long documents better. This matters in advisory work because you're often working with lengthy prospectuses, client files, or research reports. Claude can read and reason over more text at once without losing coherence." },
+    { type: "p", text: "It also tends to produce more measured output. Less tendency to generate confident-sounding text that isn't well-grounded. In a compliance-conscious environment, that's meaningful." },
+    { type: "p", text: "For meeting note summarization, research synthesis, and document analysis, Claude is often the stronger performer." },
+    { type: "h2", text: "The practical approach" },
+    { type: "p", text: "Most of the firms we work with end up using both. ChatGPT for marketing, quick drafts, and general research. Claude for document-heavy workflows, detailed analysis, and anything that requires processing a lot of context at once." },
+    { type: "p", text: "Using both doesn't mean doubling your cost. Both have consumer and team tiers that are reasonable for most firm sizes. The licensing is typically $20 to $30 per user per month for each." },
+    { type: "h2", text: "The bigger picture" },
+    { type: "p", text: "The Claude vs ChatGPT question is less important than how you use whatever you choose. A well-structured prompt in either tool will outperform a vague request in both. Spend more time on your prompts and workflows than on the tool selection. That's where the real leverage is." },
+  ],
+};

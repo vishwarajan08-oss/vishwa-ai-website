@@ -1,0 +1,23 @@
+export const article = {
+  slug: "the-future-of-ai-in-wealth-management",
+  title: "The Future of AI in Wealth Management",
+  category: "Industry",
+  date: "2026-05-27",
+  excerpt: "The conversation has shifted from whether AI belongs in financial advising to how fast firms can build around it.",
+  content: [
+    { type: "p", text: "Nobody serious is arguing that AI doesn't belong in wealth management anymore. The argument now is about pace and approach. How fast should a firm move? What should they build first? Where does the human advisor's role get stronger, not weaker?" },
+    { type: "p", text: "Those are better questions, and they're worth working through carefully." },
+    { type: "h2", text: "AI as an operational layer" },
+    { type: "p", text: "The most durable view of AI in wealth management is as an operational layer sitting underneath the advisor-client relationship. Not visible to the client, not replacing any conversation, but handling the work that currently sits between those conversations." },
+    { type: "p", text: "That includes research aggregation, CRM updates, meeting documentation, internal reporting, compliance prep work, and follow-up drafting. Most of that work is done by advisors or support staff today. A lot of it doesn't need to be." },
+    { type: "h2", text: "The next big shift: personalization at scale" },
+    { type: "p", text: "Right now, most AI applications in advisory work are about efficiency. Getting faster at things that already happen. The next wave is about doing things at a level of personalization that wasn't previously practical." },
+    { type: "p", text: "A firm with 200 clients could theoretically review each client's situation before every interaction, tailor communication specifically to their goals and concerns, and surface exactly the right information at the right moment. Today that's unrealistic for most advisors. Within a few years, AI makes it achievable." },
+    { type: "h2", text: "The relationship doesn't go away" },
+    { type: "p", text: "The core of wealth management is trust. That isn't changing. If anything, AI creates more space for the relationship work because it removes the operational overhead that currently competes for the same hours." },
+    { type: "p", text: "Advisors who use AI well will have more time for deep client conversations, not less. The ones who resist it will spend more time on paperwork." },
+    { type: "h2", text: "What matters most right now" },
+    { type: "p", text: "The most important thing isn't choosing the perfect AI strategy. It's starting. Firms that build operational experience with AI now will understand its capabilities and limits far better than those watching from the sidelines." },
+    { type: "p", text: "The technology is going to keep improving regardless of what any individual firm decides. The question is whether you're building on it or catching up to it." },
+  ],
+};

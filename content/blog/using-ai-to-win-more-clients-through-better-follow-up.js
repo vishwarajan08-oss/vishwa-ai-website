@@ -1,0 +1,23 @@
+export const article = {
+  slug: "using-ai-to-win-more-clients-through-better-follow-up",
+  title: "Using AI to Win More Clients Through Better Follow-Up Systems",
+  category: "Growth",
+  date: "2026-05-21",
+  excerpt: "Most prospect opportunities are lost not because the advisor wasn't good enough but because the follow-up was too slow or too generic.",
+  content: [
+    { type: "p", text: "Business development in wealth management is mostly a follow-up game. You meet someone at an event, have an intro call, get a referral from an existing client. The advisor who follows up quickly, consistently, and with relevant context usually wins the client." },
+    { type: "p", text: "That sounds simple. In practice, follow-up is one of the things that falls through most consistently at busy firms." },
+    { type: "h2", text: "Why follow-up fails" },
+    { type: "p", text: "The failure isn't usually negligence. It's capacity. An advisor who's managing 100 existing clients, going to two networking events per month, and receiving referrals from time to time doesn't have a reliable system for tracking all of the prospect activity alongside the client work." },
+    { type: "p", text: "Things fall through the cracks not because nobody cares but because there's no system that ensures they don't." },
+    { type: "h2", text: "How AI fixes the system problem" },
+    { type: "p", text: "The first fix is logging. Every prospect interaction should be in the CRM immediately. AI tools that automate CRM logging from email and calendar activity make this much more likely to happen." },
+    { type: "p", text: "The second fix is sequencing. AI can set up a structured follow-up sequence for each prospect stage: initial contact, first meeting, second touchpoint, proposal. Rather than remembering manually, the system reminds the advisor and drafts the outreach." },
+    { type: "p", text: "The third fix is personalization. The AI drafts follow-up based on what was discussed in the last interaction, not a generic template. This takes more upfront setup but produces much better conversion outcomes." },
+    { type: "h2", text: "The conversion impact" },
+    { type: "p", text: "Advisors who implement proper follow-up systems typically see measurable improvement in prospect conversion. Not because their pitch got better, but because they're showing up more consistently and with more relevant communication." },
+    { type: "p", text: "Prospects feel like they're getting attention. Because they are." },
+    { type: "h2", text: "The one thing to get right" },
+    { type: "p", text: "The follow-up system only works if the CRM is current. If prospect information isn't being logged, the automation has nothing to work from. Getting the logging right is a prerequisite for everything else." },
+  ],
+};

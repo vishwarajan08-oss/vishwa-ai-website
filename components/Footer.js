@@ -1,60 +1,90 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeInUp, viewport } from "@/lib/animations";
+import Logo from "./Logo";
+import { ExternalLink, Mail } from "lucide-react";
+
+const footerLinks = [
+  { name: "Services", href: "/services" },
+  { name: "Results", href: "/results" },
+  { name: "Vision", href: "/vision" },
+  { name: "About", href: "/about" },
+  { name: "Blog", href: "/blog" },
+  { name: "FAQ", href: "/faq" },
+  { name: "Contact", href: "/contact" },
+];
 
 export default function Footer() {
-  const handleScrollTo = (e, href) => {
-    e.preventDefault();
-    const el = document.querySelector(href);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
-
-  const links = [
-    { name: "Services", href: "#services" },
-    { name: "Results", href: "#track-record" },
-    { name: "Vision", href: "#vision" },
-    { name: "Contact", href: "#contact" },
-    { name: "rajan.vishwa08@gmail.com", href: "mailto:rajan.vishwa08@gmail.com", external: true },
-  ];
-
   return (
-    <footer className="border-t border-white/5 py-10 bg-[#0A0A0A]">
+    <footer className="border-t border-[#2A2A2A] py-12 bg-[#0A0A0A]">
       <motion.div
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
         viewport={viewport}
-        className="max-w-6xl mx-auto px-6 space-y-6"
+        className="max-w-6xl mx-auto px-6"
       >
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div className="space-y-1">
-            <p className="text-sm font-bold text-white">
-              Core <span className="font-light text-white/50">Consulting</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+          <div className="space-y-3">
+            <Logo />
+            <p className="text-xs text-[#A1A1AA] font-medium leading-relaxed max-w-[200px]">
+              AI infrastructure for wealth management firms.
             </p>
-            <p className="text-xs text-white/30 font-medium">
-              AI infrastructure for wealth management.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-6">
-            {links.map((link) => (
+            <div className="flex items-center gap-4 pt-2">
               <a
-                key={link.name}
-                href={link.href}
-                onClick={link.external ? undefined : (e) => handleScrollTo(e, link.href)}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noopener noreferrer" : undefined}
-                className="text-xs font-medium text-white/40 hover:text-white transition-colors duration-200"
+                href="https://linkedin.com/in/vishwarajan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#A1A1AA] hover:text-white transition-colors duration-200 cursor-pointer"
+                aria-label="LinkedIn"
               >
-                {link.name}
+                <ExternalLink size={16} />
               </a>
-            ))}
+              <a
+                href="mailto:coreconsulting.ai@gmail.com"
+                className="text-[#A1A1AA] hover:text-white transition-colors duration-200 cursor-pointer"
+                aria-label="Email"
+              >
+                <Mail size={16} />
+              </a>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#A1A1AA]">Navigation</p>
+            <div className="grid grid-cols-2 gap-2">
+              {footerLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-xs font-medium text-white/40 hover:text-white transition-colors duration-200 cursor-pointer"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#A1A1AA]">Contact</p>
+            <a
+              href="mailto:coreconsulting.ai@gmail.com"
+              className="block text-xs font-medium text-white/40 hover:text-[#DC2626] transition-colors duration-200 cursor-pointer"
+            >
+              coreconsulting.ai@gmail.com
+            </a>
+            <Link
+              href="/contact"
+              className="inline-block text-xs font-semibold px-4 py-2 bg-[#DC2626] text-white hover:bg-[#991B1B] transition-colors duration-200 mt-2 cursor-pointer"
+            >
+              Book a Consultation
+            </Link>
           </div>
         </div>
-        <div className="border-t border-white/5 pt-6">
+
+        <div className="border-t border-[#2A2A2A] pt-6">
           <p className="text-xs text-white/20 font-medium">
             &copy; 2026 Core Consulting. All rights reserved.
           </p>

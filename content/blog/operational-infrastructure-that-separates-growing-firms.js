@@ -1,0 +1,23 @@
+export const article = {
+  slug: "operational-infrastructure-that-separates-growing-firms",
+  title: "The Operational Infrastructure That Separates Growing Firms From Stagnant Ones",
+  category: "Growth",
+  date: "2026-05-16",
+  excerpt: "The firms that grow consistently over time tend to have something in common: they're not fighting their own operations.",
+  content: [
+    { type: "p", text: "Some advisory firms grow year over year and seem to get easier to run as they scale. Others reach a certain size and stall. They're not losing clients, but they're not adding them either. The firm feels stuck." },
+    { type: "p", text: "The difference is usually operational." },
+    { type: "h2", text: "What operational infrastructure actually means" },
+    { type: "p", text: "Operational infrastructure isn't software. It's the combination of processes, tools, and workflows that allow the firm to do more without proportionally more effort." },
+    { type: "p", text: "A firm with good operational infrastructure can onboard a new client without it taking three weeks. They can prepare for quarterly reviews without an all-hands effort. They can respond to a market event across the full client base in a day, not a week." },
+    { type: "h2", text: "What stagnant firms have in common" },
+    { type: "p", text: "Stagnant firms are usually running on processes that were designed for a smaller version of the business and never updated. Meeting notes are done manually. CRM updates depend on individual discipline. Reporting is rebuilt from scratch each quarter." },
+    { type: "p", text: "These firms aren't failing. They're functioning. But every new client adds roughly proportional work. There's no leverage in the operation. Growth means more work for the same team, and the team is already full." },
+    { type: "h2", text: "What growing firms have built" },
+    { type: "p", text: "Growing firms have operational systems that scale. Adding a client adds work at the client level but not much at the infrastructure level. The systems that handle documentation, communication, and reporting handle 80 clients as well as they handle 60." },
+    { type: "p", text: "AI is increasingly a central part of what makes this possible. The volume of structured administrative work that AI handles for these firms is significant. It's not replacing anyone. It's absorbing the work that would otherwise require adding headcount." },
+    { type: "h2", text: "Building the infrastructure" },
+    { type: "p", text: "You don't build operational infrastructure all at once. You build it one workflow at a time. Meeting notes. CRM automation. Reporting. Prospect follow-up. Each one that gets built properly contributes to the overall leverage of the operation." },
+    { type: "p", text: "Firms that start building now will have that infrastructure in place when growth opportunities arrive. The ones that wait are more likely to be in the position of building while trying to scale, which is harder and more expensive." },
+  ],
+};

@@ -4,9 +4,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { content } from "@/config/content";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
+import { Send } from "lucide-react";
 
 export default function Contact() {
-  const { label, title, subtitle, responseNote, ctaLabel, email, linkedin } = content.contact;
+  const { label, title, subtitle, subtitle2, responseNote, ctaLabel, email, linkedin } = content.contact;
 
   const [formData, setFormData] = useState({ name: "", firm: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
@@ -33,7 +34,7 @@ export default function Contact() {
       });
       const data = await response.json();
       if (response.ok) {
-        setStatus({ type: "success", message: "Got it — we'll be in touch within 24 hours." });
+        setStatus({ type: "success", message: "Got it. We'll be in touch within one business day." });
         setFormData({ name: "", firm: "", email: "", message: "" });
       } else {
         setStatus({
@@ -52,7 +53,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#111111] border-t border-white/5">
+    <section id="contact" className="py-24 bg-[#171717] border-t border-[#2A2A2A]">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           variants={stagger}
@@ -63,7 +64,7 @@ export default function Contact() {
         >
           <motion.div variants={fadeInUp} className="space-y-6">
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-widest text-[#C41A1A] mb-3">
+              <h2 className="text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-3">
                 {label}
               </h2>
               <p className="text-3xl font-extrabold tracking-tight text-white">
@@ -73,10 +74,15 @@ export default function Contact() {
             <p className="text-sm text-white/50 font-medium leading-relaxed">
               {subtitle}
             </p>
-            <div className="pt-4 space-y-3 border-t border-white/5">
+            {subtitle2 && (
+              <p className="text-sm text-white/50 font-medium leading-relaxed">
+                {subtitle2}
+              </p>
+            )}
+            <div className="pt-4 space-y-3 border-t border-[#2A2A2A]">
               <a
                 href={`mailto:${email}`}
-                className="block text-sm font-semibold text-white/70 hover:text-[#FF2D2D] transition-colors duration-200"
+                className="block text-sm font-semibold text-white/70 hover:text-[#DC2626] transition-colors duration-200 cursor-pointer"
               >
                 {email}
               </a>
@@ -84,7 +90,7 @@ export default function Contact() {
                 href={`https://${linkedin}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm font-semibold text-white/70 hover:text-[#FF2D2D] transition-colors duration-200"
+                className="block text-sm font-semibold text-white/70 hover:text-[#DC2626] transition-colors duration-200 cursor-pointer"
               >
                 {linkedin}
               </a>
@@ -92,7 +98,7 @@ export default function Contact() {
           </motion.div>
 
           <motion.div variants={fadeInUp}>
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5" noValidate>
               <AnimatePresence mode="wait">
                 {status.message && (
                   <motion.div
@@ -101,9 +107,10 @@ export default function Contact() {
                     exit={{ opacity: 0, y: -8 }}
                     className={`p-4 text-xs font-medium border-l-2 ${
                       status.type === "success"
-                        ? "bg-white/5 text-white/80 border-[#C41A1A]"
-                        : "bg-[#C41A1A]/10 text-[#FF2D2D] border-[#C41A1A]"
+                        ? "bg-white/5 text-white/80 border-[#DC2626]"
+                        : "bg-[#DC2626]/10 text-[#EF4444] border-[#DC2626]"
                     }`}
+                    role="alert"
                   >
                     {status.message}
                   </motion.div>
@@ -113,7 +120,7 @@ export default function Contact() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-white/40">
-                    Name <span className="text-[#C41A1A]">*</span>
+                    Name <span className="text-[#DC2626]" aria-hidden="true">*</span>
                   </label>
                   <input
                     type="text"
@@ -123,7 +130,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your name"
-                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#C41A1A] focus:ring-1 focus:ring-[#C41A1A] transition-colors duration-200"
+                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#2A2A2A] text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#DC2626] focus:ring-1 focus:ring-[#DC2626] transition-colors duration-200"
                   />
                 </div>
                 <div className="space-y-2">
@@ -137,14 +144,14 @@ export default function Contact() {
                     value={formData.firm}
                     onChange={handleChange}
                     placeholder="e.g. Loftin Wealth Partners"
-                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#C41A1A] focus:ring-1 focus:ring-[#C41A1A] transition-colors duration-200"
+                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#2A2A2A] text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#DC2626] focus:ring-1 focus:ring-[#DC2626] transition-colors duration-200"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-white/40">
-                  Email <span className="text-[#C41A1A]">*</span>
+                  Email <span className="text-[#DC2626]" aria-hidden="true">*</span>
                 </label>
                 <input
                   type="email"
@@ -154,13 +161,13 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="you@firm.com"
-                  className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#C41A1A] focus:ring-1 focus:ring-[#C41A1A] transition-colors duration-200"
+                  className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#2A2A2A] text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#DC2626] focus:ring-1 focus:ring-[#DC2626] transition-colors duration-200"
                 />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-white/40">
-                  Message <span className="text-[#C41A1A]">*</span>
+                  Message <span className="text-[#DC2626]" aria-hidden="true">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -170,15 +177,16 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell us about your operations and AI objectives..."
-                  className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#C41A1A] focus:ring-1 focus:ring-[#C41A1A] transition-colors duration-200 resize-none"
+                  className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#2A2A2A] text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#DC2626] focus:ring-1 focus:ring-[#DC2626] transition-colors duration-200 resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full px-8 py-4 text-sm font-semibold text-white bg-[#C41A1A] hover:bg-[#FF2D2D] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className="w-full px-8 py-4 text-sm font-semibold text-white bg-[#DC2626] hover:bg-[#991B1B] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
               >
+                <Send size={15} aria-hidden="true" />
                 {loading ? "Submitting..." : ctaLabel}
               </button>
 

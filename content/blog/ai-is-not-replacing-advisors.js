@@ -1,0 +1,23 @@
+export const article = {
+  slug: "ai-is-not-replacing-advisors",
+  title: "AI Is Not Replacing Advisors. It Is Removing Administrative Bottlenecks.",
+  category: "Operations",
+  date: "2026-05-29",
+  excerpt: "The advisor role isn't shrinking. The administrative drag around it is.",
+  content: [
+    { type: "p", text: "Every few months someone publishes a piece about AI replacing financial advisors. It gets shared widely, generates concern, and then the next news cycle takes over. The fear persists even though the actual story is much more boring." },
+    { type: "p", text: "AI isn't replacing advisors. It's replacing the parts of the job that shouldn't require an advisor at all." },
+    { type: "h2", text: "What advisors are actually doing all day" },
+    { type: "p", text: "Track a typical advisor's time for a week and you'll find a striking amount of it isn't spent advising. It's spent writing up meeting notes. Updating CRM records. Putting together internal reports. Drafting follow-up emails. Researching routine questions. Preparing materials for reviews." },
+    { type: "p", text: "That work isn't worthless. It's part of running a firm. But it doesn't require the expertise, judgment, or relationship skills that make an advisor valuable. It's just operational overhead that happens to fall on the people with the highest per-hour cost." },
+    { type: "h2", text: "What AI actually handles" },
+    { type: "p", text: "Meeting notes: an AI tool can produce a clean summary with action items within minutes of a call ending. CRM updates: logged automatically based on meeting content and email activity. Research summaries: AI tools can pull relevant information on a holding or market development in seconds." },
+    { type: "p", text: "None of that replaces the advice. It removes the administrative weight around it." },
+    { type: "h2", text: "What happens to the recovered time" },
+    { type: "p", text: "Advisors we work with typically recover between 8 and 15 hours per week once these workflows are properly set up. That time doesn't disappear. It goes somewhere." },
+    { type: "p", text: "The honest answer is that it goes mostly to clients. More client conversations. Deeper reviews. Time to reach out proactively instead of just responding to inbound questions. The quality of the advisor-client relationship tends to go up when the advisor has more breathing room." },
+    { type: "h2", text: "The actual risk" },
+    { type: "p", text: "The risk isn't that AI replaces advisors. The risk is that advisors at AI-enabled firms have so much more capacity than advisors at traditional firms that the competitive gap becomes hard to close." },
+    { type: "p", text: "Clients don't leave because an AI took their advisor's job. They move to firms where the service feels more personal, more responsive, and better organized. AI is increasingly what makes that level of service possible." },
+  ],
+};

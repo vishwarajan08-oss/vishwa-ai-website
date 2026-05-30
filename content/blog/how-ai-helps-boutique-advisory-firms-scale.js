@@ -1,0 +1,22 @@
+export const article = {
+  slug: "how-ai-helps-boutique-advisory-firms-scale",
+  title: "How AI Helps Boutique Advisory Firms Scale Without Hiring",
+  category: "Growth",
+  date: "2026-05-24",
+  excerpt: "Hiring is one way to grow capacity. Building smarter systems is another.",
+  content: [
+    { type: "p", text: "At some point, every boutique advisory firm hits a capacity wall. The advisors are full. Adding more clients means hiring, and hiring means overhead, management time, and the risk of diluting the firm culture that made it successful in the first place." },
+    { type: "p", text: "AI doesn't remove the need to hire eventually. But it moves the wall further out." },
+    { type: "h2", text: "The capacity math" },
+    { type: "p", text: "An advisor who spends 15 hours per week on administrative work and has 80 clients has a different capacity than an advisor spending 5 hours per week on admin with 80 clients. The first advisor is near capacity. The second has room for 20 to 30 more clients before the next wall." },
+    { type: "p", text: "AI doesn't add hours to the day. It reallocates hours already in the day." },
+    { type: "h2", text: "Which administrative work moves fastest" },
+    { type: "p", text: "The work that moves fastest to AI automation is the work that's most structured and most repetitive. Meeting documentation. CRM updates. Internal reporting. Research prep. Follow-up drafts." },
+    { type: "p", text: "These tasks together often represent 12 to 18 hours per week for an advisor with a full client load. Getting half of that back creates meaningful capacity for growth." },
+    { type: "h2", text: "What growth looks like for boutique firms" },
+    { type: "p", text: "The growth opportunity for boutique firms with strong AI operations isn't just more clients. It's maintaining the boutique quality at a higher client count. The personal touch, the attentiveness, the quick response, all of these become easier to sustain when the administrative overhead per client is lower." },
+    { type: "p", text: "Firms that grow through capacity expansion tend to maintain culture and client satisfaction better than firms that grow through rapid hiring. The existing team stays intact. The quality control stays in familiar hands." },
+    { type: "h2", text: "The trade-off" },
+    { type: "p", text: "There's a point where a firm genuinely needs more people. AI delays that point but doesn't eliminate it. The goal isn't to avoid hiring indefinitely. It's to grow revenue and client count first, and hire from a position of strength rather than scrambling to fill capacity gaps." },
+  ],
+};

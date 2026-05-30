@@ -1,0 +1,23 @@
+export const article = {
+  slug: "the-case-for-starting-small-with-ai",
+  title: "The Case for Starting Small With AI in Wealth Management",
+  category: "Strategy",
+  date: "2026-05-20",
+  excerpt: "Starting small isn't playing it safe. It's how you actually get something working.",
+  content: [
+    { type: "p", text: "There's a temptation when adopting any new technology to go big. Build the whole system. Automate everything at once. Show that you're serious." },
+    { type: "p", text: "In practice, this approach produces worse results than starting with one workflow and building from there." },
+    { type: "h2", text: "Why big launches fail" },
+    { type: "p", text: "When you roll out multiple AI systems simultaneously, the change management problem multiplies. Each tool requires training. Each workflow needs to be configured correctly. Each team member needs to understand what changed and why." },
+    { type: "p", text: "If one system has friction, people lose confidence in the whole initiative. If the rollout feels overwhelming, adoption suffers across all tools. The big launch creates more points of failure." },
+    { type: "h2", text: "What a small start looks like in practice" },
+    { type: "p", text: "A good first implementation is typically something like this: choose one workflow, build a clean process around it, train the team on just that workflow, and run it for 60 days before touching anything else." },
+    { type: "p", text: "For most firms, meeting notes or CRM automation is the right first move. High frequency, meaningful time savings, low compliance risk, and clear before-and-after comparison." },
+    { type: "h2", text: "The learning compounds" },
+    { type: "p", text: "Doing one thing well teaches you things you can't learn from a plan. You'll find out what data quality problems affect the output. You'll learn which team members adapt quickly and which ones need more support. You'll discover edge cases the original design didn't account for." },
+    { type: "p", text: "All of that informs the second implementation. And the third. Firms that iterate quickly end up with much stronger AI operations than firms that tried to build everything at once." },
+    { type: "h2", text: "The speed of the small start" },
+    { type: "p", text: "Here's the counterintuitive part: starting small is often faster to meaningful impact. A focused implementation can be live and producing value in two to four weeks. A multi-system rollout can take six months and still be partially functional." },
+    { type: "p", text: "Speed to value matters. Pick one thing. Get it right. Then build." },
+  ],
+};
