@@ -54,7 +54,7 @@ export default function StatsBar() {
                   inView={inView}
                 />
               </div>
-              <div className="text-xs font-medium text-white/40 leading-snug">
+              <div className="text-xs font-medium text-[#C9B8A8] leading-snug">
                 {stat.label}
               </div>
             </div>

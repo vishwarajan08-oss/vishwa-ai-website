@@ -3,13 +3,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { testimonials } from "@/config/testimonials";
-import { content } from "@/config/content";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
 
-const INTERVAL_MS = 5000;
+const INTERVAL_MS = 5500;
 
 export default function Testimonials() {
-  const { label, heading, subheading } = content.testimonials;
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -41,26 +39,20 @@ export default function Testimonials() {
         initial="hidden"
         whileInView="visible"
         viewport={viewport}
-        className="max-w-6xl mx-auto px-6 mb-16"
+        className="max-w-6xl mx-auto px-6 mb-14"
       >
-        <motion.h2
+        <motion.p
           variants={fadeInUp}
           className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3"
         >
-          {label}
+          From the Field
+        </motion.p>
+        <motion.h2
+          variants={fadeInUp}
+          className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]"
+        >
+          What Firms Are Saying
         </motion.h2>
-        <motion.p
-          variants={fadeInUp}
-          className="text-3xl font-extrabold tracking-tight text-[#1A1A1A] mb-3"
-        >
-          {heading}
-        </motion.p>
-        <motion.p
-          variants={fadeInUp}
-          className="text-sm text-[#C9B8A8] font-medium max-w-lg"
-        >
-          {subheading}
-        </motion.p>
       </motion.div>
 
       <motion.div
@@ -73,21 +65,21 @@ export default function Testimonials() {
         onMouseLeave={() => setPaused(false)}
       >
         {/* Card */}
-        <div className="relative w-full max-w-2xl min-h-[200px]">
+        <div className="relative w-full max-w-2xl min-h-[180px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="bg-white border border-[#E8E0DA] px-10 py-10 shadow-sm"
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="bg-white border border-[#E8E0DA] border-l-[3px] border-l-[#6B1E2E] px-10 py-9 shadow-sm"
             >
-              <p className="text-base italic leading-relaxed text-[#1A1A1A]/70 mb-6">
+              <p className="text-base italic leading-relaxed text-[#1A1A1A]/65 mb-5">
                 &ldquo;{current.quote}&rdquo;
               </p>
-              <div>
-                <div className="font-bold text-[#1A1A1A]">{current.author}</div>
+              <div className="text-sm font-semibold text-[#1A1A1A]">
+                {current.author}
               </div>
             </motion.div>
           </AnimatePresence>
@@ -98,12 +90,11 @@ export default function Testimonials() {
           <button
             onClick={prev}
             aria-label="Previous testimonial"
-            className="text-[#C9B8A8] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none"
+            className="text-[#C9B8A8] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none cursor-pointer"
           >
             ←
           </button>
 
-          {/* Dot indicators */}
           <div className="flex items-center gap-2" role="tablist" aria-label="Testimonial navigation">
             {testimonials.map((_, i) => (
               <button
@@ -112,7 +103,7 @@ export default function Testimonials() {
                 aria-selected={i === index}
                 aria-label={`Testimonial ${i + 1}`}
                 onClick={() => setIndex(i)}
-                className="w-2 h-2 rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B1E2E]"
+                className="w-2 h-2 rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B1E2E] cursor-pointer"
                 style={{
                   backgroundColor: i === index ? "#6B1E2E" : "transparent",
                   border: i === index ? "none" : "1.5px solid #6B1E2E",
@@ -124,7 +115,7 @@ export default function Testimonials() {
           <button
             onClick={next}
             aria-label="Next testimonial"
-            className="text-[#C9B8A8] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none"
+            className="text-[#C9B8A8] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none cursor-pointer"
           >
             →
           </button>

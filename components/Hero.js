@@ -2,104 +2,153 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { content } from "@/config/content";
+
+const TICKER_TEXT =
+  "Wealth Management · AI Implementation · Workflow Automation · CRM Integration · Financial Research · Client Reporting · ";
+
+const lineVariants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: "easeOut", delay: i * 0.1 },
+  }),
+};
 
 export default function Hero() {
-  const { subheadline, ctaPrimary } = content.hero;
-
   return (
     <section
       id="top"
-      className="relative min-h-dvh flex items-center pt-24 pb-16 bg-[#FAFAFA] overflow-hidden"
+      className="relative flex flex-col min-h-dvh bg-[#FAFAFA] overflow-hidden"
     >
-      {/* Warm radial gradient texture */}
+      {/* Warm radial tint */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(ellipse at 20% 50%, rgba(107,30,46,0.04) 0%, transparent 60%)",
+            "radial-gradient(ellipse at 30% 65%, rgba(107,30,46,0.04) 0%, transparent 55%)",
         }}
       />
 
-      <div className="max-w-6xl mx-auto px-6 w-full relative z-10">
-        <div className="relative grid grid-cols-1 md:grid-cols-[55%_45%] gap-16 md:gap-0 items-center">
-
-          {/* Vertical divider — desktop only */}
-          <div
-            className="hidden md:block absolute top-0 bottom-0 left-[55%] w-px bg-[#E8E0DA]"
-            aria-hidden="true"
-          />
-
-          {/* Left column — editorial statement */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="md:pr-16 flex flex-col justify-center"
-          >
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+      <div className="flex flex-col flex-1 relative z-10">
+        {/* Trust bar */}
+        <div className="pt-28 pb-0 px-6">
+          <div className="max-w-6xl mx-auto">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-[11px] tracking-[0.15em] text-[#1A1A1A]/30 uppercase font-medium"
             >
-              <p className="text-[80px] md:text-[120px] lg:text-[140px] font-black tracking-tight leading-none text-[#6B1E2E]">
-                $1.3B+
-              </p>
-            </motion.div>
-
-            <p className="mt-3 text-sm tracking-wide text-[#1A1A1A]/60 uppercase">
-              in AUM across our partner firms
-            </p>
-
-            <div className="mt-6 w-12 h-px bg-[#6B1E2E]" aria-hidden="true" />
-
-            <p className="mt-6 text-xl font-bold text-[#1A1A1A] tracking-tight">
-              4 firms. 90 days. 20% less overhead.
-            </p>
-          </motion.div>
-
-          {/* Right column — value proposition */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.65, ease: "easeOut" }}
-            className="md:pl-16 flex flex-col justify-center gap-6"
-          >
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#6B1E2E]">
-              AI for Wealth Management
-            </p>
-
-            <h1 className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight leading-snug">
-              We build the AI systems your firm actually uses.
-            </h1>
-
-            <p className="text-sm text-[#1A1A1A]/60 leading-relaxed max-w-sm">
-              {subheadline}
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-start gap-4">
-              <Link
-                href="/contact"
-                className="relative inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold text-white bg-[#6B1E2E] overflow-hidden group cursor-pointer"
-              >
-                <span
-                  className="absolute inset-0 bg-[#3D0D18] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out"
-                  aria-hidden="true"
-                />
-                <span className="relative">{ctaPrimary}</span>
-              </Link>
-
-              <Link
-                href="/services"
-                className="text-sm font-medium text-[#6B1E2E] hover:text-[#3D0D18] transition-colors duration-200 self-center"
-              >
-                See our services →
-              </Link>
-            </div>
-          </motion.div>
-
+              Trusted by wealth management firms across the Southeast
+            </motion.p>
+          </div>
         </div>
+
+        {/* Editorial grid */}
+        <div className="flex-1 flex items-center py-10 md:py-14">
+          <div className="max-w-6xl mx-auto px-6 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-[58%_42%] gap-12 lg:gap-0 items-center">
+
+              {/* Left — large editorial headline */}
+              <div className="lg:pr-20">
+                <h1
+                  className="text-[clamp(48px,6.5vw,88px)] leading-[0.93] tracking-tight"
+                  aria-label="AI infrastructure for the firms that can't afford to wait."
+                >
+                  <motion.span
+                    custom={0}
+                    variants={lineVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="block"
+                  >
+                    <span className="font-light text-[#1A1A1A]/40">AI </span>
+                    <span className="font-black text-[#1A1A1A]">infrastructure</span>
+                  </motion.span>
+
+                  <motion.span
+                    custom={1}
+                    variants={lineVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="block font-light text-[#1A1A1A]/40 mt-1"
+                  >
+                    for the firms that
+                  </motion.span>
+
+                  <motion.span
+                    custom={2}
+                    variants={lineVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="block mt-1"
+                  >
+                    <span className="font-black text-[#1A1A1A]">can&rsquo;t afford </span>
+                    <span className="font-light text-[#6B1E2E]">to wait.</span>
+                  </motion.span>
+                </h1>
+              </div>
+
+              {/* Right — description + CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
+                className="lg:pl-16 lg:border-l lg:border-[#E8E0DA] flex flex-col gap-7"
+              >
+                <p className="text-sm leading-relaxed text-[#1A1A1A]/55 max-w-xs">
+                  We build and deploy AI systems for wealth management firms. The work is practical, not theoretical. Most clients see measurable results within 90 days.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-start gap-3">
+                  <Link
+                    href="/contact"
+                    className="relative inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-[#6B1E2E] overflow-hidden group cursor-pointer"
+                  >
+                    <span
+                      className="absolute inset-0 bg-[#3D0D18] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out"
+                      aria-hidden="true"
+                    />
+                    <span className="relative">Book a Consultation</span>
+                  </Link>
+
+                  <Link
+                    href="/results"
+                    className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-[#6B1E2E] border border-[#6B1E2E]/35 hover:border-[#6B1E2E] hover:bg-[#6B1E2E]/5 transition-all duration-200 cursor-pointer"
+                  >
+                    See the Results
+                  </Link>
+                </div>
+              </motion.div>
+
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom — divider + ticker */}
+        <div className="mt-auto">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="border-t border-[#E8E0DA]" aria-hidden="true" />
+          </div>
+          <div className="py-3.5 overflow-hidden" aria-hidden="true">
+            <div
+              className="flex whitespace-nowrap will-change-transform"
+              style={{ animation: "ticker 30s linear infinite" }}
+            >
+              {[TICKER_TEXT, TICKER_TEXT, TICKER_TEXT, TICKER_TEXT].map((t, i) => (
+                <span
+                  key={i}
+                  className="inline-block text-[10.5px] tracking-[0.14em] text-[#1A1A1A]/25 uppercase font-medium px-6"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );
