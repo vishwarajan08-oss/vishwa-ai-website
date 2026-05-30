@@ -19,63 +19,61 @@ const slideUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const founderPhotos = {
-  "Vishwa Rajan": "/vishwa.jpg",
-  "Naiya Patel": "/naiya.jpg",
-};
+const founders = [
+  {
+    name: "Vishwa Rajan",
+    role: "Co-Founder",
+    photo: "/vishwa.jpg",
+    bio: "Vishwa interns at Loftin Wealth Partners, working directly under the CEO on a $350M book of business. He founded the AI Efficiency Internship Program, a nationally distributed team of 30 researchers from Brown, UC Irvine, and UGA, and serves as Atlanta Chapter President of the Junior Economic Club with 2,000+ members and $100K+ in managed sponsorships. He also co-founded Fynoptic, a financial literacy platform backed by Georgia state legislators and partnered with Invesco and Emory's GIMG.",
+  },
+  {
+    name: "Naiya Patel",
+    role: "Co-Founder",
+    photo: "/naiya.jpg",
+    bio: "Naiya serves as Executive Director of Communications at Fynoptic and has partnered with Goodwin Investment Advisory to improve operational efficiency by over 20%. She brings a research-first approach to every engagement, evaluating tools carefully before recommending anything to a client.",
+  },
+];
 
 export default function AboutPage() {
   const { label, headline, subhead, whyWeStarted, ourApproach, differentiators, categories, lookingAhead } = content.about;
 
-  const founders = [
-    {
-      name: "Vishwa Rajan",
-      role: "Co-Founder",
-      bio: "Vishwa interns at Loftin Wealth Partners, working directly under the CEO on a $350M AUM book of business. He has implemented AI systems across four wealth management firms totaling $1.3B in combined AUM, and founded the AI Efficiency Internship Program, a nationally distributed team of 30 researchers from Brown, UC Irvine, and UGA. He also co-founded Fynoptic, a financial literacy platform backed by Georgia state legislators and partnered with Invesco and Emory's GIMG, and serves as Atlanta Chapter President of the Junior Economic Club, overseeing 2,000+ members and $100K+ in managed sponsorships.",
-    },
-    {
-      name: "Naiya Patel",
-      role: "Co-Founder",
-      bio: "Naiya serves as Executive Director of Communications at Fynoptic. She has partnered directly with Goodwin Investment Advisory to improve operational efficiency by over 20%, and evaluated 100+ AI tools to build implementation plans for financial firms. She brings a research-first approach to every engagement, focused on making AI practical rather than theoretical.",
-    },
-  ];
-
   return (
     <div className="pt-20">
-      {/* Hero section */}
-      <section className="py-24 bg-[#FAFAFA] border-t border-[#E8E0DA]">
+
+      {/* ── Hero banner — burgundy bg ─────────────────────────────────────── */}
+      <section className="py-24 bg-[#6B1E2E]">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="max-w-3xl space-y-6"
+            className="max-w-3xl space-y-5"
           >
-            <motion.h2 variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E]">
+            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#C9B8A8]">
               {label}
-            </motion.h2>
-            <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl font-black tracking-tight text-[#1A1A1A] leading-tight">
+            </motion.p>
+            <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
               {headline}
             </motion.h1>
-            <motion.p variants={fadeInUp} className="text-lg text-[#1A1A1A]/55 leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-base text-[#C9B8A8] leading-relaxed max-w-2xl">
               {subhead}
             </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Why We Started + Our Approach */}
-      <section className="py-20 bg-[#F5F0EE] border-t border-[#E8E0DA]">
+      {/* ── Why We Started + Our Approach — warm off-white, left accent ────── */}
+      <section className="py-20 bg-[#F5F0EE]" style={{ borderTop: "1px solid rgba(107,30,46,0.15)" }}>
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16">
+
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="space-y-4"
+            className="space-y-4 border-l-[3px] border-[#6B1E2E] pl-6"
           >
-            <motion.div variants={fadeInUp} className="w-8 h-px bg-[#6B1E2E]" aria-hidden="true" />
             <motion.h3 variants={fadeInUp} className="text-xl font-bold text-[#1A1A1A]">
               {whyWeStarted.title}
             </motion.h3>
@@ -89,9 +87,8 @@ export default function AboutPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="space-y-4"
+            className="space-y-4 border-l-[3px] border-[#6B1E2E] pl-6"
           >
-            <motion.div variants={fadeInUp} className="w-8 h-px bg-[#6B1E2E]" aria-hidden="true" />
             <motion.h3 variants={fadeInUp} className="text-xl font-bold text-[#1A1A1A]">
               {ourApproach.title}
             </motion.h3>
@@ -99,11 +96,12 @@ export default function AboutPage() {
               {ourApproach.body}
             </motion.p>
           </motion.div>
+
         </div>
       </section>
 
-      {/* What Makes Core Different */}
-      <section className="py-20 bg-[#FAFAFA] border-t border-[#E8E0DA]">
+      {/* ── What Makes Core Different — dark burgundy bg ─────────────────── */}
+      <section className="py-20 bg-[#3D0D18]" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
@@ -112,12 +110,12 @@ export default function AboutPage() {
             viewport={viewport}
             className="mb-12"
           >
-            <motion.h2 variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3">
+            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#C9B8A8] mb-3">
               Differentiation
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]">
-              What Makes Core Different
             </motion.p>
+            <motion.h2 variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-white">
+              What Makes Core Different
+            </motion.h2>
           </motion.div>
 
           <motion.div
@@ -133,17 +131,20 @@ export default function AboutPage() {
                 <motion.div
                   key={i}
                   variants={slideUp}
-                  className="relative overflow-hidden p-6 bg-[#F5F0EE] border border-[#E8E0DA] hover:border-[#6B1E2E] transition-all duration-300 group space-y-3"
-                  style={{ boxShadow: "0 0 0 0 rgba(107,30,46,0)" }}
-                  whileHover={{ boxShadow: "0 4px 20px rgba(107,30,46,0.06)" }}
+                  className="relative overflow-hidden p-6 border border-white/10 group space-y-3 transition-all duration-300 hover:border-white/20"
+                  style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
+                  whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
                 >
-                  <span className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#6B1E2E] scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out" aria-hidden="true" />
+                  <span
+                    className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#C9B8A8] scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out"
+                    aria-hidden="true"
+                  />
                   {Icon && (
-                    <div className="w-8 h-8 flex items-center justify-center border border-[#6B1E2E]/25 text-[#6B1E2E]">
+                    <div className="w-8 h-8 flex items-center justify-center border border-[#C9B8A8]/20 text-[#C9B8A8]">
                       <Icon size={15} aria-hidden="true" />
                     </div>
                   )}
-                  <p className="text-sm font-bold text-[#1A1A1A] leading-snug group-hover:text-[#6B1E2E] transition-colors duration-200">
+                  <p className="text-sm font-bold text-white leading-snug group-hover:text-[#C9B8A8] transition-colors duration-200">
                     {item.title}
                   </p>
                 </motion.div>
@@ -153,8 +154,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Six Categories */}
-      <section className="py-20 bg-[#F5F0EE] border-t border-[#E8E0DA]">
+      {/* ── Six Categories — alternating card backgrounds ──────────────────── */}
+      <section className="py-20 bg-[#FAFAFA]" style={{ borderTop: "1px solid #E8E0DA" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
@@ -163,12 +164,12 @@ export default function AboutPage() {
             viewport={viewport}
             className="mb-12"
           >
-            <motion.h2 variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3">
+            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3">
               Scope of Work
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]">
-              The Six Categories We Work In
             </motion.p>
+            <motion.h2 variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]">
+              The Six Categories We Work In
+            </motion.h2>
           </motion.div>
 
           <motion.div
@@ -180,20 +181,25 @@ export default function AboutPage() {
           >
             {categories.map((cat, i) => {
               const Icon = iconMap[cat.icon];
+              const cardBg = i % 2 === 0 ? "#FFFFFF" : "#F5F0EE";
               return (
                 <motion.div
                   key={i}
                   variants={slideUp}
-                  className="relative overflow-hidden p-6 bg-white border border-[#E8E0DA] hover:border-[#6B1E2E] transition-all duration-300 group space-y-3"
+                  className="relative overflow-hidden p-6 border border-[#E8E0DA] hover:border-[#6B1E2E] transition-all duration-300 group space-y-3"
+                  style={{ backgroundColor: cardBg }}
                   whileHover={{ boxShadow: "0 4px 20px rgba(107,30,46,0.06)" }}
                 >
-                  <span className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#6B1E2E] scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out" aria-hidden="true" />
+                  <span
+                    className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#6B1E2E] scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out"
+                    aria-hidden="true"
+                  />
                   {Icon && (
                     <div className="flex items-center gap-2.5">
                       <div className="w-7 h-7 flex items-center justify-center border border-[#6B1E2E]/25 text-[#6B1E2E]">
                         <Icon size={14} aria-hidden="true" />
                       </div>
-                      <span className="text-xs font-black text-[#C9B8A8] tracking-wider">
+                      <span className="text-xs font-black text-[#6B1E2E] tracking-wider">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
@@ -211,22 +217,22 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Founders */}
-      <section className="py-20 bg-[#FAFAFA] border-t border-[#E8E0DA]">
+      {/* ── Founders — warm off-white, large centered photos ──────────────── */}
+      <section className="py-20 bg-[#F5F0EE]" style={{ borderTop: "1px solid #E8E0DA" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="mb-12"
+            className="mb-14"
           >
-            <motion.h2 variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3">
+            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3">
               Team
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]">
-              Founders
             </motion.p>
+            <motion.h2 variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]">
+              Founders
+            </motion.h2>
           </motion.div>
 
           <motion.div
@@ -234,56 +240,64 @@ export default function AboutPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl"
+            className="flex flex-col sm:flex-row items-start justify-center gap-12 sm:gap-16"
           >
             {founders.map((founder, i) => (
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                className="p-8 bg-white border border-[#E8E0DA] hover:border-[#6B1E2E] transition-all duration-300 space-y-5"
-                whileHover={{ boxShadow: "0 4px 24px rgba(107,30,46,0.07)" }}
+                className="flex flex-col items-center text-center max-w-xs w-full sm:w-auto"
               >
-                <div className="flex items-center gap-4">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-[#E8E0DA]">
-                    <Image
-                      src={founderPhotos[founder.name]}
-                      alt={founder.name}
-                      fill
-                      className="object-cover object-top"
-                      sizes="64px"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-base font-bold text-[#1A1A1A]">{founder.name}</p>
-                    <p className="text-xs font-semibold text-[#6B1E2E] uppercase tracking-widest mt-0.5">{founder.role}</p>
-                  </div>
+                {/* Photo with burgundy ring */}
+                <div
+                  className="relative w-[200px] h-[200px] rounded-full overflow-hidden flex-shrink-0 mb-5"
+                  style={{ outline: "3px solid #6B1E2E", outlineOffset: "3px" }}
+                >
+                  <Image
+                    src={founder.photo}
+                    alt={founder.name}
+                    fill
+                    className="object-cover object-top"
+                    sizes="200px"
+                  />
                 </div>
-                <p className="text-sm text-[#1A1A1A]/60 leading-relaxed">{founder.bio}</p>
+
+                {/* Name + role */}
+                <p className="text-base font-bold text-[#1A1A1A] mb-1">{founder.name}</p>
+                <p className="text-xs font-semibold text-[#6B1E2E] uppercase tracking-widest mb-4">
+                  {founder.role}
+                </p>
+
+                {/* Bio */}
+                <p className="text-sm text-[#1A1A1A]/60 leading-relaxed text-left">
+                  {founder.bio}
+                </p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Looking Ahead */}
-      <section className="py-20 bg-[#3D0D18] border-t border-[#6B1E2E]/20">
-        <div className="max-w-6xl mx-auto px-6">
+      {/* ── Looking Ahead — dark banner, centered ─────────────────────────── */}
+      <section className="py-24 bg-[#3D0D18]" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="max-w-2xl space-y-4"
+            className="space-y-5"
           >
-            <motion.h2 variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#C9B8A8] mb-3">
+            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#C9B8A8]">
               Looking Ahead
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-2xl font-extrabold tracking-tight text-white leading-snug">
+            </motion.p>
+            <motion.p variants={fadeInUp} className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-snug">
               {lookingAhead}
             </motion.p>
           </motion.div>
         </div>
       </section>
+
     </div>
   );
 }
