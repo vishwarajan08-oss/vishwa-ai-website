@@ -8,13 +8,13 @@ import { fadeInUp, stagger, viewport } from "@/lib/animations";
 
 function TestimonialCard({ quote, author, role, company }) {
   return (
-    <div className="flex-shrink-0 w-80 md:w-[400px] p-6 bg-[#111111] border-l-2 border-[#C41A1A] space-y-4 mx-3">
+    <div className="flex-shrink-0 w-80 md:w-[400px] p-6 bg-[#171717] border-l-2 border-[#DC2626] space-y-4 mx-3">
       <p className="text-sm text-white/70 leading-relaxed italic">
         &ldquo;{quote}&rdquo;
       </p>
       <div>
         <div className="text-sm font-bold text-white">{author}</div>
-        <div className="text-xs text-white/40 font-medium">
+        <div className="text-xs text-[#A1A1AA] font-medium">
           {role ? `${role}, ` : ""}
           {company}
         </div>
@@ -57,7 +57,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="py-24 bg-[#0A0A0A] border-t border-white/5 overflow-hidden"
+      className="py-24 bg-[#0A0A0A] border-t border-[#2A2A2A] overflow-hidden"
     >
       <motion.div
         variants={stagger}
@@ -68,7 +68,7 @@ export default function Testimonials() {
       >
         <motion.h2
           variants={fadeInUp}
-          className="text-xs font-bold uppercase tracking-widest text-[#C41A1A] mb-3"
+          className="text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-3"
         >
           {label}
         </motion.h2>
@@ -80,7 +80,7 @@ export default function Testimonials() {
         </motion.p>
         <motion.p
           variants={fadeInUp}
-          className="text-sm text-white/50 font-medium max-w-lg"
+          className="text-sm text-[#A1A1AA] font-medium max-w-lg"
         >
           {subheading}
         </motion.p>

@@ -11,6 +11,9 @@ const inter = Inter({
 });
 
 export const metadata = {
+  icons: {
+    icon: "/favicon.svg",
+  },
   title: "Core Consulting | AI for Wealth Management",
   description: "Implementing intelligent systems across wealth management, financial research, and operations. Your team spends less time on process and more time on clients.",
   metadataBase: new URL("https://vishwa-ai-consulting.vercel.app"),

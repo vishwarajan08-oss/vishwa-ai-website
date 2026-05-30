@@ -18,9 +18,12 @@ const slideInLeft = {
 export default function Services({ preview = false }) {
   const { label, title, items } = content.services;
   const displayItems = preview ? items.slice(0, 3) : items;
+  const sectionClass = preview
+    ? "py-24 bg-[#0A0A0A] border-t border-[#2A2A2A]"
+    : "pt-44 pb-24 bg-[#0A0A0A] border-t border-[#2A2A2A]";
 
   return (
-    <section id="services" className="py-24 bg-[#0A0A0A] border-t border-[#2A2A2A]">
+    <section id="services" className={sectionClass}>
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -56,9 +59,20 @@ export default function Services({ preview = false }) {
               <motion.div
                 key={index}
                 variants={slideInLeft}
-                className="grid grid-cols-12 gap-6 py-10 border-b border-[#2A2A2A] group hover:bg-[#171717]/50 transition-colors duration-300"
+                className="relative grid grid-cols-12 gap-6 py-10 border-b border-[#2A2A2A] group hover:bg-[#171717]/50 transition-colors duration-300 overflow-hidden"
               >
-                <div className="col-span-12 md:col-span-1">
+                {/* Logo watermark */}
+              <div className="absolute right-4 bottom-2 opacity-[0.03] pointer-events-none select-none" aria-hidden="true">
+                <svg width="80" height="80" viewBox="0 0 28 28" fill="none">
+                  <circle cx="14" cy="5" r="2.5" fill="white"/>
+                  <circle cx="22.5" cy="20" r="2.5" fill="white"/>
+                  <circle cx="5.5" cy="20" r="2.5" fill="white"/>
+                  <line x1="14" y1="5" x2="22.5" y2="20" stroke="white" strokeWidth="1"/>
+                  <line x1="14" y1="5" x2="5.5" y2="20" stroke="white" strokeWidth="1"/>
+                  <line x1="5.5" y1="20" x2="22.5" y2="20" stroke="white" strokeWidth="1"/>
+                </svg>
+              </div>
+              <div className="col-span-12 md:col-span-1">
                   <span className="text-xs font-black text-[#A1A1AA] tracking-wider">
                     {String(index + 1).padStart(2, "0")}
                   </span>

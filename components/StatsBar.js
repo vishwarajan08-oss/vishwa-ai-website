@@ -41,7 +41,7 @@ export default function StatsBar() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section ref={ref} className="border-y border-white/5 py-14 bg-[#111111]">
+    <section ref={ref} className="border-y border-[#2A2A2A] py-14 bg-[#171717]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
           {stats.map((stat, i) => (
