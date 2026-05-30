@@ -4,115 +4,101 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { content } from "@/config/content";
 
-function ParticleBackground() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <div className="absolute -top-32 -right-32 w-[700px] h-[700px] rounded-full border border-[#DC2626]/8" style={{ animation: "float-slow 12s ease-in-out infinite" }} />
-      <div className="absolute -top-16 -right-16 w-[500px] h-[500px] rounded-full border border-[#DC2626]/6" style={{ animation: "float-slow 16s ease-in-out infinite reverse" }} />
-      <div className="absolute top-16 right-16 w-[300px] h-[300px] rounded-full border border-[#DC2626]/10" style={{ animation: "float-med 10s ease-in-out infinite" }} />
-      <div className="absolute top-[15%] right-[8%] w-[320px] h-[320px] rounded-full bg-[#DC2626]/5 blur-3xl" style={{ animation: "float-slow 14s ease-in-out infinite" }} />
-      <div className="absolute bottom-[25%] left-[3%] w-[240px] h-[240px] rounded-full bg-[#DC2626]/4 blur-3xl" style={{ animation: "float-med 18s ease-in-out infinite reverse" }} />
-      <div className="absolute top-0 left-[28%] w-px h-[45%] bg-gradient-to-b from-transparent via-[#DC2626]/12 to-transparent" />
-      <div className="absolute top-[15%] right-[22%] w-px h-[35%] bg-gradient-to-b from-transparent via-[#DC2626]/8 to-transparent" />
-      <div className="absolute top-[32%] left-[12%] w-1.5 h-1.5 rounded-full bg-[#DC2626]/50" style={{ animation: "pulse-dot 3s ease-in-out infinite" }} />
-      <div className="absolute top-[18%] left-[38%] w-1 h-1 rounded-full bg-[#DC2626]/40" style={{ animation: "pulse-dot 4s ease-in-out infinite 1s" }} />
-      <div className="absolute top-[65%] right-[18%] w-1.5 h-1.5 rounded-full bg-[#DC2626]/40" style={{ animation: "pulse-dot 3.5s ease-in-out infinite 0.5s" }} />
-      <div className="absolute bottom-[30%] left-[22%] w-1 h-1 rounded-full bg-[#DC2626]/30" style={{ animation: "pulse-dot 5s ease-in-out infinite 2s" }} />
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
-    </div>
-  );
-}
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.05 } },
-};
-
-const wordVariant = {
-  hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
-};
-
 export default function Hero() {
-  const { badge, headlinePart1, headlinePart2, subheadline, ctaPrimary, ctaSecondary } = content.hero;
-
-  const words1 = headlinePart1.split(" ");
-  const words2 = headlinePart2.split(" ");
-  const allWords = [...words1, ...words2];
+  const { subheadline, ctaPrimary } = content.hero;
 
   return (
     <section
       id="top"
-      className="relative min-h-dvh flex items-center pt-28 pb-20 bg-[#0A0A0A] overflow-hidden"
+      className="relative min-h-dvh flex items-center pt-24 pb-16 bg-[#FAFAFA] overflow-hidden"
     >
-      <ParticleBackground />
+      {/* Warm radial gradient texture */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(ellipse at 20% 50%, rgba(107,30,46,0.04) 0%, transparent 60%)",
+        }}
+      />
 
       <div className="max-w-6xl mx-auto px-6 w-full relative z-10">
-        <div className="space-y-10 max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 border border-[#DC2626]/40 bg-[#DC2626]/10 text-[#EF4444] text-xs font-semibold tracking-widest uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444]" aria-hidden="true" />
-              {badge}
-            </span>
-          </motion.div>
+        <div className="relative grid grid-cols-1 md:grid-cols-[55%_45%] gap-16 md:gap-0 items-center">
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-wrap gap-x-[0.35em] gap-y-1"
-            aria-label={`${headlinePart1} ${headlinePart2}`}
-          >
-            {allWords.map((word, i) => {
-              const isRedWord = i < words1.length;
-              return (
-                <motion.span
-                  key={i}
-                  variants={wordVariant}
-                  className={`text-5xl md:text-7xl lg:text-[84px] font-black tracking-tight leading-[1.05] ${
-                    isRedWord
-                      ? "bg-gradient-to-r from-[#DC2626] to-[#EF4444] bg-clip-text text-transparent"
-                      : "text-white"
-                  }`}
-                >
-                  {word}
-                </motion.span>
-              );
-            })}
-          </motion.div>
+          {/* Vertical divider — desktop only */}
+          <div
+            className="hidden md:block absolute top-0 bottom-0 left-[55%] w-px bg-[#E8E0DA]"
+            aria-hidden="true"
+          />
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-            className="text-lg md:text-xl text-white/50 font-normal leading-relaxed max-w-xl"
-          >
-            {subheadline}
-          </motion.p>
-
+          {/* Left column — editorial statement */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.45 }}
-            className="flex flex-col sm:flex-row items-start gap-4"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="md:pr-16 flex flex-col justify-center"
           >
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-white bg-[#DC2626] hover:bg-[#991B1B] transition-colors duration-200 hover:scale-[1.02] transform cursor-pointer"
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              {ctaPrimary}
-            </Link>
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-white border border-white/20 hover:border-white/60 hover:bg-white/5 transition-colors duration-200 cursor-pointer"
-            >
-              {ctaSecondary}
-            </Link>
+              <p className="text-[80px] md:text-[120px] lg:text-[140px] font-black tracking-tight leading-none text-[#6B1E2E]">
+                $1.3B+
+              </p>
+            </motion.div>
+
+            <p className="mt-3 text-sm tracking-wide text-[#1A1A1A]/60 uppercase">
+              in AUM across our partner firms
+            </p>
+
+            <div className="mt-6 w-12 h-px bg-[#6B1E2E]" aria-hidden="true" />
+
+            <p className="mt-6 text-xl font-bold text-[#1A1A1A] tracking-tight">
+              4 firms. 90 days. 20% less overhead.
+            </p>
           </motion.div>
+
+          {/* Right column — value proposition */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.65, ease: "easeOut" }}
+            className="md:pl-16 flex flex-col justify-center gap-6"
+          >
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#6B1E2E]">
+              AI for Wealth Management
+            </p>
+
+            <h1 className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight leading-snug">
+              We build the AI systems your firm actually uses.
+            </h1>
+
+            <p className="text-sm text-[#1A1A1A]/60 leading-relaxed max-w-sm">
+              {subheadline}
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-start gap-4">
+              <Link
+                href="/contact"
+                className="relative inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold text-white bg-[#6B1E2E] overflow-hidden group cursor-pointer"
+              >
+                <span
+                  className="absolute inset-0 bg-[#3D0D18] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out"
+                  aria-hidden="true"
+                />
+                <span className="relative">{ctaPrimary}</span>
+              </Link>
+
+              <Link
+                href="/services"
+                className="text-sm font-medium text-[#6B1E2E] hover:text-[#3D0D18] transition-colors duration-200 self-center"
+              >
+                See our services →
+              </Link>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

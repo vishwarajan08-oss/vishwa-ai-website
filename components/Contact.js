@@ -53,7 +53,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#171717] border-t border-[#2A2A2A]">
+    <section id="contact" className="py-24 bg-[#F5F0EE] border-t border-[#E8E0DA]">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           variants={stagger}
@@ -64,25 +64,25 @@ export default function Contact() {
         >
           <motion.div variants={fadeInUp} className="space-y-6">
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-3">
+              <h2 className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3">
                 {label}
               </h2>
-              <p className="text-3xl font-extrabold tracking-tight text-white">
+              <p className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]">
                 {title}
               </p>
             </div>
-            <p className="text-sm text-white/50 font-medium leading-relaxed">
+            <p className="text-sm text-[#1A1A1A]/60 font-medium leading-relaxed">
               {subtitle}
             </p>
             {subtitle2 && (
-              <p className="text-sm text-white/50 font-medium leading-relaxed">
+              <p className="text-sm text-[#1A1A1A]/60 font-medium leading-relaxed">
                 {subtitle2}
               </p>
             )}
-            <div className="pt-4 space-y-3 border-t border-[#2A2A2A]">
+            <div className="pt-4 space-y-3 border-t border-[#E8E0DA]">
               <a
                 href={`mailto:${email}`}
-                className="block text-sm font-semibold text-white/70 hover:text-[#DC2626] transition-colors duration-200 cursor-pointer"
+                className="block text-sm font-semibold text-[#1A1A1A]/60 hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
               >
                 {email}
               </a>
@@ -90,7 +90,7 @@ export default function Contact() {
                 href={`https://${linkedin}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm font-semibold text-white/70 hover:text-[#DC2626] transition-colors duration-200 cursor-pointer"
+                className="block text-sm font-semibold text-[#1A1A1A]/60 hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
               >
                 {linkedin}
               </a>
@@ -107,8 +107,8 @@ export default function Contact() {
                     exit={{ opacity: 0, y: -8 }}
                     className={`p-4 text-xs font-medium border-l-2 ${
                       status.type === "success"
-                        ? "bg-white/5 text-white/80 border-[#DC2626]"
-                        : "bg-[#DC2626]/10 text-[#EF4444] border-[#DC2626]"
+                        ? "bg-[#6B1E2E]/5 text-[#1A1A1A]/70 border-[#6B1E2E]"
+                        : "bg-[#6B1E2E]/8 text-[#6B1E2E] border-[#6B1E2E]"
                     }`}
                     role="alert"
                   >
@@ -119,8 +119,8 @@ export default function Contact() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-white/40">
-                    Name <span className="text-[#DC2626]" aria-hidden="true">*</span>
+                  <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A]/45">
+                    Name <span className="text-[#6B1E2E]" aria-hidden="true">*</span>
                   </label>
                   <input
                     type="text"
@@ -130,11 +130,11 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your name"
-                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#2A2A2A] text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#DC2626] focus:ring-1 focus:ring-[#DC2626] transition-colors duration-200"
+                    className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#1A1A1A]/30 focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="firm" className="text-xs font-bold uppercase tracking-wider text-white/40">
+                  <label htmlFor="firm" className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A]/45">
                     Firm Name
                   </label>
                   <input
@@ -144,14 +144,14 @@ export default function Contact() {
                     value={formData.firm}
                     onChange={handleChange}
                     placeholder="e.g. Loftin Wealth Partners"
-                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#2A2A2A] text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#DC2626] focus:ring-1 focus:ring-[#DC2626] transition-colors duration-200"
+                    className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#1A1A1A]/30 focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-white/40">
-                  Email <span className="text-[#DC2626]" aria-hidden="true">*</span>
+                <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A]/45">
+                  Email <span className="text-[#6B1E2E]" aria-hidden="true">*</span>
                 </label>
                 <input
                   type="email"
@@ -161,13 +161,13 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="you@firm.com"
-                  className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#2A2A2A] text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#DC2626] focus:ring-1 focus:ring-[#DC2626] transition-colors duration-200"
+                  className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#1A1A1A]/30 focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200"
                 />
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-white/40">
-                  Message <span className="text-[#DC2626]" aria-hidden="true">*</span>
+                <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A]/45">
+                  Message <span className="text-[#6B1E2E]" aria-hidden="true">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -176,21 +176,22 @@ export default function Contact() {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Tell us about your operations and AI objectives..."
-                  className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#2A2A2A] text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-[#DC2626] focus:ring-1 focus:ring-[#DC2626] transition-colors duration-200 resize-none"
+                  placeholder="Tell us about your operations and what you want to fix."
+                  className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#1A1A1A]/30 focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200 resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full px-8 py-4 text-sm font-semibold text-white bg-[#DC2626] hover:bg-[#991B1B] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+                className="relative w-full px-8 py-4 text-sm font-semibold text-white bg-[#6B1E2E] overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
               >
-                <Send size={15} aria-hidden="true" />
-                {loading ? "Submitting..." : ctaLabel}
+                <span className="absolute inset-0 bg-[#3D0D18] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out" aria-hidden="true" />
+                <Send size={15} aria-hidden="true" className="relative" />
+                <span className="relative">{loading ? "Submitting..." : ctaLabel}</span>
               </button>
 
-              <p className="text-xs text-white/30 text-center">{responseNote}</p>
+              <p className="text-xs text-[#1A1A1A]/30 text-center">{responseNote}</p>
             </form>
           </motion.div>
         </motion.div>

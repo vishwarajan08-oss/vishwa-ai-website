@@ -1,63 +1,40 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { testimonials } from "@/config/testimonials";
 import { content } from "@/config/content";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
 
-function TestimonialCard({ quote, author, role, company }) {
-  return (
-    <div className="flex-shrink-0 w-80 md:w-[400px] p-6 bg-[#171717] border-l-2 border-[#DC2626] space-y-4 mx-3">
-      <p className="text-sm text-white/70 leading-relaxed italic">
-        &ldquo;{quote}&rdquo;
-      </p>
-      <div>
-        <div className="text-sm font-bold text-white">{author}</div>
-        <div className="text-xs text-[#A1A1AA] font-medium">
-          {role ? `${role}, ` : ""}
-          {company}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MarqueeRow({ items, duration, reverse = false }) {
-  const [paused, setPaused] = useState(false);
-  const doubled = [...items, ...items];
-
-  return (
-    <div
-      className="overflow-hidden"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      <div
-        className="flex"
-        style={{
-          animation: `${reverse ? "marquee-reverse" : "marquee"} ${duration}s linear infinite`,
-          animationPlayState: paused ? "paused" : "running",
-          width: "max-content",
-        }}
-      >
-        {doubled.map((t, i) => (
-          <TestimonialCard key={i} {...t} />
-        ))}
-      </div>
-    </div>
-  );
-}
+const INTERVAL_MS = 5000;
 
 export default function Testimonials() {
   const { label, heading, subheading } = content.testimonials;
-  const row1 = testimonials;
-  const row2 = [...testimonials.slice(3), ...testimonials.slice(0, 3)];
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const total = testimonials.length;
+
+  const prev = useCallback(() => {
+    setIndex((i) => (i - 1 + total) % total);
+  }, [total]);
+
+  const next = useCallback(() => {
+    setIndex((i) => (i + 1) % total);
+  }, [total]);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(next, INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [paused, next]);
+
+  const current = testimonials[index];
 
   return (
     <section
       id="testimonials"
-      className="py-24 bg-[#0A0A0A] border-t border-[#2A2A2A] overflow-hidden"
+      className="py-24 bg-[#FAFAFA] border-t border-[#E8E0DA]"
     >
       <motion.div
         variants={stagger}
@@ -68,19 +45,19 @@ export default function Testimonials() {
       >
         <motion.h2
           variants={fadeInUp}
-          className="text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-3"
+          className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3"
         >
           {label}
         </motion.h2>
         <motion.p
           variants={fadeInUp}
-          className="text-3xl font-extrabold tracking-tight text-white mb-3"
+          className="text-3xl font-extrabold tracking-tight text-[#1A1A1A] mb-3"
         >
           {heading}
         </motion.p>
         <motion.p
           variants={fadeInUp}
-          className="text-sm text-[#A1A1AA] font-medium max-w-lg"
+          className="text-sm text-[#C9B8A8] font-medium max-w-lg"
         >
           {subheading}
         </motion.p>
@@ -89,12 +66,69 @@ export default function Testimonials() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
+        transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
         viewport={viewport}
-        className="space-y-4"
+        className="flex flex-col items-center gap-8 px-6"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
       >
-        <MarqueeRow items={row1} duration={40} />
-        <MarqueeRow items={row2} duration={50} reverse />
+        {/* Card */}
+        <div className="relative w-full max-w-2xl min-h-[200px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="bg-white border border-[#E8E0DA] px-10 py-10 shadow-sm"
+            >
+              <p className="text-base italic leading-relaxed text-[#1A1A1A]/70 mb-6">
+                &ldquo;{current.quote}&rdquo;
+              </p>
+              <div>
+                <div className="font-bold text-[#1A1A1A]">{current.author}</div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Controls */}
+        <div className="flex items-center gap-6">
+          <button
+            onClick={prev}
+            aria-label="Previous testimonial"
+            className="text-[#C9B8A8] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none"
+          >
+            ←
+          </button>
+
+          {/* Dot indicators */}
+          <div className="flex items-center gap-2" role="tablist" aria-label="Testimonial navigation">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                role="tab"
+                aria-selected={i === index}
+                aria-label={`Testimonial ${i + 1}`}
+                onClick={() => setIndex(i)}
+                className="w-2 h-2 rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B1E2E]"
+                style={{
+                  backgroundColor: i === index ? "#6B1E2E" : "transparent",
+                  border: i === index ? "none" : "1.5px solid #6B1E2E",
+                }}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={next}
+            aria-label="Next testimonial"
+            className="text-[#C9B8A8] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none"
+          >
+            →
+          </button>
+        </div>
       </motion.div>
     </section>
   );

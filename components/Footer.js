@@ -18,7 +18,7 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#2A2A2A] py-12 bg-[#0A0A0A]">
+    <footer className="border-t border-[#6B1E2E]/20 py-12 bg-[#3D0D18]">
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -28,8 +28,8 @@ export default function Footer() {
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           <div className="space-y-3">
-            <Logo />
-            <p className="text-xs text-[#A1A1AA] font-medium leading-relaxed max-w-[200px]">
+            <Logo inverted={true} />
+            <p className="text-xs text-white/40 font-medium leading-relaxed max-w-[200px]">
               AI infrastructure for wealth management firms.
             </p>
             <div className="flex items-center gap-4 pt-2">
@@ -37,14 +37,14 @@ export default function Footer() {
                 href="https://linkedin.com/in/vishwarajan"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#A1A1AA] hover:text-white transition-colors duration-200 cursor-pointer"
+                className="text-white/40 hover:text-white transition-colors duration-200 cursor-pointer"
                 aria-label="LinkedIn"
               >
                 <ExternalLink size={16} />
               </a>
               <a
                 href="mailto:coreconsulting.ai@gmail.com"
-                className="text-[#A1A1AA] hover:text-white transition-colors duration-200 cursor-pointer"
+                className="text-white/40 hover:text-white transition-colors duration-200 cursor-pointer"
                 aria-label="Email"
               >
                 <Mail size={16} />
@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-3">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#A1A1AA]">Navigation</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-white/30">Navigation</p>
             <div className="grid grid-cols-2 gap-2">
               {footerLinks.map((link) => (
                 <Link
@@ -68,23 +68,23 @@ export default function Footer() {
           </div>
 
           <div className="space-y-3">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#A1A1AA]">Contact</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-white/30">Contact</p>
             <a
               href="mailto:coreconsulting.ai@gmail.com"
-              className="block text-xs font-medium text-white/40 hover:text-[#DC2626] transition-colors duration-200 cursor-pointer"
+              className="block text-xs font-medium text-white/40 hover:text-[#C9B8A8] transition-colors duration-200 cursor-pointer"
             >
               coreconsulting.ai@gmail.com
             </a>
             <Link
               href="/contact"
-              className="inline-block text-xs font-semibold px-4 py-2 bg-[#DC2626] text-white hover:bg-[#991B1B] transition-colors duration-200 mt-2 cursor-pointer"
+              className="inline-block text-xs font-semibold px-4 py-2 bg-[#6B1E2E] text-white hover:bg-[#8B2A3D] transition-colors duration-200 mt-2 cursor-pointer"
             >
               Book a Consultation
             </Link>
           </div>
         </div>
 
-        <div className="border-t border-[#2A2A2A] pt-6">
+        <div className="border-t border-white/10 pt-6">
           <p className="text-xs text-white/20 font-medium">
             &copy; 2026 Core Consulting. All rights reserved.
           </p>

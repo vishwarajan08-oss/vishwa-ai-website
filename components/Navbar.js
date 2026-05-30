@@ -45,7 +45,7 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-[#0A0A0A]/95 backdrop-blur-md border-b border-[#2A2A2A] py-4"
+            ? "bg-[#FAFAFA]/95 backdrop-blur-md border-b border-[#E8E0DA] py-4"
             : "bg-transparent py-6"
         }`}
       >
@@ -63,12 +63,12 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={`relative text-sm font-medium transition-colors duration-200 group cursor-pointer ${
-                    isActive ? "text-white" : "text-white/50 hover:text-white"
+                    isActive ? "text-[#1A1A1A]" : "text-[#1A1A1A]/50 hover:text-[#1A1A1A]"
                   }`}
                 >
                   {link.name}
                   <span
-                    className={`absolute -bottom-0.5 left-0 h-px bg-[#DC2626] transition-all duration-300 ${
+                    className={`absolute -bottom-0.5 left-0 h-px bg-[#6B1E2E] transition-all duration-300 ${
                       isActive ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   />
@@ -77,9 +77,10 @@ export default function Navbar() {
             })}
             <Link
               href="/contact"
-              className="text-sm font-semibold px-5 py-2.5 bg-[#DC2626] text-white hover:bg-[#991B1B] transition-colors duration-200 hover:scale-[1.02] transform cursor-pointer"
+              className="relative text-sm font-semibold px-5 py-2.5 bg-[#6B1E2E] text-white overflow-hidden group cursor-pointer"
             >
-              Book a Consultation
+              <span className="absolute inset-0 bg-[#3D0D18] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out" aria-hidden="true" />
+              <span className="relative">Book a Consultation</span>
             </Link>
           </nav>
 
@@ -87,13 +88,13 @@ export default function Navbar() {
           <div className="lg:hidden flex items-center gap-3">
             <Link
               href="/contact"
-              className="text-xs font-semibold px-4 py-2 bg-[#DC2626] text-white hover:bg-[#991B1B] transition-colors duration-200 cursor-pointer"
+              className="text-xs font-semibold px-4 py-2 bg-[#6B1E2E] text-white hover:bg-[#3D0D18] transition-colors duration-200 cursor-pointer"
             >
               Book a Consultation
             </Link>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 text-white/70 hover:text-white transition-colors duration-200 cursor-pointer"
+              className="p-2 text-[#1A1A1A]/60 hover:text-[#1A1A1A] transition-colors duration-200 cursor-pointer"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -112,7 +113,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-[#1A1A1A]/20 backdrop-blur-sm lg:hidden"
               onClick={() => setMobileOpen(false)}
               aria-hidden="true"
             />
@@ -121,14 +122,14 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-[#0A0A0A] border-l border-[#2A2A2A] flex flex-col lg:hidden"
+              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-[#FAFAFA] border-l border-[#E8E0DA] flex flex-col lg:hidden"
               aria-label="Mobile navigation"
             >
-              <div className="flex items-center justify-between p-6 border-b border-[#2A2A2A]">
+              <div className="flex items-center justify-between p-6 border-b border-[#E8E0DA]">
                 <Logo size="small" />
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="p-2 text-white/50 hover:text-white transition-colors duration-200 cursor-pointer"
+                  className="p-2 text-[#1A1A1A]/40 hover:text-[#1A1A1A] transition-colors duration-200 cursor-pointer"
                   aria-label="Close menu"
                 >
                   <X size={18} />
@@ -141,8 +142,8 @@ export default function Navbar() {
                     <Link
                       key={link.name}
                       href={link.href}
-                      className={`block py-3 text-sm font-medium border-b border-[#2A2A2A]/50 transition-colors duration-200 cursor-pointer ${
-                        isActive ? "text-white" : "text-white/50 hover:text-white"
+                      className={`block py-3 text-sm font-medium border-b border-[#E8E0DA]/70 transition-colors duration-200 cursor-pointer ${
+                        isActive ? "text-[#1A1A1A]" : "text-[#1A1A1A]/50 hover:text-[#1A1A1A]"
                       }`}
                     >
                       {link.name}
@@ -150,10 +151,10 @@ export default function Navbar() {
                   );
                 })}
               </div>
-              <div className="p-6 border-t border-[#2A2A2A]">
+              <div className="p-6 border-t border-[#E8E0DA]">
                 <Link
                   href="/contact"
-                  className="block text-center text-sm font-semibold px-5 py-3 bg-[#DC2626] text-white hover:bg-[#991B1B] transition-colors duration-200 cursor-pointer"
+                  className="block text-center text-sm font-semibold px-5 py-3 bg-[#6B1E2E] text-white hover:bg-[#3D0D18] transition-colors duration-200 cursor-pointer"
                 >
                   Book a Consultation
                 </Link>

@@ -12,7 +12,7 @@ export default function Vision() {
   const { label, title, cols } = content.vision;
 
   return (
-    <section id="vision" className="py-24 bg-[#171717] border-t border-[#2A2A2A]">
+    <section id="vision" className="py-24 bg-[#F5F0EE] border-t border-[#E8E0DA]">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           variants={stagger}
@@ -23,19 +23,19 @@ export default function Vision() {
         >
           <motion.h2
             variants={fadeInUp}
-            className="text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-3"
+            className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3"
           >
             {label}
           </motion.h2>
           <motion.p
             variants={fadeInUp}
-            className="text-3xl font-extrabold tracking-tight text-white"
+            className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]"
           >
             {title}
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-[#2A2A2A]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-[#E8E0DA]">
           {cols.map((col, index) => {
             const Icon = iconMap[col.icon];
             return (
@@ -45,17 +45,18 @@ export default function Vision() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={viewport}
-                className="py-10 md:pr-10 md:border-r border-b md:border-b-0 border-[#2A2A2A] last:border-r-0 last:border-b-0 space-y-4 md:pl-10 first:pl-0 last:pr-0 group hover:bg-[#0A0A0A]/30 transition-colors duration-300 cursor-default"
+                className="relative overflow-hidden py-10 md:pr-10 md:border-r border-b md:border-b-0 border-[#E8E0DA] last:border-r-0 last:border-b-0 space-y-4 md:pl-10 first:pl-0 last:pr-0 group hover:bg-white/60 transition-colors duration-300 cursor-default"
               >
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#6B1E2E] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" aria-hidden="true" />
                 {Icon && (
-                  <div className="w-8 h-8 flex items-center justify-center border border-[#DC2626]/30 text-[#DC2626]">
+                  <div className="w-8 h-8 flex items-center justify-center border border-[#6B1E2E]/25 text-[#6B1E2E]">
                     <Icon size={16} aria-hidden="true" />
                   </div>
                 )}
-                <h3 className="text-lg font-bold text-white leading-snug group-hover:text-[#DC2626] transition-colors duration-200">
+                <h3 className="text-lg font-bold text-[#1A1A1A] leading-snug group-hover:text-[#6B1E2E] transition-colors duration-200">
                   {col.title}
                 </h3>
-                <p className="text-sm text-white/50 leading-relaxed font-normal">
+                <p className="text-sm text-[#1A1A1A]/60 leading-relaxed font-normal">
                   {col.description}
                 </p>
               </motion.div>

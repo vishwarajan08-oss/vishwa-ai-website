@@ -19,8 +19,8 @@ export default function Services({ preview = false }) {
   const { label, title, items } = content.services;
   const displayItems = preview ? items.slice(0, 3) : items;
   const sectionClass = preview
-    ? "py-24 bg-[#0A0A0A] border-t border-[#2A2A2A]"
-    : "pt-44 pb-24 bg-[#0A0A0A] border-t border-[#2A2A2A]";
+    ? "py-24 bg-[#FAFAFA] border-t border-[#E8E0DA]"
+    : "pt-44 pb-24 bg-[#FAFAFA] border-t border-[#E8E0DA]";
 
   return (
     <section id="services" className={sectionClass}>
@@ -34,13 +34,13 @@ export default function Services({ preview = false }) {
         >
           <motion.h2
             variants={slideInLeft}
-            className="text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-3"
+            className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3"
           >
             {label}
           </motion.h2>
           <motion.p
             variants={slideInLeft}
-            className="text-3xl font-extrabold tracking-tight text-white"
+            className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]"
           >
             {title}
           </motion.p>
@@ -51,7 +51,7 @@ export default function Services({ preview = false }) {
           initial="hidden"
           whileInView="visible"
           viewport={viewport}
-          className="border-t border-[#2A2A2A]"
+          className="border-t border-[#E8E0DA]"
         >
           {displayItems.map((service, index) => {
             const Icon = iconMap[service.icon];
@@ -59,39 +59,38 @@ export default function Services({ preview = false }) {
               <motion.div
                 key={index}
                 variants={slideInLeft}
-                className="relative grid grid-cols-12 gap-6 py-10 border-b border-[#2A2A2A] group hover:bg-[#171717]/50 transition-colors duration-300 overflow-hidden"
+                className="relative grid grid-cols-12 gap-6 py-10 border-b border-[#E8E0DA] group hover:bg-[#F5F0EE]/60 transition-colors duration-300 overflow-hidden"
               >
-                {/* Logo watermark */}
-              <div className="absolute right-4 bottom-2 opacity-[0.03] pointer-events-none select-none" aria-hidden="true">
-                <svg width="80" height="80" viewBox="0 0 28 28" fill="none">
-                  <circle cx="14" cy="5" r="2.5" fill="white"/>
-                  <circle cx="22.5" cy="20" r="2.5" fill="white"/>
-                  <circle cx="5.5" cy="20" r="2.5" fill="white"/>
-                  <line x1="14" y1="5" x2="22.5" y2="20" stroke="white" strokeWidth="1"/>
-                  <line x1="14" y1="5" x2="5.5" y2="20" stroke="white" strokeWidth="1"/>
-                  <line x1="5.5" y1="20" x2="22.5" y2="20" stroke="white" strokeWidth="1"/>
-                </svg>
-              </div>
-              <div className="col-span-12 md:col-span-1">
-                  <span className="text-xs font-black text-[#A1A1AA] tracking-wider">
+                <div className="absolute right-4 bottom-2 opacity-[0.03] pointer-events-none select-none" aria-hidden="true">
+                  <svg width="80" height="80" viewBox="0 0 28 28" fill="none">
+                    <circle cx="14" cy="5" r="2.5" fill="#1A1A1A"/>
+                    <circle cx="22.5" cy="20" r="2.5" fill="#1A1A1A"/>
+                    <circle cx="5.5" cy="20" r="2.5" fill="#1A1A1A"/>
+                    <line x1="14" y1="5" x2="22.5" y2="20" stroke="#1A1A1A" strokeWidth="1"/>
+                    <line x1="14" y1="5" x2="5.5" y2="20" stroke="#1A1A1A" strokeWidth="1"/>
+                    <line x1="5.5" y1="20" x2="22.5" y2="20" stroke="#1A1A1A" strokeWidth="1"/>
+                  </svg>
+                </div>
+                <div className="col-span-12 md:col-span-1">
+                  <span className="text-xs font-black text-[#C9B8A8] tracking-wider">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
                 <div className="col-span-12 md:col-span-4 space-y-2">
                   <div className="flex items-center gap-2.5">
                     {Icon && (
-                      <Icon size={16} className="text-[#DC2626] flex-shrink-0" aria-hidden="true" />
+                      <Icon size={16} className="text-[#6B1E2E] flex-shrink-0" aria-hidden="true" />
                     )}
-                    <h3 className="text-base font-bold text-white leading-snug group-hover:text-[#EF4444] transition-colors duration-200">
+                    <h3 className="text-base font-bold text-[#1A1A1A] leading-snug group-hover:text-[#6B1E2E] transition-colors duration-200">
                       {service.title}
                     </h3>
                   </div>
-                  <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-[#DC2626]/40 text-[#DC2626]">
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-[#6B1E2E]/30 text-[#6B1E2E]">
                     {service.tag}
                   </span>
                 </div>
                 <div className="col-span-12 md:col-span-7">
-                  <p className="text-sm text-white/50 leading-relaxed font-normal">
+                  <p className="text-sm text-[#1A1A1A]/60 leading-relaxed font-normal">
                     {service.description}
                   </p>
                 </div>
@@ -108,12 +107,12 @@ export default function Services({ preview = false }) {
             viewport={viewport}
             className="mt-12 flex justify-between items-center"
           >
-            <p className="text-sm text-white/40">
+            <p className="text-sm text-[#1A1A1A]/40">
               {items.length - displayItems.length} more services available
             </p>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#DC2626] transition-colors duration-200 cursor-pointer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#1A1A1A] hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
             >
               View All Services <span aria-hidden="true">→</span>
             </Link>
@@ -128,7 +127,7 @@ export default function Services({ preview = false }) {
           >
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#DC2626] transition-colors duration-200 cursor-pointer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#1A1A1A] hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
             >
               Work With Us <span aria-hidden="true">→</span>
             </Link>

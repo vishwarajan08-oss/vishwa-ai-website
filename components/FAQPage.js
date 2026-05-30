@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { faqs } from "@/config/faq";
 import { fadeInUp, stagger, staggerMed, viewport } from "@/lib/animations";
-import { ChevronDown } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 import Link from "next/link";
 
 function FAQItem({ question, answer, index }) {
@@ -13,8 +13,8 @@ function FAQItem({ question, answer, index }) {
   return (
     <motion.div
       variants={fadeInUp}
-      className={`border-b border-[#2A2A2A] transition-colors duration-200 ${
-        open ? "bg-[#171717]" : "hover:bg-[#171717]/50"
+      className={`border-b border-[#E8E0DA] transition-colors duration-200 ${
+        open ? "bg-[#F5F0EE]" : "hover:bg-[#F5F0EE]/50"
       }`}
     >
       <button
@@ -23,37 +23,33 @@ function FAQItem({ question, answer, index }) {
         aria-expanded={open}
       >
         <div className="flex items-start gap-4 flex-1 pr-4">
-          <span className="text-xs font-black text-[#A1A1AA] tracking-wider flex-shrink-0 mt-0.5">
+          <span className="text-xs font-black text-[#C9B8A8] tracking-wider flex-shrink-0 mt-0.5">
             {String(index + 1).padStart(2, "0")}
           </span>
           <span className={`text-sm font-bold leading-snug transition-colors duration-200 ${
-            open ? "text-[#EF4444]" : "text-white group-hover:text-white/90"
+            open ? "text-[#6B1E2E]" : "text-[#1A1A1A] group-hover:text-[#1A1A1A]/80"
           }`}>
             {question}
           </span>
         </div>
-        <motion.div
-          animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className={`flex-shrink-0 transition-colors duration-200 ${
-            open ? "text-[#DC2626]" : "text-[#A1A1AA]"
-          }`}
-        >
-          <ChevronDown size={18} aria-hidden="true" />
-        </motion.div>
+        <div className={`flex-shrink-0 w-5 h-5 flex items-center justify-center transition-colors duration-200 ${
+          open ? "text-[#6B1E2E]" : "text-[#C9B8A8]"
+        }`}>
+          {open ? <Minus size={15} aria-hidden="true" /> : <Plus size={15} aria-hidden="true" />}
+        </div>
       </button>
 
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
             key="content"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
+            animate={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}
+            exit={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
             className="overflow-hidden"
           >
-            <p className="text-sm text-white/50 leading-relaxed px-6 pb-6 pl-16">
+            <p className="text-sm text-[#1A1A1A]/60 leading-relaxed px-6 pb-6 pl-16">
               {answer}
             </p>
           </motion.div>
@@ -66,7 +62,7 @@ function FAQItem({ question, answer, index }) {
 export default function FAQPage() {
   return (
     <div className="pt-20">
-      <section className="py-24 bg-[#0A0A0A] border-t border-[#2A2A2A]">
+      <section className="py-24 bg-[#FAFAFA] border-t border-[#E8E0DA]">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div
             variants={stagger}
@@ -75,14 +71,14 @@ export default function FAQPage() {
             viewport={viewport}
             className="mb-16"
           >
-            <motion.h2 variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-3">
+            <motion.h2 variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3">
               FAQ
             </motion.h2>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-extrabold tracking-tight text-white mb-4">
+            <motion.h1 variants={fadeInUp} className="text-4xl font-extrabold tracking-tight text-[#1A1A1A] mb-4">
               Common Questions
             </motion.h1>
-            <motion.p variants={fadeInUp} className="text-sm text-white/50 max-w-lg">
-              Everything you need to know about working with Core Consulting. Don't see your question here? Reach out directly.
+            <motion.p variants={fadeInUp} className="text-sm text-[#1A1A1A]/55 max-w-lg">
+              Everything you need to know about working with Core Consulting. Don't see your question? Reach out directly.
             </motion.p>
           </motion.div>
 
@@ -91,7 +87,7 @@ export default function FAQPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="border-t border-[#2A2A2A]"
+            className="border-t border-[#E8E0DA]"
           >
             {faqs.map((faq, i) => (
               <FAQItem key={i} index={i} question={faq.question} answer={faq.answer} />
@@ -103,17 +99,18 @@ export default function FAQPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
             viewport={viewport}
-            className="mt-16 p-8 bg-[#171717] border border-[#2A2A2A] space-y-4"
+            className="mt-16 p-8 bg-[#F5F0EE] border border-[#E8E0DA] space-y-4"
           >
-            <p className="text-sm font-bold text-white">Still have questions?</p>
-            <p className="text-sm text-white/50">
+            <p className="text-sm font-bold text-[#1A1A1A]">Still have questions?</p>
+            <p className="text-sm text-[#1A1A1A]/55">
               We're happy to answer anything before you commit to a conversation. Reach out directly and we'll get back to you within one business day.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 text-sm font-bold text-white bg-[#DC2626] hover:bg-[#991B1B] px-6 py-3 transition-colors duration-200 cursor-pointer"
+              className="relative inline-flex items-center gap-2 text-sm font-bold text-white bg-[#6B1E2E] overflow-hidden group px-6 py-3 cursor-pointer"
             >
-              Book a Consultation <span aria-hidden="true">→</span>
+              <span className="absolute inset-0 bg-[#3D0D18] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out" aria-hidden="true" />
+              <span className="relative">Book a Consultation <span aria-hidden="true">→</span></span>
             </Link>
           </motion.div>
         </div>
