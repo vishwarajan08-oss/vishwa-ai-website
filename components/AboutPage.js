@@ -176,7 +176,7 @@ export default function AboutPage() {
             variants={staggerMed}
             initial="hidden"
             whileInView="visible"
-            viewport={viewport}
+            viewport={{ once: true, margin: "-60px" }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
           >
             {categories.map((cat, i) => {
@@ -249,7 +249,11 @@ export default function AboutPage() {
                 className="flex flex-col items-center text-center w-full sm:w-80"
               >
                 {/* Photo with burgundy ring */}
-                <div
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className="relative w-[200px] h-[200px] rounded-full overflow-hidden flex-shrink-0 mb-5 mx-auto"
                   style={{ outline: "3px solid #6B1E2E", outlineOffset: "3px" }}
                 >
@@ -260,7 +264,7 @@ export default function AboutPage() {
                     className="object-cover object-top"
                     sizes="200px"
                   />
-                </div>
+                </motion.div>
 
                 {/* Name + role */}
                 <p className="text-base font-bold text-[#1A1A1A] mb-1">{founder.name}</p>
@@ -291,7 +295,13 @@ export default function AboutPage() {
             <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#C9B8A8]">
               Looking Ahead
             </motion.p>
-            <motion.p variants={fadeInUp} className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-snug">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-snug"
+            >
               {lookingAhead}
             </motion.p>
           </motion.div>
