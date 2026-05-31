@@ -8,39 +8,31 @@ import { fadeInUp, stagger, viewport } from "@/lib/animations";
 const PHASES = [
   {
     number: "01",
-    status: "Current",
-    statusActive: true,
     title: "Discovery & Workflow Mapping",
     description:
-      "We interview key personnel across every function — advisors, operations, compliance, client services. We map exactly where time is lost, where errors happen, and where AI creates real leverage. Nothing is assumed. Everything is verified before we recommend a single tool.",
-    detail: "Typically 2–3 weeks. Conducted on-site or remotely depending on firm size.",
+      "Before we recommend anything, we sit down with the people who actually do the work. Advisors, ops staff, compliance, client services. We find out where time is going and where things break down. That's what everything else is built on.",
+    detail: "Takes two to three weeks depending on firm size.",
   },
   {
     number: "02",
-    status: "Active",
-    statusActive: true,
     title: "Agentic AI Development & Implementation",
     description:
-      "We build and deploy custom agentic AI systems based on what the discovery revealed. CRM automation, research pipelines, reporting infrastructure, client communication workflows. Every system is designed around how your firm actually operates — not how a generic template assumes it does.",
-    detail: "Deployment timeline varies by scope. Most firms see first systems live within 30 days.",
+      "We build what the discovery tells us to build. Custom agentic systems, tool integrations, and automated workflows. All designed around how your firm actually runs. Nothing generic, nothing speculative.",
+    detail: "Most firms have their first systems live within 30 days of kickoff.",
   },
   {
     number: "03",
-    status: "Included",
-    statusActive: false,
     title: "Audit & Optimization Quarter",
     description:
-      "The first 90 days after deployment we stay fully engaged. We monitor system performance, run staff training sessions, adjust workflows based on real usage, and verify that the results are measurable and defensible. No firm leaves the implementation phase without a clean audit.",
-    detail: "90-day engagement. Includes two formal review sessions and continuous monitoring.",
+      "The first 90 days after we deploy, we stay involved. We watch how the systems perform, run training sessions with your team, and fix what needs fixing. You don't sign off on something until it's actually working.",
+    detail: "Includes two formal reviews and ongoing monitoring throughout the quarter.",
   },
   {
     number: "04",
-    status: "Optional",
-    statusActive: false,
     title: "Retained Partnership",
     description:
-      "Firms that want ongoing support retain us on a quarterly basis. We stay active — monitoring systems, evaluating new tools as they emerge, running quarterly audits, and keeping your AI infrastructure ahead of what your competitors are building.",
-    detail: "Quarterly retainer. Includes priority access, ongoing optimization, and new tool evaluation.",
+      "Some firms keep us on after the audit quarter. We monitor the systems, stay current on new tools, and run quarterly check-ins. It's straightforward ongoing support. Nothing more complicated than that.",
+    detail: "Month-to-month after the initial engagement.",
   },
 ];
 
@@ -53,7 +45,7 @@ function PhaseCard({ phase, index }) {
       ref={ref}
       className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8 py-16 border-b border-[#E8E0DA] last:border-b-0"
     >
-      {/* Left — number and status */}
+      {/* Left — number */}
       <motion.div
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
         transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -61,18 +53,6 @@ function PhaseCard({ phase, index }) {
       >
         <span className="text-4xl font-black text-[#E8E0DA] leading-none">
           {phase.number}
-        </span>
-        <span
-          className={`inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 w-fit ${
-            phase.statusActive
-              ? "bg-[#6B1E2E] text-white"
-              : "bg-[#F5F0EE] text-[#8C8C8C] border border-[#E8E0DA]"
-          }`}
-        >
-          {phase.statusActive && (
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse inline-block" />
-          )}
-          {phase.status}
         </span>
       </motion.div>
 
