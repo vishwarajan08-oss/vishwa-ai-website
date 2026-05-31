@@ -4,7 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
-import { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search } from "lucide-react";
+import { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Target, Settings, Users } from "lucide-react";
+import { RadialOrbitalTimeline } from "@/components/ui/radial-orbital-timeline";
 
 const iconMap = { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search };
 
@@ -28,6 +29,16 @@ const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
 };
+
+const servicesData = [
+  { id: 1, title: "Workflow Automation", date: "Fastest ROI", content: "We eliminate repetitive manual tasks — meeting notes, follow-up emails, onboarding workflows, internal reporting. Clients see 20% reductions in operational hours within 90 days.", category: "Automation", icon: Zap, relatedIds: [2, 3], status: "completed", energy: 95 },
+  { id: 2, title: "AI Strategy & Advisory", date: "Start Here", content: "Before touching a single tool, we audit how your firm operates. Then we identify the two or three places where AI creates real, measurable impact.", category: "Strategy", icon: Target, relatedIds: [1, 3], status: "completed", energy: 90 },
+  { id: 3, title: "End-to-End Implementation", date: "Most Popular", content: "From audit to full deployment. CRM, research, client reporting, back-office operations. No tool bloat, no guesswork.", category: "Implementation", icon: Settings, relatedIds: [1, 2, 4], status: "in-progress", energy: 85 },
+  { id: 4, title: "Human-Focused Tech", date: "Relationship-Safe", content: "Every system we build gives advisors more time for clients, not automates away what makes the relationship valuable. Privacy-first data handling on every engagement.", category: "Design", icon: Users, relatedIds: [3, 5], status: "in-progress", energy: 80 },
+  { id: 5, title: "Ongoing Optimization", date: "Long-Term", content: "AI implementations don't maintain themselves. Quarterly audits, continuous monitoring, hands-on training so your systems keep working as your firm grows.", category: "Support", icon: RefreshCw, relatedIds: [4, 6], status: "in-progress", energy: 70 },
+  { id: 6, title: "Compliance-Aware", date: "Risk-Reduced", content: "Every tool is vetted against compliance requirements of independent advisory firms. We understand the regulatory environment and design accordingly.", category: "Compliance", icon: Shield, relatedIds: [5, 7], status: "pending", energy: 75 },
+  { id: 7, title: "Research & Evaluation", date: "Research-Backed", content: "30 interns from Brown, UC Irvine, and UGA run continuous tool evaluations. We always know what actually works before recommending anything.", category: "Research", icon: Search, relatedIds: [6, 1], status: "pending", energy: 65 },
+];
 
 // Card used in both preview (homepage) and full (services page)
 function ServiceCard({ service, index, variant = "preview" }) {
@@ -193,18 +204,12 @@ export default function Services({ preview = false }) {
       <section className="py-20 bg-bg border-t border-divider">
         <div className="max-w-6xl mx-auto px-6">
 
-          {/* 2-column grid — stagger entrance */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            transition={{ staggerChildren: 0.08 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-5"
-          >
-            {displayItems.map((service, index) => (
-              <ServiceCard key={index} service={service} index={index} variant="full" />
-            ))}
-          </motion.div>
+          {/* Radial orbital timeline */}
+          <div className="bg-[#1A1A1A] rounded-2xl overflow-hidden" style={{ minHeight: "700px" }}>
+            <div className="p-8 md:p-12">
+              <RadialOrbitalTimeline timelineData={servicesData} />
+            </div>
+          </div>
 
           {/* CTA banner */}
           <motion.div
