@@ -8,11 +8,11 @@ import { viewport } from "@/lib/animations";
 const EASE = [0.25, 0.46, 0.45, 0.94];
 
 const cardVariant = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 40 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: EASE, delay: i * 0.12 },
+    transition: { duration: 0.5, ease: "easeOut", delay: i * 0.15 },
   }),
 };
 
@@ -38,8 +38,17 @@ export default function TrackRecord() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-80px" }}
-                className="bg-white border border-divider overflow-hidden"
+                whileHover={{
+                  y: -6,
+                  boxShadow: "0 12px 32px rgba(61,13,24,0.13)",
+                  transition: { duration: 0.2, ease: "easeOut" },
+                }}
+                className="bg-white border border-divider relative group"
               >
+                <span
+                  className="absolute top-0 inset-x-0 h-[2px] bg-burgundy opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 pointer-events-none"
+                  aria-hidden="true"
+                />
                 {/* Case index strip */}
                 <div className="px-10 md:px-14 py-4 border-b border-divider bg-bg-alt flex items-center justify-between">
                   <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#595959]">
@@ -76,6 +85,11 @@ export default function TrackRecord() {
                     <p className="text-2xl md:text-3xl font-black text-white leading-tight tracking-tight relative">
                       {cs.metricCallout}
                     </p>
+                    {cs.metricDescriptor && (
+                      <p className="text-sm text-[#C9B8A8] mt-2 relative leading-snug">
+                        {cs.metricDescriptor}
+                      </p>
+                    )}
                   </div>
 
                   {/* ── Bottom: Bullet list ──────────────────────────────── */}

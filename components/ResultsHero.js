@@ -15,8 +15,7 @@ const lineVariants = {
 
 export default function ResultsHero() {
   return (
-    <section className="py-28 md:py-36 relative overflow-hidden" style={{ backgroundColor: "#3D0D18" }}>
-      {/* Subtle radial warmth */}
+    <section className="py-24 relative overflow-hidden" style={{ backgroundColor: "#3D0D18" }}>
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
@@ -26,49 +25,24 @@ export default function ResultsHero() {
         }}
       />
 
-      {/* Grain texture */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          backgroundImage: `repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 20px,
-            rgba(201,184,168,0.018) 20px,
-            rgba(201,184,168,0.018) 21px
-          )`,
-        }}
-      />
-
       <div className="max-w-5xl mx-auto px-6 relative z-10">
-        <div className="max-w-3xl">
-          <motion.p
+        <div className="max-w-3xl space-y-5">
+          <motion.h1
             custom={0}
             variants={lineVariants}
             initial="hidden"
             animate="visible"
-            className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#C9B8A8] mb-6"
-          >
-            Track Record
-          </motion.p>
-
-          <motion.h1
-            custom={1}
-            variants={lineVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-5xl md:text-7xl font-black tracking-tight text-white leading-[0.9] mb-8"
+            className="text-4xl md:text-5xl font-black tracking-tight text-white leading-tight"
           >
             Client Results
           </motion.h1>
 
           <motion.p
-            custom={2}
+            custom={1}
             variants={lineVariants}
             initial="hidden"
             animate="visible"
-            className="text-base md:text-lg text-[#C9B8A8] leading-relaxed font-medium"
+            className="text-base text-[#C9B8A8] leading-relaxed"
           >
             Three engagements. Measurable outcomes. No fluff.
           </motion.p>

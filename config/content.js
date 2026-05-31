@@ -100,7 +100,8 @@ export const content = {
       {
         firmLabel: "Multi-Firm Network · LPL Financial",
         title: "Multi-Firm Network Engagement",
-        metricCallout: "$1.3B combined AUM across partner firms",
+        metricCallout: "30 researchers across 3 universities",
+        metricDescriptor: "Brown University, UC Irvine, and University of Georgia",
         bullets: [
           "Scaled AI implementation across four firms simultaneously through LPL Financial's broker-dealer network",
           "Standardized onboarding, CRM, and reporting workflows across all four practices for consistency and efficiency",
