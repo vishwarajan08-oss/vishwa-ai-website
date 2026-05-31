@@ -1,9 +1,4 @@
-import dynamic from "next/dynamic";
-import Vision from "@/components/Vision";
-
-const Testimonials = dynamic(() => import("@/components/Testimonials"), {
-  ssr: false,
-});
+import VisionPageClient from "@/components/VisionPageClient";
 
 export const metadata = {
   title: "Vision | Core Consulting",
@@ -11,11 +6,5 @@ export const metadata = {
 };
 
 export default function VisionPage() {
-  return (
-    <>
-      <div className="pt-20" />
-      <Vision />
-      <Testimonials />
-    </>
-  );
+  return <VisionPageClient />;
 }
