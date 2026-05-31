@@ -3,7 +3,7 @@ import Vision from "@/components/Vision";
 export const metadata = {
   title: "How We Work | Core Consulting",
   description:
-    "Core Consulting's four-phase process for implementing AI in wealth management firms — from discovery to retained partnership.",
+    "A straightforward look at how Core Consulting actually works — from the first conversation to long-term partnership.",
 };
 
 export default function VisionPage() {

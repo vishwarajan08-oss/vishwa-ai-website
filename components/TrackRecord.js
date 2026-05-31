@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
+import Testimonials from "@/components/Testimonials";
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
 
@@ -113,6 +114,8 @@ export default function TrackRecord() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* ── Closing CTA Strip ────────────────────────────────────────────── */}
       <section className="py-20 bg-burgundy border-t border-burgundy/30">

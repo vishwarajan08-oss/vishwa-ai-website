@@ -89,25 +89,12 @@ export default function Vision() {
           viewport={viewport}
           className="mb-20 max-w-2xl"
         >
-          <motion.p
-            variants={fadeInUp}
-            className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-4"
-          >
-            How We Work
-          </motion.p>
           <motion.h1
             variants={fadeInUp}
             className="text-4xl md:text-5xl font-black tracking-tight text-[#1A1A1A] leading-tight mb-6"
           >
-            Built to scale.<br />Starting with your firm.
+            Here&apos;s exactly how we work.
           </motion.h1>
-          <motion.p
-            variants={fadeInUp}
-            className="text-base text-[#636363] leading-relaxed"
-          >
-            Most AI implementations fail because they start with tools.
-            We start with your people.
-          </motion.p>
         </motion.div>
 
         {/* Phase roadmap */}
@@ -130,12 +117,11 @@ export default function Vision() {
               Why This Matters Now
             </p>
             <h2 className="text-2xl font-bold text-[#1A1A1A] leading-snug mb-4">
-              The firms building now are the ones that will be unbeatable in three years.
+              Why it matters to move now.
             </h2>
             <p className="text-sm text-[#636363] leading-relaxed mb-8">
-              Advisory firms that build AI infrastructure today operate with the efficiency
-              of firms three times their size. The window to build before your competitors
-              do is not permanent. Every quarter you wait is a quarter they gain.
+              Firms that build this infrastructure today will run leaner and faster than
+              competitors who wait. That gap compounds. It doesn&apos;t close.
             </p>
             <Link
               href="/contact"
@@ -148,23 +134,12 @@ export default function Vision() {
               <span className="relative">Book a Consultation</span>
             </Link>
           </div>
-          <div className="space-y-4">
-            {[
-              { stat: "90", unit: "days", label: "to first measurable results" },
-              { stat: "4", unit: "firms", label: "currently active across $1.3B AUM" },
-              { stat: "30", unit: "researchers", label: "evaluating tools continuously" },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-5 py-4 border-b border-[#E8E0DA] last:border-b-0"
-              >
-                <div className="text-3xl font-black text-[#6B1E2E] leading-none min-w-[60px]">
-                  {item.stat}
-                  <span className="text-sm font-semibold text-[#C9B8A8] ml-1">{item.unit}</span>
-                </div>
-                <p className="text-sm text-[#636363]">{item.label}</p>
-              </div>
-            ))}
+          <div>
+            <p className="text-sm text-[#636363] leading-relaxed">
+              We work with a small number of firms at a time. That&apos;s intentional. Every
+              engagement gets direct attention from the people who built the system, not a
+              junior team working from a playbook.
+            </p>
           </div>
         </motion.div>
 
