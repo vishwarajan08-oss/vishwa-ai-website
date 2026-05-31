@@ -76,22 +76,37 @@ export const content = {
     ],
     cases: [
       {
-        title: "Multi-Advisor Practice, Atlanta GA",
-        description:
-          "Built AI across CRM, research, and client reporting workflows. Reporting time dropped by 35%. Three advisors saved over 12 hours per week combined. Portfolio communications improved across 10+ client accounts.",
-        metrics: ["35% reduction in reporting time", "12+ hours saved per week", "3 advisors, 10+ accounts"],
+        firmLabel: "Multi-Advisor RIA · Atlanta, GA",
+        title: "Multi-Advisor Wealth Practice, Atlanta GA",
+        metricCallout: "20%+ reduction in operational hours within 90 days",
+        bullets: [
+          "Automated client meeting notes and follow-up emails, eliminating 6+ hours of manual documentation per week",
+          "Rebuilt the CRM workflow so advisors spend time on clients, not on data entry",
+          "Deployed AI-assisted client reporting that cut preparation time from half a day to under an hour",
+          "Trained the full advisory team on daily AI tool usage with zero disruption to existing client relationships",
+        ],
       },
       {
-        title: "Multi-Firm Rollout via LPL Network",
-        description:
-          "AI-enhanced operations across four advisory firms in the LPL Financial network. Standardized processes, faster client service delivery, and a full rollout completed in 90 days.",
-        metrics: ["4 firms in 90 days", "Standardized across LPL network", "Faster client service delivery"],
+        firmLabel: "Independent RIA · Southeast",
+        title: "Independent Advisory Firm",
+        metricCallout: "100+ AI tools evaluated, 12 implemented",
+        bullets: [
+          "Conducted a full workflow audit to identify the highest impact areas before recommending any tools",
+          "Selected and deployed 12 tools across financial research, client communication, and back-office operations",
+          "Reduced time spent on investment research summaries by integrating AI into the existing portfolio review process",
+          "Built an internal knowledge base so the team can find answers without interrupting advisors",
+        ],
       },
       {
-        title: "AI Efficiency Internship Program",
-        description:
-          "Founded and run a nationally distributed team of 30 interns from Brown University, UC Irvine, and the University of Georgia. The program accelerates AI research and deployment across every client engagement.",
-        metrics: ["30 interns across 3 universities", "Continuous tool research", "National deployment engine"],
+        firmLabel: "Multi-Firm Network · LPL Financial",
+        title: "Multi-Firm Network Engagement",
+        metricCallout: "$1.3B combined AUM across partner firms",
+        bullets: [
+          "Scaled AI implementation across four firms simultaneously through LPL Financial's broker-dealer network",
+          "Standardized onboarding, CRM, and reporting workflows across all four practices for consistency and efficiency",
+          "Built a nationally distributed research team of 30 to support ongoing tool evaluation and implementation",
+          "Created firm-specific AI adoption roadmaps so each practice could move at their own pace without falling behind",
+        ],
       },
     ],
   },

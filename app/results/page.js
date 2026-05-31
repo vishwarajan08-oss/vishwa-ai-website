@@ -1,3 +1,4 @@
+import ResultsHero from "@/components/ResultsHero";
 import StatsBar from "@/components/StatsBar";
 import TrackRecord from "@/components/TrackRecord";
 
@@ -10,6 +11,7 @@ export default function ResultsPage() {
   return (
     <>
       <div className="pt-20" />
+      <ResultsHero />
       <StatsBar />
       <TrackRecord />
     </>

@@ -47,7 +47,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div className="space-y-4">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-white/40">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#C9B8A8]">
               Navigation
             </p>
             <div className="grid grid-cols-2 gap-y-2.5 gap-x-4">
@@ -65,7 +65,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="space-y-4">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-white/40">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#C9B8A8]">
               Contact
             </p>
             <a

@@ -18,7 +18,7 @@ export default function HomeCTA() {
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
             Let's build something that actually works.
           </h2>
-          <p className="text-sm text-white/50 leading-relaxed">
+          <p className="text-sm text-[#C9B8A8] leading-relaxed">
             We work with a limited number of firms each quarter. If you're serious about transforming your operations, let's talk.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">

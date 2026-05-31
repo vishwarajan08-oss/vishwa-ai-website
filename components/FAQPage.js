@@ -171,7 +171,7 @@ export default function FAQPage() {
                     {cat !== "All" && (
                       <span
                         className={`ml-2 text-[11px] font-normal ${
-                          activeCategory === cat ? "text-white/60" : "text-[#B0B0B0]"
+                          activeCategory === cat ? "text-white" : "text-[#B0B0B0]"
                         }`}
                       >
                         {categorizedFaqs.filter((f) => f.category === cat).length}
