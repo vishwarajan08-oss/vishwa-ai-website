@@ -1,9 +1,9 @@
 import Vision from "@/components/Vision";
-import Testimonials from "@/components/Testimonials";
 
 export const metadata = {
-  title: "Vision | Core Consulting",
-  description: "Where Core Consulting is headed — scaling AI infrastructure across advisory firms.",
+  title: "How We Work | Core Consulting",
+  description:
+    "Core Consulting's four-phase process for implementing AI in wealth management firms — from discovery to retained partnership.",
 };
 
 export default function VisionPage() {
@@ -11,7 +11,6 @@ export default function VisionPage() {
     <>
       <div className="pt-20" />
       <Vision />
-      <Testimonials />
     </>
   );
 }
