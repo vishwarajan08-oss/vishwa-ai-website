@@ -32,7 +32,7 @@ export default function Footer() {
           <div className="space-y-4">
             <Logo inverted={true} />
             <p className="text-xs text-taupe leading-relaxed max-w-[200px]">
-              AI infrastructure for wealth management firms.
+              AI services for wealth management firms.
             </p>
             <div className="flex items-center gap-4 pt-1">
               <a

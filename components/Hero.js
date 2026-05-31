@@ -82,7 +82,7 @@ export default function Hero() {
               <div className="lg:pr-20">
                 <h1
                   className="text-[clamp(48px,6.5vw,88px)] leading-[0.93] tracking-tight"
-                  aria-label="AI infrastructure for the firms that can't afford to wait."
+                  aria-label="AI services for the firms that can't afford to wait."
                 >
                   <motion.span
                     custom={0}
@@ -92,7 +92,7 @@ export default function Hero() {
                     className="block"
                   >
                     <span className="font-light text-[#8C8C8C]">AI </span>
-                    <span className="font-black text-charcoal">infrastructure</span>
+                    <span className="font-black text-charcoal">services</span>
                   </motion.span>
 
                   <motion.span
