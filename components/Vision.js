@@ -119,14 +119,13 @@ export default function Vision() {
         </div>
 
         {/* Why now section */}
-        <motion.div
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          className="mt-20 pt-16 border-t border-[#E8E0DA] grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
-        >
-          <div>
+        <div className="mt-20 pt-16 border-t border-[#E8E0DA] grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
             <p className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-4">
               Why This Matters Now
             </p>
@@ -147,15 +146,20 @@ export default function Vision() {
               />
               <span className="relative">Book a Consultation</span>
             </Link>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 }}
+          >
             <p className="text-sm text-[#636363] leading-relaxed">
               We work with a small number of firms at a time. That&apos;s intentional. Every
               engagement gets direct attention from the people who built the system, not a
               junior team working from a playbook.
             </p>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
       </div>
     </section>

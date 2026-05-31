@@ -4,20 +4,36 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeInUp, viewport } from "@/lib/animations";
 
+const EASE = [0.25, 0.46, 0.45, 0.94];
+
+const wordVariant = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE } },
+};
+
+const CTA_HEADING = "Let's build something that actually works.";
+
 export default function HomeCTA() {
   return (
     <section className="py-24 bg-burgundy-dark border-t border-burgundy/20">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewport}
+          transition={{ staggerChildren: 0.08 }}
           className="text-center space-y-6 max-w-2xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
-            Let's build something that actually works.
-          </h2>
+          <motion.h2
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
+            className="text-3xl md:text-4xl font-extrabold tracking-tight text-white"
+          >
+            {CTA_HEADING.split(" ").map((word, i) => (
+              <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.25em] last:mr-0">
+                {word}
+              </motion.span>
+            ))}
+          </motion.h2>
           <p className="text-sm text-[#C9B8A8] leading-relaxed">
             We work with a limited number of firms each quarter. If you're serious about transforming your operations, let's talk.
           </p>

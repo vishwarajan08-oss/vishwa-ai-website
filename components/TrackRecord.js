@@ -71,7 +71,13 @@ export default function TrackRecord() {
                   </div>
 
                   {/* ── Middle: Metric callout ───────────────────────────── */}
-                  <div className="py-8 px-8 md:px-10 bg-[#3D0D18] relative overflow-hidden">
+                  <motion.div
+                    initial={{ clipPath: "inset(100% 0 0 0)" }}
+                    whileInView={{ clipPath: "inset(0% 0 0 0)" }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.5, ease: EASE, delay: 0.2 }}
+                    className="py-8 px-8 md:px-10 bg-[#3D0D18] relative overflow-hidden"
+                  >
                     <span
                       className="absolute inset-0 pointer-events-none"
                       aria-hidden="true"
@@ -91,12 +97,22 @@ export default function TrackRecord() {
                         {cs.metricDescriptor}
                       </p>
                     )}
-                  </div>
+                  </motion.div>
 
                   {/* ── Bottom: Bullet list ──────────────────────────────── */}
-                  <ul className="flex flex-col gap-4">
+                  <motion.ul
+                    variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.05, delayChildren: 0.45 } } }}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-40px" }}
+                    className="flex flex-col gap-4"
+                  >
                     {cs.bullets.map((bullet, i) => (
-                      <li key={i} className="flex items-start gap-4">
+                      <motion.li
+                        key={i}
+                        variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: EASE } } }}
+                        className="flex items-start gap-4"
+                      >
                         <span
                           className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-burgundy mt-[7px]"
                           aria-hidden="true"
@@ -104,9 +120,9 @@ export default function TrackRecord() {
                         <span className="text-sm text-[#2A2A2A] leading-relaxed">
                           {bullet}
                         </span>
-                      </li>
+                      </motion.li>
                     ))}
-                  </ul>
+                  </motion.ul>
 
                 </div>
               </motion.div>

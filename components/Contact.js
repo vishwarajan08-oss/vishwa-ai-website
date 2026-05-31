@@ -101,9 +101,14 @@ export default function Contact() {
               <AnimatePresence mode="wait">
                 {status.message && (
                   <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8 }}
+                    transition={{
+                      opacity: { duration: 0.25, ease: "easeOut" },
+                      y: { duration: 0.25, ease: "easeOut" },
+                      scale: { type: "spring", stiffness: 400, damping: 20 },
+                    }}
                     className={`p-4 text-xs font-medium border-l-2 ${
                       status.type === "success"
                         ? "bg-burgundy/5 text-charcoal/70 border-burgundy"

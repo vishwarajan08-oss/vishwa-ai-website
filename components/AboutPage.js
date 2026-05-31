@@ -14,6 +14,18 @@ const iconMap = {
   LineChart, Calculator, Megaphone, UserCheck, FileText, Settings,
 };
 
+const EASE = [0.25, 0.46, 0.45, 0.94];
+
+const founderLeft = {
+  hidden: { opacity: 0, x: -32 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE } },
+};
+
+const founderRight = {
+  hidden: { opacity: 0, x: 32 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE } },
+};
+
 const stagger007 = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.07 } },
@@ -237,24 +249,25 @@ export default function AboutPage() {
           </motion.div>
 
           <motion.div
-            variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
+            transition={{ staggerChildren: 0.15 }}
             className="flex flex-col sm:flex-row items-start justify-center gap-12 sm:gap-16"
           >
             {founders.map((founder, i) => (
               <motion.div
                 key={i}
-                variants={fadeInUp}
+                variants={i === 0 ? founderLeft : founderRight}
                 className="flex flex-col items-center text-center w-full sm:w-80"
               >
                 {/* Photo with burgundy ring */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.03 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ duration: 0.5, ease: EASE }}
                   className="relative w-[200px] h-[200px] rounded-full overflow-hidden flex-shrink-0 mb-5 mx-auto"
                   style={{ outline: "3px solid #6B1E2E", outlineOffset: "3px" }}
                 >

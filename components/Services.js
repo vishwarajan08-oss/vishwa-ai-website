@@ -50,6 +50,11 @@ const contentGroupVariant = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
 };
 
+const borderStripeVariant = {
+  hidden: { scaleY: 0 },
+  visible: { scaleY: 1, transition: { duration: 0.4, ease: EASE } },
+};
+
 // Card used in preview (homepage) — unchanged
 function ServiceCard({ service, index }) {
   const Icon = iconMap[service.icon];
@@ -63,12 +68,23 @@ function ServiceCard({ service, index }) {
       whileHover={{
         y: -6,
         boxShadow: "0 16px 48px rgba(107,30,46,0.10)",
+        backgroundColor: "#F8F6F5",
         transition: { duration: 0.25, ease: EASE },
       }}
     >
       {/* Top accent — draws left to right on hover */}
       <div
         className="absolute top-0 left-0 right-0 h-[2px] bg-burgundy scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+        aria-hidden="true"
+      />
+      {/* Left stripe — animates in on scroll */}
+      <motion.span
+        className="absolute left-0 top-0 bottom-0 w-[3px] bg-burgundy"
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.35, ease: EASE, delay: 0.2 }}
+        style={{ transformOrigin: "top" }}
         aria-hidden="true"
       />
 
@@ -116,12 +132,20 @@ function FullServiceCard({ service, index }) {
       whileHover={{
         y: -6,
         boxShadow: "0 16px 48px rgba(107,30,46,0.10)",
+        backgroundColor: "#F8F6F5",
         transition: { duration: 0.25, ease: EASE },
       }}
     >
       {/* Top accent — draws left to right on hover */}
       <div
         className="absolute top-0 left-0 right-0 h-[2px] bg-burgundy scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+        aria-hidden="true"
+      />
+      {/* Left stripe — animates in on scroll via parent variant */}
+      <motion.span
+        variants={borderStripeVariant}
+        className="absolute left-0 top-0 bottom-0 w-[3px] bg-burgundy"
+        style={{ transformOrigin: "top" }}
         aria-hidden="true"
       />
 

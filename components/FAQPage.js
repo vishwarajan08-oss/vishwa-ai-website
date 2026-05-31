@@ -174,23 +174,33 @@ export default function FAQPage() {
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`text-left text-sm font-semibold px-4 min-h-[44px] flex items-center py-2 transition-all duration-200 cursor-pointer ${
+                    className={`relative text-left text-sm font-semibold px-4 min-h-[44px] flex items-center py-2 cursor-pointer overflow-hidden border transition-colors duration-200 ${
                       activeCategory === cat
-                        ? "bg-burgundy text-white"
-                        : "bg-white border border-divider text-[#636363] hover:border-burgundy hover:text-burgundy"
+                        ? "border-burgundy text-white"
+                        : "bg-white border-divider text-[#636363] hover:border-burgundy hover:text-burgundy"
                     }`}
                     aria-pressed={activeCategory === cat}
                   >
-                    {cat}
-                    {cat !== "All" && (
-                      <span
-                        className={`ml-2 text-[11px] font-normal ${
-                          activeCategory === cat ? "text-white" : "text-[#B0B0B0]"
-                        }`}
-                      >
-                        {categorizedFaqs.filter((f) => f.category === cat).length}
-                      </span>
+                    {activeCategory === cat && (
+                      <motion.span
+                        layoutId="pill-active"
+                        className="absolute inset-0 bg-burgundy"
+                        style={{ zIndex: 0 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 35 }}
+                      />
                     )}
+                    <span className="relative z-10 flex items-center">
+                      {cat}
+                      {cat !== "All" && (
+                        <span
+                          className={`ml-2 text-[11px] font-normal ${
+                            activeCategory === cat ? "text-white/70" : "text-[#B0B0B0]"
+                          }`}
+                        >
+                          {categorizedFaqs.filter((f) => f.category === cat).length}
+                        </span>
+                      )}
+                    </span>
                   </button>
                 ))}
               </div>

@@ -12,14 +12,17 @@ function formatDate(dateStr) {
   return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 }
 
-function BlogCard({ article }) {
+const WAVE_Y = [16, 28, 20];
+
+function BlogCard({ article, index }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const yOffset = WAVE_Y[index % 3];
 
   return (
     <motion.article
       ref={ref}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: yOffset }}
       transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
       className="group bg-white border border-divider hover:border-burgundy transition-all duration-300 flex flex-col cursor-pointer overflow-hidden"
       style={{ boxShadow: "0 0 0 0 rgba(107,30,46,0)" }}
@@ -76,7 +79,7 @@ export default function BlogListPage() {
               return (
                 <motion.article
                   key={article.slug}
-                  variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } } }}
+                  variants={{ hidden: { opacity: 0, scale: 0.97 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } } }}
                   initial="hidden"
                   whileInView="visible"
                   viewport={viewport}
@@ -119,8 +122,8 @@ export default function BlogListPage() {
             {/* Remaining articles in 3-column grid */}
             {allArticles.length > 1 && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {allArticles.slice(1).map((article) => (
-                  <BlogCard key={article.slug} article={article} />
+                {allArticles.slice(1).map((article, index) => (
+                  <BlogCard key={article.slug} article={article} index={index} />
                 ))}
               </div>
             )}
