@@ -4,9 +4,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
-import { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search } from "lucide-react";
+import { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe } from "lucide-react";
 
-const iconMap = { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search };
+const iconMap = { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe };
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
 

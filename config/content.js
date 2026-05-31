@@ -61,6 +61,12 @@ export const content = {
         tag: "Research-Backed",
         icon: "Search",
       },
+      {
+        title: "Web Development & Digital Presence",
+        description: "We design and build production websites for wealth management firms and financial services companies. Clean, fast, professional web presence — built with modern tooling, optimized for conversion, and maintained over time.",
+        tag: "New",
+        icon: "Globe",
+      },
     ],
   },
   trackRecord: {
