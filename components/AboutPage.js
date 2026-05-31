@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { content } from "@/config/content";
-import { fadeInUp, stagger, staggerMed, viewport } from "@/lib/animations";
+import { fadeInUp, stagger, viewport } from "@/lib/animations";
 import {
   Target, Workflow, Users, TrendingUp, LayoutGrid, Lock,
   LineChart, Calculator, Megaphone, UserCheck, FileText, Settings,
@@ -14,9 +14,24 @@ const iconMap = {
   LineChart, Calculator, Megaphone, UserCheck, FileText, Settings,
 };
 
-const slideUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+const stagger007 = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07 } },
+};
+
+const stagger008 = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const differentiatorItem = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+};
+
+const categoryItem = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
 };
 
 const founders = [
@@ -116,10 +131,10 @@ export default function AboutPage() {
           </motion.div>
 
           <motion.div
-            variants={staggerMed}
+            variants={stagger007}
             initial="hidden"
             whileInView="visible"
-            viewport={viewport}
+            viewport={{ once: true, margin: "-60px" }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
           >
             {differentiators.map((item, i) => {
@@ -127,7 +142,7 @@ export default function AboutPage() {
               return (
                 <motion.div
                   key={i}
-                  variants={slideUp}
+                  variants={differentiatorItem}
                   className="relative overflow-hidden p-6 border border-white/10 group space-y-3 transition-all duration-300 hover:border-white/20"
                   style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
                   whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
@@ -167,7 +182,7 @@ export default function AboutPage() {
           </motion.div>
 
           <motion.div
-            variants={staggerMed}
+            variants={stagger008}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
@@ -179,7 +194,7 @@ export default function AboutPage() {
               return (
                 <motion.div
                   key={i}
-                  variants={slideUp}
+                  variants={categoryItem}
                   className="relative overflow-hidden p-6 border border-divider hover:border-burgundy transition-all duration-300 group space-y-3"
                   style={{ backgroundColor: cardBg }}
                   whileHover={{ boxShadow: "0 4px 20px rgba(107,30,46,0.06)" }}
@@ -225,7 +240,7 @@ export default function AboutPage() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={viewport}
+            viewport={{ once: true, margin: "-60px" }}
             className="flex flex-col sm:flex-row items-start justify-center gap-12 sm:gap-16"
           >
             {founders.map((founder, i) => (
