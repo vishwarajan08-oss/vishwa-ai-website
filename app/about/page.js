@@ -1,4 +1,5 @@
 import AboutPage from "@/components/AboutPage";
+import HeroParallaxWrapper from "@/components/HeroParallaxWrapper";
 
 export const metadata = {
   title: "About | Core Consulting",
@@ -6,5 +7,9 @@ export const metadata = {
 };
 
 export default function About() {
-  return <AboutPage />;
+  return (
+    <HeroParallaxWrapper>
+      <AboutPage />
+    </HeroParallaxWrapper>
+  );
 }

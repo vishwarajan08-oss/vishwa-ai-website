@@ -1,4 +1,5 @@
 import ResultsHero from "@/components/ResultsHero";
+import HeroParallaxWrapper from "@/components/HeroParallaxWrapper";
 import StatsBar from "@/components/StatsBar";
 import TrackRecord from "@/components/TrackRecord";
 
@@ -11,7 +12,9 @@ export default function ResultsPage() {
   return (
     <>
       <div className="pt-20" />
-      <ResultsHero />
+      <HeroParallaxWrapper>
+        <ResultsHero />
+      </HeroParallaxWrapper>
       <StatsBar />
       <TrackRecord />
     </>
