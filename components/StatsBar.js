@@ -41,7 +41,7 @@ export default function StatsBar() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section ref={ref} className="border-y border-[#6B1E2E]/20 py-14 bg-[#3D0D18]">
+    <section ref={ref} className="border-y border-burgundy/20 py-14 bg-burgundy-dark">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
           {stats.map((stat, i) => (
@@ -54,7 +54,7 @@ export default function StatsBar() {
                   inView={inView}
                 />
               </div>
-              <div className="text-xs font-medium text-[#C9B8A8] leading-snug">
+              <div className="text-xs font-medium text-taupe leading-snug">
                 {stat.label}
               </div>
             </div>

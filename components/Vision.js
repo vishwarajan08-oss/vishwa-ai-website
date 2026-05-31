@@ -24,7 +24,7 @@ export default function Vision() {
   const { label, title, cols } = content.vision;
 
   return (
-    <section id="vision" className="py-24 bg-[#F5F0EE] border-t border-[#E8E0DA]">
+    <section id="vision" className="py-24 bg-bg-alt border-t border-divider">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           variants={stagger}
@@ -35,21 +35,22 @@ export default function Vision() {
         >
           <motion.h2
             variants={fadeInUp}
-            className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3"
+            className="text-xs font-bold uppercase tracking-widest text-burgundy mb-3"
           >
             {label}
           </motion.h2>
           <motion.p
             variants={fadeInUp}
-            className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]"
+            className="text-3xl font-extrabold tracking-tight text-charcoal"
           >
             {title}
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-[#E8E0DA]">
+        <div className="space-y-0 border-t border-divider">
           {cols.map((col, index) => {
             const Icon = iconMap[col.icon];
+            const isEven = index % 2 === 0;
             return (
               <motion.div
                 key={index}
@@ -58,20 +59,41 @@ export default function Vision() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={viewport}
-                className="relative overflow-hidden py-10 md:pr-10 md:border-r border-b md:border-b-0 border-[#E8E0DA] last:border-r-0 last:border-b-0 space-y-4 md:pl-10 first:pl-0 last:pr-0 group hover:bg-white/60 transition-colors duration-300 cursor-default"
+                className={`grid grid-cols-1 md:grid-cols-2 border-b border-divider last:border-b-0 group`}
               >
-                <span className="absolute top-0 left-0 right-0 h-0.5 bg-[#6B1E2E] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" aria-hidden="true" />
-                {Icon && (
-                  <div className="w-8 h-8 flex items-center justify-center border border-[#6B1E2E]/25 text-[#6B1E2E]">
-                    <Icon size={16} aria-hidden="true" />
-                  </div>
-                )}
-                <h3 className="text-lg font-bold text-[#1A1A1A] leading-snug group-hover:text-[#6B1E2E] transition-colors duration-200">
-                  {col.title}
-                </h3>
-                <p className="text-sm text-[#1A1A1A]/60 leading-relaxed font-normal">
-                  {col.description}
-                </p>
+                {/* Text block — left on even rows, right on odd rows */}
+                <div
+                  className={`py-16 px-12 flex flex-col justify-center space-y-5 ${
+                    isEven ? "md:order-1" : "md:order-2"
+                  }`}
+                >
+                  <h3 className="text-2xl font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-300">
+                    {col.title}
+                  </h3>
+                  <p className="text-sm text-[#636363] leading-relaxed max-w-sm">
+                    {col.description}
+                  </p>
+                </div>
+
+                {/* Graphic block — right on even rows, left on odd rows */}
+                <div
+                  className={`relative flex items-center justify-center py-16 px-12 bg-bg-alt overflow-hidden ${
+                    isEven ? "md:order-2" : "md:order-1"
+                  }`}
+                >
+                  {Icon && (
+                    <Icon
+                      size={100}
+                      className="text-burgundy/15 group-hover:text-burgundy/25 transition-colors duration-500"
+                      aria-hidden="true"
+                    />
+                  )}
+                  {/* Subtle hover accent */}
+                  <span
+                    className="absolute inset-0 bg-burgundy opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300 pointer-events-none"
+                    aria-hidden="true"
+                  />
+                </div>
               </motion.div>
             );
           })}

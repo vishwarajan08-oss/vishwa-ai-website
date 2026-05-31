@@ -31,7 +31,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex flex-col min-h-dvh bg-[#FAFAFA] overflow-hidden"
+      className="relative flex flex-col min-h-dvh bg-bg overflow-hidden"
     >
       {/* Diagonal grain texture — 0.015 opacity so it's subliminal */}
       <div
@@ -92,7 +92,7 @@ export default function Hero() {
                     className="block"
                   >
                     <span className="font-light text-[#8C8C8C]">AI </span>
-                    <span className="font-black text-[#1A1A1A]">infrastructure</span>
+                    <span className="font-black text-charcoal">infrastructure</span>
                   </motion.span>
 
                   <motion.span
@@ -112,8 +112,8 @@ export default function Hero() {
                     animate="visible"
                     className="block mt-1"
                   >
-                    <span className="font-black text-[#1A1A1A]">can&rsquo;t afford </span>
-                    <span className="font-light text-[#6B1E2E]">to wait.</span>
+                    <span className="font-black text-charcoal">can&rsquo;t afford </span>
+                    <span className="font-light text-burgundy">to wait.</span>
                   </motion.span>
                 </h1>
               </div>
@@ -123,7 +123,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.38, duration: 0.55, ease: EASE }}
-                className="lg:pl-16 lg:border-l lg:border-[#E8E0DA] flex flex-col gap-7"
+                className="lg:pl-16 lg:border-l lg:border-divider flex flex-col gap-7"
               >
                 <p className="text-sm leading-relaxed text-[#6D6D6D] max-w-xs">
                   We build and deploy AI systems for wealth management firms. The work is practical, not theoretical. Most clients see measurable results within 90 days.
@@ -133,10 +133,10 @@ export default function Hero() {
                   {/* Primary — fill from left */}
                   <Link
                     href="/contact"
-                    className="relative inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-[#6B1E2E] overflow-hidden group cursor-pointer"
+                    className="relative inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-burgundy overflow-hidden group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
                   >
                     <span
-                      className="absolute inset-0 bg-[#3D0D18] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"
+                      className="absolute inset-0 bg-burgundy-dark translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"
                       style={{ transitionTimingFunction: "cubic-bezier(0.25,0.46,0.45,0.94)" }}
                       aria-hidden="true"
                     />
@@ -146,14 +146,14 @@ export default function Hero() {
                   {/* Secondary — fill from left, text inverts */}
                   <Link
                     href="/results"
-                    className="relative inline-flex items-center justify-center px-6 py-3 text-sm font-semibold border border-[#6B1E2E]/35 overflow-hidden group cursor-pointer"
+                    className="relative inline-flex items-center justify-center px-6 py-3 text-sm font-semibold border border-burgundy/35 overflow-hidden group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2"
                   >
                     <span
-                      className="absolute inset-0 bg-[#6B1E2E] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"
+                      className="absolute inset-0 bg-burgundy translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"
                       style={{ transitionTimingFunction: "cubic-bezier(0.25,0.46,0.45,0.94)" }}
                       aria-hidden="true"
                     />
-                    <span className="relative text-[#6B1E2E] group-hover:text-white transition-colors duration-200">
+                    <span className="relative text-burgundy group-hover:text-white transition-colors duration-200">
                       See the Results
                     </span>
                   </Link>
@@ -199,7 +199,7 @@ export default function Hero() {
                   {TICKER_ITEMS.map((item, j) => (
                     <span key={j} className="inline-flex items-center">
                       <span className="text-[#B0B0B0]">{item}</span>
-                      <span className="text-[#6B1E2E] mx-3 text-[8px]">♦</span>
+                      <span className="text-burgundy mx-3 text-[8px]">♦</span>
                     </span>
                   ))}
                 </span>

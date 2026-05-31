@@ -18,7 +18,7 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#3D0D18]" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+    <footer className="bg-burgundy-dark" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -31,13 +31,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Logo inverted={true} />
-            <p className="text-xs text-[#C9B8A8] leading-relaxed max-w-[200px]">
+            <p className="text-xs text-taupe leading-relaxed max-w-[200px]">
               AI infrastructure for wealth management firms.
             </p>
             <div className="flex items-center gap-4 pt-1">
               <a
                 href="mailto:coreconsulting.ai@gmail.com"
-                className="text-[#C9B8A8] hover:text-white transition-colors duration-200 cursor-pointer"
+                className="text-taupe hover:text-white transition-colors duration-200 cursor-pointer"
                 aria-label="Email"
               >
                 <Mail size={15} />
@@ -55,7 +55,7 @@ export default function Footer() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-xs font-medium text-white/70 hover:text-white underline-offset-2 hover:underline decoration-[#C9B8A8] transition-colors duration-200 cursor-pointer"
+                  className="text-xs font-medium text-white/70 hover:text-white underline-offset-2 hover:underline decoration-taupe transition-colors duration-200 cursor-pointer"
                 >
                   {link.name}
                 </Link>
@@ -70,13 +70,13 @@ export default function Footer() {
             </p>
             <a
               href="mailto:coreconsulting.ai@gmail.com"
-              className="block text-xs font-medium text-[#C9B8A8] hover:text-white transition-colors duration-200 cursor-pointer"
+              className="block text-xs font-medium text-taupe hover:text-white transition-colors duration-200 cursor-pointer"
             >
               coreconsulting.ai@gmail.com
             </a>
             <Link
               href="/contact"
-              className="inline-block text-xs font-semibold px-4 py-2.5 bg-[#6B1E2E] text-white hover:bg-[#8B2A3D] transition-colors duration-200 mt-1 cursor-pointer"
+              className="inline-block text-xs font-semibold px-4 py-2.5 bg-burgundy text-white hover:bg-burgundy-mid transition-colors duration-200 mt-1 cursor-pointer"
             >
               Book a Consultation
             </Link>
@@ -88,7 +88,7 @@ export default function Footer() {
           className="pt-6"
           style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}
         >
-          <p className="text-[11px] text-[#C9B8A8]/70 font-medium">
+          <p className="text-[11px] text-taupe/70 font-medium">
             &copy; 2026 Core Consulting. All rights reserved.
           </p>
         </div>

@@ -14,8 +14,8 @@ export default function Logo({ size = "default", className = "", inverted = fals
 
   const wordmarkBase = inverted
     ? "text-white font-bold"
-    : "text-[#1A1A1A] font-bold";
-  const wordmarkLight = inverted ? "text-white/65" : "text-[#1A1A1A]/45";
+    : "text-charcoal font-bold";
+  const wordmarkLight = inverted ? "text-white/65" : "text-[#6D6D6D]";
 
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>

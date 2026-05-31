@@ -38,8 +38,8 @@ function ServiceCard({ service, index, variant = "preview" }) {
     <motion.div
       custom={index}
       variants={cardVariant}
-      className="relative bg-white border border-[#E8E0DA] group cursor-default overflow-hidden"
-      style={{ padding: isFullPage ? "2rem" : "1.75rem" }}
+      className="relative bg-white border border-divider group cursor-default overflow-hidden"
+      style={{ padding: isFullPage ? "2.5rem" : "2rem" }}
       whileHover={{
         y: -6,
         boxShadow: "0 16px 48px rgba(107,30,46,0.10)",
@@ -48,7 +48,7 @@ function ServiceCard({ service, index, variant = "preview" }) {
     >
       {/* Top accent — draws left to right on hover */}
       <div
-        className="absolute top-0 left-0 right-0 h-[2px] bg-[#6B1E2E] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+        className="absolute top-0 left-0 right-0 h-[2px] bg-burgundy scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
         aria-hidden="true"
       />
 
@@ -57,22 +57,15 @@ function ServiceCard({ service, index, variant = "preview" }) {
         <div className={isFullPage ? "mb-5" : "mb-4"}>
           <Icon
             size={isFullPage ? 20 : 18}
-            className="text-[#6B1E2E]"
+            className="text-burgundy"
             aria-hidden="true"
           />
         </div>
       )}
 
-      {/* Tag pill */}
-      <div className={isFullPage ? "mb-3.5" : "mb-3"}>
-        <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#6B1E2E] text-white leading-none">
-          {service.tag}
-        </span>
-      </div>
-
       {/* Title */}
       <h3
-        className={`font-bold text-[#1A1A1A] leading-snug group-hover:text-[#6B1E2E] transition-colors duration-200 ${
+        className={`font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200 ${
           isFullPage ? "text-lg mb-3" : "text-base mb-3"
         }`}
       >
@@ -81,12 +74,19 @@ function ServiceCard({ service, index, variant = "preview" }) {
 
       {/* Description */}
       <p
-        className={`text-[#6D6D6D] leading-relaxed ${
+        className={`text-[#6D6D6D] leading-relaxed mb-4 ${
           isFullPage ? "text-sm" : "text-sm"
         }`}
       >
         {service.description}
       </p>
+
+      {/* Tag pill — now at bottom */}
+      <div>
+        <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none">
+          {service.tag}
+        </span>
+      </div>
     </motion.div>
   );
 }
@@ -98,7 +98,7 @@ export default function Services({ preview = false }) {
   // ── Preview mode (homepage 3-card grid) ────────────────────────────────
   if (preview) {
     return (
-      <section id="services" className="py-24 bg-[#FAFAFA] border-t border-[#E8E0DA]">
+      <section id="services" className="py-24 bg-bg border-t border-divider">
         <div className="max-w-6xl mx-auto px-6">
 
           <motion.div
@@ -110,13 +110,13 @@ export default function Services({ preview = false }) {
           >
             <motion.p
               variants={slideInLeft}
-              className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3"
+              className="text-xs font-bold uppercase tracking-widest text-burgundy mb-3"
             >
               {label}
             </motion.p>
             <motion.h2
               variants={slideInLeft}
-              className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]"
+              className="text-3xl font-extrabold tracking-tight text-charcoal"
             >
               {title}
             </motion.h2>
@@ -146,7 +146,7 @@ export default function Services({ preview = false }) {
             </p>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#1A1A1A] hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-charcoal hover:text-burgundy transition-colors duration-200 cursor-pointer"
             >
               View All Services <span aria-hidden="true">→</span>
             </Link>
@@ -159,7 +159,7 @@ export default function Services({ preview = false }) {
   // ── Full services page (2-column card grid) ────────────────────────────
   return (
     <div className="pt-20">
-      <section className="py-24 bg-[#6B1E2E]">
+      <section className="py-24 bg-burgundy">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -170,7 +170,7 @@ export default function Services({ preview = false }) {
           >
             <motion.p
               variants={slideInLeft}
-              className="text-xs font-bold uppercase tracking-widest text-[#C9B8A8]"
+              className="text-xs font-bold uppercase tracking-widest text-taupe"
             >
               {label}
             </motion.p>
@@ -182,7 +182,7 @@ export default function Services({ preview = false }) {
             </motion.h1>
             <motion.p
               variants={slideInLeft}
-              className="text-base text-[#C9B8A8] leading-relaxed max-w-2xl"
+              className="text-base text-taupe leading-relaxed max-w-2xl"
             >
               We don&rsquo;t start with tools. We start with your workflows, identify where time is being lost, and build AI systems around those friction points. Each engagement is scoped to what creates real impact, not what looks impressive in a proposal.
             </motion.p>
@@ -190,7 +190,7 @@ export default function Services({ preview = false }) {
         </div>
       </section>
 
-      <section className="py-20 bg-[#FAFAFA] border-t border-[#E8E0DA]">
+      <section className="py-20 bg-bg border-t border-divider">
         <div className="max-w-6xl mx-auto px-6">
 
           {/* 2-column grid — stagger entrance */}
@@ -212,17 +212,17 @@ export default function Services({ preview = false }) {
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="mt-16 py-12 px-10 bg-[#3D0D18] text-center space-y-5"
+            className="mt-16 py-12 px-10 bg-burgundy-dark text-center space-y-5"
           >
             <p className="text-xl md:text-2xl font-bold text-white leading-snug">
               Not sure where to start?
             </p>
-            <p className="text-sm text-[#C9B8A8] max-w-sm mx-auto">
+            <p className="text-sm text-taupe max-w-sm mx-auto">
               Book a free workflow audit. We&rsquo;ll map where your firm loses time and show you exactly where AI creates real value.
             </p>
             <Link
               href="/contact"
-              className="relative inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-[#1A1A1A] bg-[#C9B8A8] overflow-hidden group cursor-pointer"
+              className="relative inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-charcoal bg-taupe overflow-hidden group cursor-pointer"
             >
               <span
                 className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"

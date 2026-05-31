@@ -33,9 +33,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
-      <body className="font-sans antialiased text-[#1A1A1A] bg-[#FAFAFA] min-h-screen flex flex-col">
+      <body className="font-sans antialiased text-charcoal bg-bg min-h-screen flex flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-burgundy focus:text-white focus:rounded focus:text-sm focus:font-semibold"
+        >
+          Skip to content
+        </a>
         <Navbar />
-        <main className="flex-grow">
+        <main id="main-content" className="flex-grow">
           <ClientLayout>
             {children}
           </ClientLayout>

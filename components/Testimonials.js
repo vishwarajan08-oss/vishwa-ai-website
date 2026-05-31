@@ -32,7 +32,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="py-24 bg-[#FAFAFA] border-t border-[#E8E0DA]"
+      className="py-24 bg-bg border-t border-divider"
     >
       <motion.div
         variants={stagger}
@@ -43,7 +43,7 @@ export default function Testimonials() {
       >
         <motion.h2
           variants={fadeInUp}
-          className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]"
+          className="text-3xl font-extrabold tracking-tight text-charcoal"
         >
           What Firms Are Saying
         </motion.h2>
@@ -67,12 +67,12 @@ export default function Testimonials() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className="bg-white border border-[#E8E0DA] px-10 py-9 shadow-sm"
+              className="bg-white border border-divider px-10 py-9 shadow-sm"
             >
               <p className="text-base italic leading-relaxed text-[#595959] mb-5">
                 &ldquo;{current.quote}&rdquo;
               </p>
-              <div className="text-sm font-semibold text-[#1A1A1A]">
+              <div className="text-sm font-semibold text-charcoal">
                 {current.author}
               </div>
             </motion.div>
@@ -84,7 +84,7 @@ export default function Testimonials() {
           <button
             onClick={prev}
             aria-label="Previous testimonial"
-            className="text-[#636363] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none cursor-pointer"
+            className="text-[#636363] hover:text-burgundy transition-colors duration-200 text-lg font-light select-none cursor-pointer"
           >
             ←
           </button>
@@ -97,7 +97,7 @@ export default function Testimonials() {
                 aria-selected={i === index}
                 aria-label={`Testimonial ${i + 1}`}
                 onClick={() => setIndex(i)}
-                className="w-2 h-2 rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B1E2E] cursor-pointer"
+                className="w-2 h-2 rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-burgundy cursor-pointer"
                 style={{
                   backgroundColor: i === index ? "#6B1E2E" : "transparent",
                   border: i === index ? "none" : "1.5px solid #6B1E2E",
@@ -109,7 +109,7 @@ export default function Testimonials() {
           <button
             onClick={next}
             aria-label="Next testimonial"
-            className="text-[#636363] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none cursor-pointer"
+            className="text-[#636363] hover:text-burgundy transition-colors duration-200 text-lg font-light select-none cursor-pointer"
           >
             →
           </button>

@@ -41,7 +41,7 @@ export default function AboutPage() {
     <div className="pt-20">
 
       {/* ── Hero banner — burgundy bg ─────────────────────────────────────── */}
-      <section className="py-24 bg-[#6B1E2E]">
+      <section className="py-24 bg-burgundy">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
@@ -50,13 +50,13 @@ export default function AboutPage() {
             viewport={viewport}
             className="max-w-3xl space-y-5"
           >
-            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#C9B8A8]">
+            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-taupe">
               {label}
             </motion.p>
             <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
               {headline}
             </motion.h1>
-            <motion.p variants={fadeInUp} className="text-base text-[#C9B8A8] leading-relaxed max-w-2xl">
+            <motion.p variants={fadeInUp} className="text-base text-taupe leading-relaxed max-w-2xl">
               {subhead}
             </motion.p>
           </motion.div>
@@ -64,7 +64,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Why We Started + Our Approach — warm off-white, left accent ────── */}
-      <section className="py-20 bg-[#F5F0EE]" style={{ borderTop: "1px solid rgba(107,30,46,0.15)" }}>
+      <section className="py-20 bg-bg-alt" style={{ borderTop: "1px solid rgba(107,30,46,0.15)" }}>
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16">
 
           <motion.div
@@ -72,12 +72,12 @@ export default function AboutPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="space-y-4 border-l-[3px] border-[#6B1E2E] pl-6"
+            className="space-y-4"
           >
-            <motion.h3 variants={fadeInUp} className="text-xl font-bold text-[#1A1A1A]">
+            <motion.h3 variants={fadeInUp} className="text-xl font-bold text-charcoal">
               {whyWeStarted.title}
             </motion.h3>
-            <motion.p variants={fadeInUp} className="text-sm text-[#1A1A1A]/60 leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-sm text-[#636363] leading-relaxed">
               {whyWeStarted.body}
             </motion.p>
           </motion.div>
@@ -87,12 +87,12 @@ export default function AboutPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="space-y-4 border-l-[3px] border-[#6B1E2E] pl-6"
+            className="space-y-4"
           >
-            <motion.h3 variants={fadeInUp} className="text-xl font-bold text-[#1A1A1A]">
+            <motion.h3 variants={fadeInUp} className="text-xl font-bold text-charcoal">
               {ourApproach.title}
             </motion.h3>
-            <motion.p variants={fadeInUp} className="text-sm text-[#1A1A1A]/60 leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-sm text-[#636363] leading-relaxed">
               {ourApproach.body}
             </motion.p>
           </motion.div>
@@ -101,7 +101,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── What Makes Core Different — dark burgundy bg ─────────────────── */}
-      <section className="py-20 bg-[#3D0D18]" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+      <section className="py-20 bg-burgundy-dark" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
@@ -110,9 +110,6 @@ export default function AboutPage() {
             viewport={viewport}
             className="mb-12"
           >
-            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#C9B8A8] mb-3">
-              Differentiation
-            </motion.p>
             <motion.h2 variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-white">
               What Makes Core Different
             </motion.h2>
@@ -136,15 +133,15 @@ export default function AboutPage() {
                   whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
                 >
                   <span
-                    className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#C9B8A8] scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out"
+                    className="absolute left-0 top-0 bottom-0 w-0.5 bg-taupe scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out"
                     aria-hidden="true"
                   />
                   {Icon && (
-                    <div className="w-8 h-8 flex items-center justify-center border border-[#C9B8A8]/20 text-[#C9B8A8]">
+                    <div className="w-8 h-8 flex items-center justify-center border border-taupe/20 text-taupe">
                       <Icon size={15} aria-hidden="true" />
                     </div>
                   )}
-                  <p className="text-sm font-bold text-white leading-snug group-hover:text-[#C9B8A8] transition-colors duration-200">
+                  <p className="text-sm font-bold text-white leading-snug group-hover:text-taupe transition-colors duration-200">
                     {item.title}
                   </p>
                 </motion.div>
@@ -155,7 +152,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Six Categories — alternating card backgrounds ──────────────────── */}
-      <section className="py-20 bg-[#FAFAFA]" style={{ borderTop: "1px solid #E8E0DA" }}>
+      <section className="py-20 bg-bg" style={{ borderTop: "1px solid #E8E0DA" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
@@ -164,10 +161,7 @@ export default function AboutPage() {
             viewport={viewport}
             className="mb-12"
           >
-            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3">
-              Scope of Work
-            </motion.p>
-            <motion.h2 variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]">
+            <motion.h2 variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-charcoal">
               The Six Categories We Work In
             </motion.h2>
           </motion.div>
@@ -186,28 +180,23 @@ export default function AboutPage() {
                 <motion.div
                   key={i}
                   variants={slideUp}
-                  className="relative overflow-hidden p-6 border border-[#E8E0DA] hover:border-[#6B1E2E] transition-all duration-300 group space-y-3"
+                  className="relative overflow-hidden p-6 border border-divider hover:border-burgundy transition-all duration-300 group space-y-3"
                   style={{ backgroundColor: cardBg }}
                   whileHover={{ boxShadow: "0 4px 20px rgba(107,30,46,0.06)" }}
                 >
                   <span
-                    className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#6B1E2E] scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out"
+                    className="absolute left-0 top-0 bottom-0 w-0.5 bg-burgundy scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out"
                     aria-hidden="true"
                   />
                   {Icon && (
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 flex items-center justify-center border border-[#6B1E2E]/25 text-[#6B1E2E]">
-                        <Icon size={14} aria-hidden="true" />
-                      </div>
-                      <span className="text-xs font-black text-[#6B1E2E] tracking-wider">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
+                    <div className="w-7 h-7 flex items-center justify-center border border-burgundy/25 text-burgundy">
+                      <Icon size={14} aria-hidden="true" />
                     </div>
                   )}
-                  <h3 className="text-sm font-bold text-[#1A1A1A] leading-snug group-hover:text-[#6B1E2E] transition-colors duration-200">
+                  <h3 className="text-sm font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200">
                     {cat.title}
                   </h3>
-                  <p className="text-xs text-[#1A1A1A]/55 leading-relaxed">
+                  <p className="text-xs text-[#6D6D6D] leading-relaxed">
                     {cat.description}
                   </p>
                 </motion.div>
@@ -218,7 +207,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Founders — warm off-white, large centered photos ──────────────── */}
-      <section className="py-20 bg-[#F5F0EE]" style={{ borderTop: "1px solid #E8E0DA" }}>
+      <section className="py-20 bg-bg-alt" style={{ borderTop: "1px solid #E8E0DA" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
@@ -227,10 +216,7 @@ export default function AboutPage() {
             viewport={viewport}
             className="mb-14"
           >
-            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3">
-              Team
-            </motion.p>
-            <motion.h2 variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]">
+            <motion.h2 variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-charcoal">
               Founders
             </motion.h2>
           </motion.div>
@@ -267,13 +253,13 @@ export default function AboutPage() {
                 </motion.div>
 
                 {/* Name + role */}
-                <p className="text-base font-bold text-[#1A1A1A] mb-1">{founder.name}</p>
-                <p className="text-xs font-semibold text-[#6B1E2E] uppercase tracking-widest mb-4">
+                <p className="text-base font-bold text-charcoal mb-1">{founder.name}</p>
+                <p className="text-xs font-semibold text-burgundy uppercase tracking-widest mb-4">
                   {founder.role}
                 </p>
 
                 {/* Bio */}
-                <p className="text-sm text-[#1A1A1A]/60 leading-relaxed text-center">
+                <p className="text-sm text-[#636363] leading-relaxed text-center">
                   {founder.bio}
                 </p>
               </motion.div>
@@ -283,7 +269,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Looking Ahead — dark banner, centered ─────────────────────────── */}
-      <section className="py-24 bg-[#3D0D18]" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+      <section className="py-24 bg-burgundy-dark" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.div
             variants={stagger}
@@ -292,9 +278,6 @@ export default function AboutPage() {
             viewport={viewport}
             className="space-y-5"
           >
-            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-[#C9B8A8]">
-              Looking Ahead
-            </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
