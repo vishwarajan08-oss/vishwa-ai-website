@@ -261,7 +261,7 @@ export default function AboutPage() {
                     src={founder.photo}
                     alt={founder.name}
                     fill
-                    className="object-cover object-top"
+                    className="object-cover object-center"
                     sizes="200px"
                   />
                 </motion.div>
