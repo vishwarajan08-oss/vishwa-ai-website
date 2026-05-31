@@ -1,5 +1,9 @@
+import dynamic from "next/dynamic";
 import Vision from "@/components/Vision";
-import Testimonials from "@/components/Testimonials";
+
+const Testimonials = dynamic(() => import("@/components/Testimonials"), {
+  ssr: false,
+});
 
 export const metadata = {
   title: "Vision | Core Consulting",
