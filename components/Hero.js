@@ -66,7 +66,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-[11px] tracking-[0.15em] text-[#636363] uppercase font-medium"
+              className="text-[11px] tracking-[0.05em] text-[#636363] font-medium"
             >
               Trusted by wealth management firms across the Southeast
             </motion.p>
@@ -198,7 +198,7 @@ export default function Hero() {
                 >
                   {TICKER_ITEMS.map((item, j) => (
                     <span key={j} className="inline-flex items-center">
-                      <span className="text-[#B0B0B0]">{item}</span>
+                      <span className="text-[#6D6D6D]">{item}</span>
                       <span className="text-burgundy mx-3 text-[8px]">♦</span>
                     </span>
                   ))}

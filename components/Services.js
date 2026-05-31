@@ -40,11 +40,6 @@ const fullCardContainer = {
   }),
 };
 
-const numberVariant = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: EASE } },
-};
-
 const contentGroupVariant = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
@@ -118,7 +113,6 @@ function ServiceCard({ service, index }) {
 // Card used in full services page — self-triggering whileInView, number first then content
 function FullServiceCard({ service, index }) {
   const Icon = iconMap[service.icon];
-  const num = String(index + 1).padStart(2, "0");
 
   return (
     <motion.div
@@ -149,16 +143,7 @@ function FullServiceCard({ service, index }) {
         aria-hidden="true"
       />
 
-      {/* Number — animates first */}
-      <motion.span
-        variants={numberVariant}
-        className="block text-xs font-mono text-[#6B1E2E] mb-2"
-        aria-hidden="true"
-      >
-        {num}
-      </motion.span>
-
-      {/* Icon + title + description + tag — animates 0.1s after number */}
+      {/* Icon + title + description + tag */}
       <motion.div variants={contentGroupVariant}>
         {Icon && (
           <div className="mb-5">
@@ -201,12 +186,6 @@ export default function Services({ preview = false }) {
             transition={{ staggerChildren: 0.08 }}
             className="mb-14"
           >
-            <motion.p
-              variants={slideInLeft}
-              className="text-xs font-bold uppercase tracking-widest text-burgundy mb-3"
-            >
-              {label}
-            </motion.p>
             <motion.h2
               variants={slideInLeft}
               className="text-3xl font-extrabold tracking-tight text-charcoal"
@@ -261,12 +240,6 @@ export default function Services({ preview = false }) {
             transition={{ staggerChildren: 0.1 }}
             className="max-w-3xl space-y-5"
           >
-            <motion.p
-              variants={slideInLeft}
-              className="text-xs font-bold uppercase tracking-widest text-taupe"
-            >
-              {label}
-            </motion.p>
             <motion.h1
               variants={slideInLeft}
               className="text-4xl md:text-5xl font-black tracking-tight text-white leading-tight"

@@ -86,9 +86,6 @@ export default function TrackRecord() {
                           "radial-gradient(ellipse at 80% 50%, rgba(201,184,168,0.06) 0%, transparent 65%)",
                       }}
                     />
-                    <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#C9B8A8] mb-3 relative">
-                      Key Outcome
-                    </p>
                     <p className="text-2xl md:text-3xl font-black text-white leading-tight tracking-tight relative">
                       {cs.metricCallout}
                     </p>

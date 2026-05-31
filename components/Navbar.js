@@ -94,7 +94,7 @@ export default function Navbar() {
             </Link>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 text-[#636363] hover:text-charcoal transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2"
+              className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center text-[#636363] hover:text-charcoal transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -129,10 +129,10 @@ export default function Navbar() {
                 <Logo size="small" />
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="p-2 text-[#636363] hover:text-charcoal transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2"
+                  className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center text-[#636363] hover:text-charcoal transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2"
                   aria-label="Close menu"
                 >
-                  <X size={18} />
+                  <X size={20} />
                 </button>
               </div>
               <div className="flex-1 overflow-y-auto py-6 px-6 space-y-1">

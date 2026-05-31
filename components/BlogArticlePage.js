@@ -49,7 +49,7 @@ export default function BlogArticlePage({ article }) {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-[#636363] hover:text-charcoal transition-colors duration-200 mb-8 cursor-pointer"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-[#636363] hover:text-charcoal transition-colors duration-200 mb-8 cursor-pointer py-2"
               >
                 <ArrowLeft size={13} aria-hidden="true" /> Back to Blog
               </Link>

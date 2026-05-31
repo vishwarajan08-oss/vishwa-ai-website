@@ -1,16 +1,21 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { content } from "@/config/content";
 
 function CountUp({ value, prefix, suffix, inView }) {
   const [display, setDisplay] = useState("0");
   const num = parseFloat(value);
   const isDecimal = value.includes(".");
+  const prefersReduced = useReducedMotion();
 
   useEffect(() => {
     if (!inView) return;
+    if (prefersReduced) {
+      setDisplay(isDecimal ? num.toFixed(1) : num.toString());
+      return;
+    }
     const duration = 1800;
     const startTime = performance.now();
 
@@ -24,7 +29,7 @@ function CountUp({ value, prefix, suffix, inView }) {
     };
 
     requestAnimationFrame(step);
-  }, [inView, num, isDecimal]);
+  }, [inView, num, isDecimal, prefersReduced]);
 
   return (
     <>
@@ -41,23 +46,23 @@ export default function StatsBar() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   const statItem = {
-    hidden: { opacity: 0, y: 16 },
+    hidden: { opacity: 0, y: 12 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
   };
 
   return (
-    <section ref={ref} className="border-y border-burgundy/20 py-14 bg-burgundy-dark">
+    <section ref={ref} className="border-y border-divider py-14 bg-bg">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
           transition={{ staggerChildren: 0.1 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-10"
+          className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-divider"
         >
           {stats.map((stat, i) => (
-            <motion.div key={i} variants={statItem} className="space-y-1">
-              <div className="text-3xl md:text-4xl font-black text-white tracking-tight tabular-nums">
+            <motion.div key={i} variants={statItem} className="px-8 first:pl-0 last:pr-0 space-y-2">
+              <div className="text-3xl md:text-4xl font-black text-charcoal tracking-tight tabular-nums">
                 <CountUp
                   value={stat.value}
                   prefix={stat.prefix}
@@ -65,7 +70,7 @@ export default function StatsBar() {
                   inView={inView}
                 />
               </div>
-              <div className="text-xs font-medium text-taupe leading-snug">
+              <div className="text-xs text-[#595959] leading-snug max-w-[140px]">
                 {stat.label}
               </div>
             </motion.div>

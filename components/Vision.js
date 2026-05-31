@@ -47,7 +47,7 @@ function PhaseCard({ phase, index, forwardedRef }) {
         ref.current = el;
         if (forwardedRef) forwardedRef.current = el;
       }}
-      className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8 py-16 border-b border-[#E8E0DA] last:border-b-0"
+      className="grid grid-cols-1 md:grid-cols-[80px_1fr] lg:grid-cols-[120px_1fr] gap-8 py-16 border-b border-[#E8E0DA] last:border-b-0"
     >
       {/* Left — number */}
       <motion.div
@@ -72,7 +72,7 @@ function PhaseCard({ phase, index, forwardedRef }) {
         <p className="text-sm text-[#636363] leading-relaxed max-w-2xl">
           {phase.description}
         </p>
-        <p className="text-xs text-[#8C8C8C] font-medium border-l-2 border-[#E8E0DA] pl-3">
+        <p className="text-xs text-[#595959] font-medium border-l-2 border-[#E8E0DA] pl-3">
           {phase.detail}
         </p>
       </motion.div>

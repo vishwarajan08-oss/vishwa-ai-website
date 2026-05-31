@@ -134,7 +134,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your name"
-                    className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#767676] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
+                    className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
                   />
                 </div>
                 <div className="space-y-2">
@@ -148,7 +148,7 @@ export default function Contact() {
                     value={formData.firm}
                     onChange={handleChange}
                     placeholder="e.g. Loftin Wealth Partners"
-                    className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#767676] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
+                    className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
                   />
                 </div>
               </motion.div>
@@ -165,7 +165,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="you@firm.com"
-                  className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#767676] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
+                  className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
                 />
               </motion.div>
 
@@ -181,7 +181,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell us about your operations and what you want to fix."
-                  className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#767676] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200 resize-none"
+                  className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200 resize-none"
                 />
               </motion.div>
 

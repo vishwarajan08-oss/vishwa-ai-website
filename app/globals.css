@@ -9,6 +9,8 @@
   --color-charcoal: #1A1A1A;
   --color-taupe: #C9B8A8;
   --color-divider: #E8E0DA;
+  --color-ink-secondary: #595959;
+  --color-ink-muted: #6D6D6D;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -66,6 +68,9 @@ body {
   from { transform: translateX(-100%); }
   to { transform: translateX(0); }
 }
+
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

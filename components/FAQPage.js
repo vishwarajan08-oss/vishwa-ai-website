@@ -152,7 +152,7 @@ export default function FAQPage() {
               <div className="relative">
                 <Search
                   size={14}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#B0B0B0]"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6D6D6D]"
                   aria-hidden="true"
                 />
                 <input
@@ -160,16 +160,13 @@ export default function FAQPage() {
                   placeholder="Search questions…"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 text-sm bg-white border border-divider text-charcoal placeholder-[#767676] focus:outline-none focus:border-burgundy transition-colors duration-200"
+                  className="w-full pl-9 pr-4 py-2.5 text-sm bg-white border border-divider text-charcoal placeholder-[#6D6D6D] focus:outline-none focus:border-burgundy transition-colors duration-200"
                   aria-label="Search FAQ questions"
                 />
               </div>
 
               {/* Category filter pills */}
               <div className="flex flex-col gap-2">
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#8C8C8C] mb-1">
-                  Topics
-                </p>
                 {CATEGORIES.map((cat) => (
                   <button
                     key={cat}
@@ -194,7 +191,7 @@ export default function FAQPage() {
                       {cat !== "All" && (
                         <span
                           className={`ml-2 text-[11px] font-normal ${
-                            activeCategory === cat ? "text-white/70" : "text-[#B0B0B0]"
+                            activeCategory === cat ? "text-white/70" : "text-[#6D6D6D]"
                           }`}
                         >
                           {categorizedFaqs.filter((f) => f.category === cat).length}
@@ -224,7 +221,7 @@ export default function FAQPage() {
                       </motion.div>
                     ))
                   ) : (
-                    <div className="py-12 text-center text-sm text-[#8C8C8C]">
+                    <div className="py-12 text-center text-sm text-[#595959]">
                       No questions match your search.
                     </div>
                   )}
