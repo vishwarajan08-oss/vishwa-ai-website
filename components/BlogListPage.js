@@ -1,19 +1,52 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { allArticles } from "@/content/blog/index";
-import { fadeInUp, staggerMed, viewport } from "@/lib/animations";
+import { fadeInUp, viewport } from "@/lib/animations";
 import { ArrowRight } from "lucide-react";
-
-const slideUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
 
 function formatDate(dateStr) {
   const d = new Date(dateStr);
   return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+}
+
+function BlogCard({ article }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <motion.article
+      ref={ref}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className="group bg-white border border-divider hover:border-burgundy transition-all duration-300 flex flex-col cursor-pointer overflow-hidden"
+      style={{ boxShadow: "0 0 0 0 rgba(107,30,46,0)" }}
+      whileHover={{
+        y: -4,
+        boxShadow: "0 4px 20px rgba(107,30,46,0.08)",
+      }}
+    >
+      <Link href={`/blog/${article.slug}`} className="p-6 flex flex-col flex-1">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 bg-burgundy/6 text-burgundy border border-burgundy/20 group-hover:bg-burgundy group-hover:text-white transition-colors duration-200">
+            {article.category}
+          </span>
+          <span className="text-xs text-taupe">{formatDate(article.date)}</span>
+        </div>
+        <h2 className="text-sm font-bold text-charcoal leading-snug mb-3 group-hover:text-burgundy transition-colors duration-200 flex-1">
+          {article.title}
+        </h2>
+        <p className="text-xs text-[#6D6D6D] leading-relaxed mb-4">
+          {article.excerpt}
+        </p>
+        <div className="flex items-center gap-1.5 text-xs font-semibold text-burgundy mt-auto">
+          Read Article <ArrowRight size={13} aria-hidden="true" />
+        </div>
+      </Link>
+    </motion.article>
+  );
 }
 
 export default function BlogListPage() {
@@ -85,45 +118,11 @@ export default function BlogListPage() {
 
             {/* Remaining articles in 3-column grid */}
             {allArticles.length > 1 && (
-              <motion.div
-                variants={staggerMed}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewport}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-              >
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {allArticles.slice(1).map((article) => (
-                  <motion.article
-                    key={article.slug}
-                    variants={slideUp}
-                    className="group bg-white border border-divider hover:border-burgundy transition-all duration-300 flex flex-col cursor-pointer overflow-hidden"
-                    style={{ boxShadow: "0 0 0 0 rgba(107,30,46,0)" }}
-                    whileHover={{
-                      y: -4,
-                      boxShadow: "0 4px 20px rgba(107,30,46,0.08)",
-                    }}
-                    transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  >
-                    <Link href={`/blog/${article.slug}`} className="p-6 flex flex-col flex-1">
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 bg-burgundy/6 text-burgundy border border-burgundy/20 group-hover:bg-burgundy group-hover:text-white transition-colors duration-200">
-                          {article.category}
-                        </span>
-                        <span className="text-xs text-taupe">{formatDate(article.date)}</span>
-                      </div>
-                      <h2 className="text-sm font-bold text-charcoal leading-snug mb-3 group-hover:text-burgundy transition-colors duration-200 flex-1">
-                        {article.title}
-                      </h2>
-                      <p className="text-xs text-[#6D6D6D] leading-relaxed mb-4">
-                        {article.excerpt}
-                      </p>
-                      <div className="flex items-center gap-1.5 text-xs font-semibold text-burgundy mt-auto">
-                        Read Article <ArrowRight size={13} aria-hidden="true" />
-                      </div>
-                    </Link>
-                  </motion.article>
+                  <BlogCard key={article.slug} article={article} />
                 ))}
-              </motion.div>
+              </div>
             )}
           </div>
         </div>
