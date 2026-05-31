@@ -4,6 +4,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { content } from "@/config/content";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
+
+const fieldFade = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+};
 import { Send } from "lucide-react";
 
 export default function Contact() {
@@ -86,7 +91,12 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeInUp}>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            transition={{ staggerChildren: 0.07, delayChildren: 0.15 }}
+          >
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
               <AnimatePresence mode="wait">
                 {status.message && (
@@ -106,7 +116,7 @@ export default function Contact() {
                 )}
               </AnimatePresence>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <motion.div variants={fieldFade} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-[#6D6D6D]">
                     Name <span className="text-burgundy" aria-hidden="true">*</span>
@@ -136,9 +146,9 @@ export default function Contact() {
                     className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#767676] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
                   />
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="space-y-2">
+              <motion.div variants={fieldFade} className="space-y-2">
                 <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#6D6D6D]">
                   Email <span className="text-burgundy" aria-hidden="true">*</span>
                 </label>
@@ -152,9 +162,9 @@ export default function Contact() {
                   placeholder="you@firm.com"
                   className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#767676] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
                 />
-              </div>
+              </motion.div>
 
-              <div className="space-y-2">
+              <motion.div variants={fieldFade} className="space-y-2">
                 <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-[#6D6D6D]">
                   Message <span className="text-burgundy" aria-hidden="true">*</span>
                 </label>
@@ -168,19 +178,20 @@ export default function Contact() {
                   placeholder="Tell us about your operations and what you want to fix."
                   className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#767676] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200 resize-none"
                 />
-              </div>
+              </motion.div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="relative w-full px-8 py-4 text-sm font-semibold text-white bg-burgundy overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
-              >
-                <span className="absolute inset-0 bg-burgundy-dark translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out" aria-hidden="true" />
-                <Send size={15} aria-hidden="true" className="relative" />
-                <span className="relative">{loading ? "Submitting..." : ctaLabel}</span>
-              </button>
-
-              <p className="text-xs text-[#636363] text-center">{responseNote}</p>
+              <motion.div variants={fieldFade}>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="relative w-full px-8 py-4 text-sm font-semibold text-white bg-burgundy overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+                >
+                  <span className="absolute inset-0 bg-burgundy-dark translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out" aria-hidden="true" />
+                  <Send size={15} aria-hidden="true" className="relative" />
+                  <span className="relative">{loading ? "Submitting..." : ctaLabel}</span>
+                </button>
+                <p className="mt-5 text-xs text-[#636363] text-center">{responseNote}</p>
+              </motion.div>
             </form>
           </motion.div>
         </motion.div>

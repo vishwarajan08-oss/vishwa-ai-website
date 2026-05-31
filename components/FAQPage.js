@@ -10,6 +10,20 @@ import { Plus, Minus, Search } from "lucide-react";
 const EASE = [0.25, 0.46, 0.45, 0.94];
 const CATEGORIES = ["All", "Getting Started", "Implementation", "Pricing", "Results"];
 
+const listVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.25, ease: EASE, staggerChildren: 0.04 },
+  },
+};
+
+const faqItemVariant = {
+  hidden: { opacity: 0, y: 8 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: EASE } },
+};
+
 const CATEGORY_MAP = [
   "Getting Started", "Getting Started", "Getting Started", "Implementation",
   "Getting Started", "Implementation", "Getting Started", "Pricing",
@@ -187,15 +201,17 @@ export default function FAQPage() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeCategory + searchQuery}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  variants={listVariants}
+                  initial="hidden"
+                  animate="visible"
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25, ease: EASE }}
                   className="border-t border-divider"
                 >
                   {filtered.length > 0 ? (
                     filtered.map((faq, i) => (
-                      <FAQItem key={faq.question} faq={faq} index={i} />
+                      <motion.div key={faq.question} variants={faqItemVariant}>
+                        <FAQItem faq={faq} index={i} />
+                      </motion.div>
                     ))
                   ) : (
                     <div className="py-12 text-center text-sm text-[#8C8C8C]">
