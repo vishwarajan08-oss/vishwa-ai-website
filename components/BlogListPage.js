@@ -34,7 +34,7 @@ export default function BlogListPage() {
             <motion.h1 variants={fadeInUp} className="text-4xl font-extrabold tracking-tight text-[#1A1A1A] mb-4">
               Insights & Perspectives
             </motion.h1>
-            <motion.p variants={fadeInUp} className="text-sm text-[#1A1A1A]/55 max-w-lg">
+            <motion.p variants={fadeInUp} className="text-sm text-[#6D6D6D] max-w-lg">
               Practical thinking on AI strategy, workflow automation, and operational efficiency for advisory firms.
             </motion.p>
           </motion.div>
@@ -64,12 +64,12 @@ export default function BlogListPage() {
                     <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 bg-[#6B1E2E]/6 text-[#6B1E2E] border border-[#6B1E2E]/20 group-hover:bg-[#6B1E2E] group-hover:text-white transition-colors duration-200">
                       {article.category}
                     </span>
-                    <span className="text-xs text-[#C9B8A8]">{formatDate(article.date)}</span>
+                    <span className="text-xs text-[#636363]">{formatDate(article.date)}</span>
                   </div>
                   <h2 className="text-sm font-bold text-[#1A1A1A] leading-snug mb-3 group-hover:text-[#6B1E2E] transition-colors duration-200 flex-1">
                     {article.title}
                   </h2>
-                  <p className="text-xs text-[#1A1A1A]/55 leading-relaxed mb-4">
+                  <p className="text-xs text-[#6D6D6D] leading-relaxed mb-4">
                     {article.excerpt}
                   </p>
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-[#6B1E2E] mt-auto">

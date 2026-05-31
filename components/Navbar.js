@@ -63,7 +63,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={`relative text-sm font-medium transition-colors duration-200 group cursor-pointer ${
-                    isActive ? "text-[#1A1A1A]" : "text-[#1A1A1A]/50 hover:text-[#1A1A1A]"
+                    isActive ? "text-[#1A1A1A]" : "text-[#636363] hover:text-[#1A1A1A]"
                   }`}
                 >
                   {link.name}
@@ -94,7 +94,7 @@ export default function Navbar() {
             </Link>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 text-[#1A1A1A]/60 hover:text-[#1A1A1A] transition-colors duration-200 cursor-pointer"
+              className="p-2 text-[#636363] hover:text-[#1A1A1A] transition-colors duration-200 cursor-pointer"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
@@ -129,7 +129,7 @@ export default function Navbar() {
                 <Logo size="small" />
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="p-2 text-[#1A1A1A]/40 hover:text-[#1A1A1A] transition-colors duration-200 cursor-pointer"
+                  className="p-2 text-[#636363] hover:text-[#1A1A1A] transition-colors duration-200 cursor-pointer"
                   aria-label="Close menu"
                 >
                   <X size={18} />
@@ -143,7 +143,7 @@ export default function Navbar() {
                       key={link.name}
                       href={link.href}
                       className={`block py-3 text-sm font-medium border-b border-[#E8E0DA]/70 transition-colors duration-200 cursor-pointer ${
-                        isActive ? "text-[#1A1A1A]" : "text-[#1A1A1A]/50 hover:text-[#1A1A1A]"
+                        isActive ? "text-[#1A1A1A]" : "text-[#636363] hover:text-[#1A1A1A]"
                       }`}
                     >
                       {link.name}

@@ -41,12 +41,6 @@ export default function Testimonials() {
         viewport={viewport}
         className="max-w-6xl mx-auto px-6 mb-14"
       >
-        <motion.p
-          variants={fadeInUp}
-          className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3"
-        >
-          From the Field
-        </motion.p>
         <motion.h2
           variants={fadeInUp}
           className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]"
@@ -73,9 +67,9 @@ export default function Testimonials() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className="bg-white border border-[#E8E0DA] border-l-[3px] border-l-[#6B1E2E] px-10 py-9 shadow-sm"
+              className="bg-white border border-[#E8E0DA] px-10 py-9 shadow-sm"
             >
-              <p className="text-base italic leading-relaxed text-[#1A1A1A]/65 mb-5">
+              <p className="text-base italic leading-relaxed text-[#595959] mb-5">
                 &ldquo;{current.quote}&rdquo;
               </p>
               <div className="text-sm font-semibold text-[#1A1A1A]">
@@ -90,7 +84,7 @@ export default function Testimonials() {
           <button
             onClick={prev}
             aria-label="Previous testimonial"
-            className="text-[#C9B8A8] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none cursor-pointer"
+            className="text-[#636363] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none cursor-pointer"
           >
             ←
           </button>
@@ -115,7 +109,7 @@ export default function Testimonials() {
           <button
             onClick={next}
             aria-label="Next testimonial"
-            className="text-[#C9B8A8] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none cursor-pointer"
+            className="text-[#636363] hover:text-[#6B1E2E] transition-colors duration-200 text-lg font-light select-none cursor-pointer"
           >
             →
           </button>

@@ -131,7 +131,7 @@ export default function TrackRecord() {
                 {cs.title}
               </h4>
 
-              <p className="text-sm text-[#1A1A1A]/60 leading-relaxed font-normal">
+              <p className="text-sm text-[#636363] leading-relaxed font-normal">
                 {cs.description}
               </p>
 
@@ -140,7 +140,7 @@ export default function TrackRecord() {
                   {cs.metrics.map((metric, i) => (
                     <li
                       key={i}
-                      className="flex items-center gap-2 text-xs text-[#C9B8A8] font-medium opacity-75 group-hover:opacity-100 transition-opacity duration-200"
+                      className="flex items-center gap-2 text-xs text-[#595959] font-medium transition-colors duration-200 group-hover:text-[#1A1A1A]"
                       style={{ transitionDelay: METRIC_DELAYS[i] ?? "0ms" }}
                     >
                       <span

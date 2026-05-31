@@ -71,18 +71,18 @@ export default function Contact() {
                 {title}
               </p>
             </div>
-            <p className="text-sm text-[#1A1A1A]/60 font-medium leading-relaxed">
+            <p className="text-sm text-[#636363] font-medium leading-relaxed">
               {subtitle}
             </p>
             {subtitle2 && (
-              <p className="text-sm text-[#1A1A1A]/60 font-medium leading-relaxed">
+              <p className="text-sm text-[#636363] font-medium leading-relaxed">
                 {subtitle2}
               </p>
             )}
             <div className="pt-4 space-y-3 border-t border-[#E8E0DA]">
               <a
                 href={`mailto:${email}`}
-                className="block text-sm font-semibold text-[#1A1A1A]/60 hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
+                className="block text-sm font-semibold text-[#636363] hover:text-[#6B1E2E] transition-colors duration-200 cursor-pointer"
               >
                 {email}
               </a>
@@ -111,7 +111,7 @@ export default function Contact() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A]/45">
+                  <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-[#6D6D6D]">
                     Name <span className="text-[#6B1E2E]" aria-hidden="true">*</span>
                   </label>
                   <input
@@ -122,11 +122,11 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your name"
-                    className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#1A1A1A]/30 focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200"
+                    className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#767676] focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="firm" className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A]/45">
+                  <label htmlFor="firm" className="text-xs font-bold uppercase tracking-wider text-[#6D6D6D]">
                     Firm Name
                   </label>
                   <input
@@ -136,13 +136,13 @@ export default function Contact() {
                     value={formData.firm}
                     onChange={handleChange}
                     placeholder="e.g. Loftin Wealth Partners"
-                    className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#1A1A1A]/30 focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200"
+                    className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#767676] focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A]/45">
+                <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#6D6D6D]">
                   Email <span className="text-[#6B1E2E]" aria-hidden="true">*</span>
                 </label>
                 <input
@@ -153,12 +153,12 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="you@firm.com"
-                  className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#1A1A1A]/30 focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200"
+                  className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#767676] focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200"
                 />
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A]/45">
+                <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-[#6D6D6D]">
                   Message <span className="text-[#6B1E2E]" aria-hidden="true">*</span>
                 </label>
                 <textarea
@@ -169,7 +169,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell us about your operations and what you want to fix."
-                  className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#1A1A1A]/30 focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200 resize-none"
+                  className="w-full px-4 py-3 bg-white border border-[#E8E0DA] text-[#1A1A1A] text-sm placeholder:text-[#767676] focus:outline-none focus:border-[#6B1E2E] focus:ring-1 focus:ring-[#6B1E2E] transition-colors duration-200 resize-none"
                 />
               </div>
 
@@ -183,7 +183,7 @@ export default function Contact() {
                 <span className="relative">{loading ? "Submitting..." : ctaLabel}</span>
               </button>
 
-              <p className="text-xs text-[#1A1A1A]/30 text-center">{responseNote}</p>
+              <p className="text-xs text-[#636363] text-center">{responseNote}</p>
             </form>
           </motion.div>
         </motion.div>

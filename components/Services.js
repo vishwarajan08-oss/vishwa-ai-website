@@ -81,7 +81,7 @@ function ServiceCard({ service, index, variant = "preview" }) {
 
       {/* Description */}
       <p
-        className={`text-[#1A1A1A]/55 leading-relaxed ${
+        className={`text-[#6D6D6D] leading-relaxed ${
           isFullPage ? "text-sm" : "text-sm"
         }`}
       >
@@ -141,7 +141,7 @@ export default function Services({ preview = false }) {
             viewport={viewport}
             className="mt-10 flex justify-between items-center"
           >
-            <p className="text-sm text-[#1A1A1A]/35">
+            <p className="text-sm text-[#636363]">
               {items.length - displayItems.length} more services available
             </p>
             <Link

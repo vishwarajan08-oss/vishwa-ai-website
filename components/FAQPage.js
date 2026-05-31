@@ -25,14 +25,14 @@ const categorizedFaqs = faqs.map((faq, i) => ({
 function AnswerText({ text }) {
   const dot = text.indexOf(". ");
   if (dot === -1) {
-    return <p className="text-sm text-[#C9B8A8] leading-relaxed">{text}</p>;
+    return <p className="text-sm text-[#595959] leading-relaxed">{text}</p>;
   }
   const first = text.slice(0, dot + 1);
   const rest = text.slice(dot + 2);
   return (
     <p className="text-sm leading-relaxed">
-      <span className="text-[#C9B8A8]">{first} </span>
-      <span className="text-[#1A1A1A]/65">{rest}</span>
+      <span className="text-[#595959]">{first} </span>
+      <span className="text-[#595959]">{rest}</span>
     </p>
   );
 }
@@ -43,12 +43,12 @@ function FAQItem({ faq, index }) {
   return (
     <div
       className={`border-b border-[#E8E0DA] transition-colors duration-200 ${
-        open ? "bg-white border-l-[3px] border-l-[#6B1E2E]" : "bg-transparent"
+        open ? "bg-[#6B1E2E]/8" : "bg-transparent"
       }`}
     >
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-start justify-between py-5 px-5 text-left cursor-pointer group gap-4"
+        className="w-full flex items-start justify-between py-5 px-5 text-left cursor-pointer group gap-4 focus-visible:ring-2 focus-visible:ring-[#6B1E2E] focus-visible:ring-offset-2 focus-visible:outline-none"
         aria-expanded={open}
       >
         <span
@@ -141,7 +141,7 @@ export default function FAQPage() {
               <div className="relative">
                 <Search
                   size={14}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#1A1A1A]/30"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#B0B0B0]"
                   aria-hidden="true"
                 />
                 <input
@@ -149,14 +149,14 @@ export default function FAQPage() {
                   placeholder="Search questions…"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 text-sm bg-white border border-[#E8E0DA] text-[#1A1A1A] placeholder-[#1A1A1A]/30 focus:outline-none focus:border-[#6B1E2E] transition-colors duration-200"
+                  className="w-full pl-9 pr-4 py-2.5 text-sm bg-white border border-[#E8E0DA] text-[#1A1A1A] placeholder-[#767676] focus:outline-none focus:border-[#6B1E2E] transition-colors duration-200"
                   aria-label="Search FAQ questions"
                 />
               </div>
 
               {/* Category filter pills */}
               <div className="flex flex-col gap-2">
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#1A1A1A]/35 mb-1">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#8C8C8C] mb-1">
                   Topics
                 </p>
                 {CATEGORIES.map((cat) => (
@@ -166,7 +166,7 @@ export default function FAQPage() {
                     className={`text-left text-sm font-semibold px-4 py-2.5 transition-all duration-200 cursor-pointer ${
                       activeCategory === cat
                         ? "bg-[#6B1E2E] text-white"
-                        : "bg-white border border-[#E8E0DA] text-[#1A1A1A]/60 hover:border-[#6B1E2E] hover:text-[#6B1E2E]"
+                        : "bg-white border border-[#E8E0DA] text-[#636363] hover:border-[#6B1E2E] hover:text-[#6B1E2E]"
                     }`}
                     aria-pressed={activeCategory === cat}
                   >
@@ -174,7 +174,7 @@ export default function FAQPage() {
                     {cat !== "All" && (
                       <span
                         className={`ml-2 text-[11px] font-normal ${
-                          activeCategory === cat ? "text-white/60" : "text-[#1A1A1A]/30"
+                          activeCategory === cat ? "text-white/60" : "text-[#B0B0B0]"
                         }`}
                       >
                         {categorizedFaqs.filter((f) => f.category === cat).length}
@@ -201,7 +201,7 @@ export default function FAQPage() {
                       <FAQItem key={faq.question} faq={faq} index={i} />
                     ))
                   ) : (
-                    <div className="py-12 text-center text-sm text-[#1A1A1A]/40">
+                    <div className="py-12 text-center text-sm text-[#8C8C8C]">
                       No questions match your search.
                     </div>
                   )}
@@ -217,7 +217,7 @@ export default function FAQPage() {
                 className="mt-12 p-8 bg-white border border-[#E8E0DA] space-y-4"
               >
                 <p className="text-sm font-bold text-[#1A1A1A]">Still have questions?</p>
-                <p className="text-sm text-[#1A1A1A]/55 leading-relaxed">
+                <p className="text-sm text-[#6D6D6D] leading-relaxed">
                   We&rsquo;re happy to answer anything before you commit to a conversation. Reach out directly and we&rsquo;ll get back to you within one business day.
                 </p>
                 <Link

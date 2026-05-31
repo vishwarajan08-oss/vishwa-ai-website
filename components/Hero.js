@@ -66,7 +66,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-[11px] tracking-[0.15em] text-[#1A1A1A]/30 uppercase font-medium"
+              className="text-[11px] tracking-[0.15em] text-[#636363] uppercase font-medium"
             >
               Trusted by wealth management firms across the Southeast
             </motion.p>
@@ -91,7 +91,7 @@ export default function Hero() {
                     animate="visible"
                     className="block"
                   >
-                    <span className="font-light text-[#1A1A1A]/40">AI </span>
+                    <span className="font-light text-[#8C8C8C]">AI </span>
                     <span className="font-black text-[#1A1A1A]">infrastructure</span>
                   </motion.span>
 
@@ -100,7 +100,7 @@ export default function Hero() {
                     variants={lineVariants}
                     initial="hidden"
                     animate="visible"
-                    className="block font-light text-[#1A1A1A]/40 mt-1"
+                    className="block font-light text-[#8C8C8C] mt-1"
                   >
                     for the firms that
                   </motion.span>
@@ -125,7 +125,7 @@ export default function Hero() {
                 transition={{ delay: 0.38, duration: 0.55, ease: EASE }}
                 className="lg:pl-16 lg:border-l lg:border-[#E8E0DA] flex flex-col gap-7"
               >
-                <p className="text-sm leading-relaxed text-[#1A1A1A]/55 max-w-xs">
+                <p className="text-sm leading-relaxed text-[#6D6D6D] max-w-xs">
                   We build and deploy AI systems for wealth management firms. The work is practical, not theoretical. Most clients see measurable results within 90 days.
                 </p>
 
@@ -198,7 +198,7 @@ export default function Hero() {
                 >
                   {TICKER_ITEMS.map((item, j) => (
                     <span key={j} className="inline-flex items-center">
-                      <span className="text-[#1A1A1A]/25">{item}</span>
+                      <span className="text-[#B0B0B0]">{item}</span>
                       <span className="text-[#6B1E2E] mx-3 text-[8px]">♦</span>
                     </span>
                   ))}
