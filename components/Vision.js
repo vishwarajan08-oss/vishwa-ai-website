@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
+import RoadmapNav from "@/components/RoadmapNav";
 
 const PHASES = [
   {
@@ -36,13 +37,16 @@ const PHASES = [
   },
 ];
 
-function PhaseCard({ phase, index }) {
+function PhaseCard({ phase, index, forwardedRef }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <div
-      ref={ref}
+      ref={(el) => {
+        ref.current = el;
+        if (forwardedRef) forwardedRef.current = el;
+      }}
       className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8 py-16 border-b border-[#E8E0DA] last:border-b-0"
     >
       {/* Left — number */}
@@ -77,6 +81,8 @@ function PhaseCard({ phase, index }) {
 }
 
 export default function Vision() {
+  const phaseRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+
   return (
     <section id="vision" className="py-24 bg-[#FAFAFA] border-t border-[#E8E0DA]">
       <div className="max-w-5xl mx-auto px-6">
@@ -98,10 +104,18 @@ export default function Vision() {
         </motion.div>
 
         {/* Phase roadmap */}
-        <div className="border-t border-[#E8E0DA]">
-          {PHASES.map((phase, index) => (
-            <PhaseCard key={phase.number} phase={phase} index={index} />
-          ))}
+        <div className="flex gap-12 items-stretch border-t border-[#E8E0DA]">
+          <RoadmapNav phaseRefs={phaseRefs} />
+          <div className="flex-1">
+            {PHASES.map((phase, index) => (
+              <PhaseCard
+                key={phase.number}
+                phase={phase}
+                index={index}
+                forwardedRef={phaseRefs[index]}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Why now section */}
