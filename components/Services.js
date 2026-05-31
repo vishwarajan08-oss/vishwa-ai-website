@@ -29,17 +29,37 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
 };
 
-// Card used in both preview (homepage) and full (services page)
-function ServiceCard({ service, index, variant = "preview" }) {
+// Full-page card: transparent orchestrator — children stagger within it
+const fullCardContainer = {
+  hidden: {},
+  visible: (i) => ({
+    transition: {
+      delay: i * 0.1,
+      staggerChildren: 0.1,
+    },
+  }),
+};
+
+const numberVariant = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: EASE } },
+};
+
+const contentGroupVariant = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
+};
+
+// Card used in preview (homepage) — unchanged
+function ServiceCard({ service, index }) {
   const Icon = iconMap[service.icon];
-  const isFullPage = variant === "full";
 
   return (
     <motion.div
       custom={index}
       variants={cardVariant}
       className="relative bg-white border border-divider group cursor-default overflow-hidden"
-      style={{ padding: isFullPage ? "2.5rem" : "2rem" }}
+      style={{ padding: "2rem" }}
       whileHover={{
         y: -6,
         boxShadow: "0 16px 48px rgba(107,30,46,0.10)",
@@ -54,39 +74,88 @@ function ServiceCard({ service, index, variant = "preview" }) {
 
       {/* Icon */}
       {Icon && (
-        <div className={isFullPage ? "mb-5" : "mb-4"}>
-          <Icon
-            size={isFullPage ? 20 : 18}
-            className="text-burgundy"
-            aria-hidden="true"
-          />
+        <div className="mb-4">
+          <Icon size={18} className="text-burgundy" aria-hidden="true" />
         </div>
       )}
 
       {/* Title */}
-      <h3
-        className={`font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200 ${
-          isFullPage ? "text-lg mb-3" : "text-base mb-3"
-        }`}
-      >
+      <h3 className="text-base font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200 mb-3">
         {service.title}
       </h3>
 
       {/* Description */}
-      <p
-        className={`text-[#6D6D6D] leading-relaxed mb-4 ${
-          isFullPage ? "text-sm" : "text-sm"
-        }`}
-      >
+      <p className="text-sm text-[#6D6D6D] leading-relaxed mb-4">
         {service.description}
       </p>
 
-      {/* Tag pill — now at bottom */}
+      {/* Tag pill */}
       <div>
         <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none">
           {service.tag}
         </span>
       </div>
+    </motion.div>
+  );
+}
+
+// Card used in full services page — self-triggering whileInView, number first then content
+function FullServiceCard({ service, index }) {
+  const Icon = iconMap[service.icon];
+  const num = String(index + 1).padStart(2, "0");
+
+  return (
+    <motion.div
+      custom={index}
+      variants={fullCardContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      className="relative bg-white border border-divider group cursor-default overflow-hidden"
+      style={{ padding: "2.5rem" }}
+      whileHover={{
+        y: -6,
+        boxShadow: "0 16px 48px rgba(107,30,46,0.10)",
+        transition: { duration: 0.25, ease: EASE },
+      }}
+    >
+      {/* Top accent — draws left to right on hover */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[2px] bg-burgundy scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+        aria-hidden="true"
+      />
+
+      {/* Number — animates first */}
+      <motion.span
+        variants={numberVariant}
+        className="block text-xs font-mono text-[#6B1E2E] mb-2"
+        aria-hidden="true"
+      >
+        {num}
+      </motion.span>
+
+      {/* Icon + title + description + tag — animates 0.1s after number */}
+      <motion.div variants={contentGroupVariant}>
+        {Icon && (
+          <div className="mb-5">
+            <Icon size={20} className="text-burgundy" aria-hidden="true" />
+          </div>
+        )}
+
+        <h3 className="text-lg font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200 mb-3">
+          {service.title}
+        </h3>
+
+        <p className="text-sm text-[#6D6D6D] leading-relaxed mb-4">
+          {service.description}
+        </p>
+
+        <div>
+          <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none">
+            {service.tag}
+          </span>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
@@ -130,7 +199,7 @@ export default function Services({ preview = false }) {
             className="grid grid-cols-1 md:grid-cols-3 gap-5"
           >
             {displayItems.map((service, index) => (
-              <ServiceCard key={index} service={service} index={index} variant="preview" />
+              <ServiceCard key={index} service={service} index={index} />
             ))}
           </motion.div>
 
@@ -193,18 +262,12 @@ export default function Services({ preview = false }) {
       <section className="py-20 bg-bg border-t border-divider">
         <div className="max-w-6xl mx-auto px-6">
 
-          {/* 2-column grid — stagger entrance */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            transition={{ staggerChildren: 0.08 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-5"
-          >
+          {/* 2-column grid — each card self-triggers on scroll */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {displayItems.map((service, index) => (
-              <ServiceCard key={index} service={service} index={index} variant="full" />
+              <FullServiceCard key={index} service={service} index={index} />
             ))}
-          </motion.div>
+          </div>
 
           {/* CTA banner */}
           <motion.div
