@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
 import { ArrowLeft } from "lucide-react";
+import ReadingProgress from "@/components/ReadingProgress";
 
 function formatDate(dateStr) {
   const d = new Date(dateStr);
@@ -34,7 +35,9 @@ function renderBlock(block, i) {
 
 export default function BlogArticlePage({ article }) {
   return (
-    <div className="pt-20">
+    <>
+      <ReadingProgress />
+      <div className="pt-20">
       <section className="py-24 bg-bg border-t border-divider">
         <div className="max-w-3xl mx-auto px-6">
           <motion.div
@@ -93,5 +96,6 @@ export default function BlogArticlePage({ article }) {
         </div>
       </section>
     </div>
+    </>
   );
 }
