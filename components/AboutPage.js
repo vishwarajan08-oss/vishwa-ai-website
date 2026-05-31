@@ -24,13 +24,13 @@ const founders = [
     name: "Vishwa Rajan",
     role: "Co-Founder",
     photo: "/vishwa.jpg",
-    bio: "Vishwa interns at Loftin Wealth Partners, working directly under the CEO on a $350M book of business. He founded the AI Efficiency Internship Program, a nationally distributed team of 30 researchers from Brown, UC Irvine, and UGA, and serves as Atlanta Chapter President of the Junior Economic Club with 2,000+ members and $100K+ in managed sponsorships. He also co-founded Fynoptic, a financial literacy platform backed by Georgia state legislators and partnered with Invesco and Emory's GIMG.",
+    bio: "Vishwa interns at Loftin Wealth Partners, working directly under the CEO on a $350M book of business. He serves as Atlanta Chapter President of the Junior Economic Club, an organization with over 2,000 members and $100K+ in managed sponsorships. He co-founded Fynoptic, a financial literacy platform backed by Georgia state legislators and partnered with Invesco and Emory's GIMG.",
   },
   {
     name: "Naiya Patel",
     role: "Co-Founder",
     photo: "/naiya.jpg",
-    bio: "Naiya serves as Executive Director of Communications at Fynoptic and has partnered with Goodwin Investment Advisory to improve operational efficiency by over 20%. She brings a research-first approach to every engagement, evaluating tools carefully before recommending anything to a client.",
+    bio: "Naiya serves as Executive Director of Communications at Fynoptic, where she leads strategic partnerships and institutional outreach. She has partnered with Goodwin Investment Advisory on operational initiatives, driving over 20% efficiency improvements. Her background spans financial services communications, platform growth, and stakeholder engagement across the wealth management industry.",
   },
 ];
 
