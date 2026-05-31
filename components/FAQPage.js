@@ -6,7 +6,6 @@ import Link from "next/link";
 import { faqs } from "@/config/faq";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
 import { Plus, Minus, Search } from "lucide-react";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
 const CATEGORIES = ["All", "Getting Started", "Implementation", "Pricing", "Results"];
@@ -128,9 +127,9 @@ export default function FAQPage() {
       </section>
 
       {/* Two-column layout */}
-      <ContainerScroll className="px-6 py-10">
-        <section className="max-w-6xl mx-auto w-full border border-[#E8E0DA] p-6 bg-[#FAFAFA] rounded-2xl shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10 py-10">
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10">
 
             {/* Left — search + filter pills */}
             <div className="space-y-6">
@@ -233,8 +232,8 @@ export default function FAQPage() {
             </div>
 
           </div>
-        </section>
-      </ContainerScroll>
+        </div>
+      </section>
     </div>
   );
 }

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { GooeyText } from "@/components/ui/gooey-text-morphing";
 
 const TICKER_ITEMS = [
   "Wealth Management",
@@ -117,13 +116,6 @@ export default function Hero() {
                     <span className="font-light text-burgundy">to wait.</span>
                   </motion.span>
                 </h1>
-                <GooeyText
-                  texts={["Wealth Management.", "Smarter Operations.", "Less Manual Work.", "More Client Time.", "Real Results."]}
-                  morphTime={1.2}
-                  cooldownTime={2.5}
-                  className="h-12 w-full mt-6"
-                  textClassName="text-lg md:text-xl font-bold text-[#6B1E2E]"
-                />
               </div>
 
               {/* Right — value prop + CTAs */}
