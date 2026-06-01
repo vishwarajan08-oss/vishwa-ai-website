@@ -10,6 +10,9 @@ const iconMap = { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe }
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
 
+const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
+const SHADOW_CLAY_HOVER = "0 14px 36px rgba(107,30,46,0.12), inset -5px -5px 10px rgba(255,255,255,0.85), inset 5px 5px 10px rgba(0,0,0,0.08)";
+
 const slideInLeft = {
   hidden: { opacity: 0, x: -32 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE } },
@@ -58,12 +61,11 @@ function ServiceCard({ service, index }) {
     <motion.div
       custom={index}
       variants={cardVariant}
-      className="relative bg-white border border-divider group cursor-default overflow-hidden"
-      style={{ padding: "2rem" }}
+      className="relative bg-bg-alt group cursor-default overflow-hidden rounded-[20px]"
+      style={{ padding: "2rem", boxShadow: SHADOW_CLAY }}
       whileHover={{
-        y: -6,
-        boxShadow: "0 16px 48px rgba(107,30,46,0.10)",
-        backgroundColor: "#F8F6F5",
+        y: -4,
+        boxShadow: SHADOW_CLAY_HOVER,
         transition: { duration: 0.25, ease: EASE },
       }}
     >
@@ -121,12 +123,11 @@ function FullServiceCard({ service, index }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      className="relative bg-white border border-divider group cursor-default overflow-hidden"
-      style={{ padding: "2.5rem" }}
+      className="relative bg-bg-alt group cursor-default overflow-hidden rounded-[20px]"
+      style={{ padding: "2.5rem", boxShadow: SHADOW_CLAY }}
       whileHover={{
-        y: -6,
-        boxShadow: "0 16px 48px rgba(107,30,46,0.10)",
-        backgroundColor: "#F8F6F5",
+        y: -4,
+        boxShadow: SHADOW_CLAY_HOVER,
         transition: { duration: 0.25, ease: EASE },
       }}
     >
