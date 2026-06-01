@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { getSupabaseClient } from "@/lib/supabase";
 
 const rateLimitStore = new Map();
 
@@ -51,14 +51,20 @@ export async function POST(request) {
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.error("Contact API: Supabase env vars not set");
+      return NextResponse.json({ error: "Service configuration error." }, { status: 500 });
+    }
+
+    const supabase = getSupabaseClient();
 
     const { error } = await supabase
       .from("contact_submissions")
       .insert([{ name, firm: firm || "", email, message }]);
 
     if (error) {
-      console.error("Supabase error:", error);
+      console.error("Supabase insert error:", { code: error.code, message: error.message, details: error.details });
       return NextResponse.json(
         { error: "Failed to save submission." },
         { status: 500 }
