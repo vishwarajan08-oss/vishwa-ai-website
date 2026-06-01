@@ -290,7 +290,6 @@ export default function AboutPage() {
             className="flex flex-col sm:flex-row items-start justify-center gap-12 sm:gap-16"
           >
             {founders.map((founder, i) => {
-              const { lead: bioLead, body: bioBody } = splitLead(founder.bio);
               return (
                 <motion.div
                   key={i}
@@ -316,40 +315,37 @@ export default function AboutPage() {
                     />
                   </motion.div>
 
-                  {/* Name + role */}
+                  {/* Name + title */}
                   <p className="text-base font-bold text-charcoal mb-1">{founder.name}</p>
-                  <p className="text-xs font-semibold text-burgundy uppercase tracking-widest mb-4">
-                    {founder.role}
+                  <p
+                    className="text-sm mb-5 text-charcoal"
+                    style={{
+                      fontFamily: "var(--font-spectral)",
+                      fontStyle: "italic",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Co-Founder, Core Consulting
                   </p>
 
-                  {/* Credential chips */}
+                  {/* 2 credential bullets */}
                   <motion.div
                     variants={chipContainer}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="flex flex-wrap justify-center gap-2 mb-4"
+                    className="flex flex-col items-center gap-1.5"
                   >
-                    {founder.chips.map((chip, ci) => (
-                      <motion.span
+                    {founder.chips.slice(1, 3).map((chip, ci) => (
+                      <motion.p
                         key={ci}
                         variants={chipItem}
-                        className="border border-divider rounded-full px-3 py-1 text-[10px] font-semibold text-charcoal tracking-wide"
+                        className="text-xs text-[#636363]"
                       >
-                        {chip}
-                      </motion.span>
+                        - {chip}
+                      </motion.p>
                     ))}
                   </motion.div>
-
-                  {/* Bio — lead sentence bold, rest normal */}
-                  <p className="text-sm font-semibold text-charcoal leading-snug mb-2 text-center">
-                    {bioLead}
-                  </p>
-                  {bioBody && (
-                    <p className="text-xs text-[#636363] leading-relaxed text-center">
-                      {bioBody}
-                    </p>
-                  )}
                 </motion.div>
               );
             })}
