@@ -9,6 +9,9 @@ import {
 } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
+const SHADOW_CLAY_BURGUNDY = "0 8px 24px rgba(107,30,46,0.25), inset -3px -3px 8px rgba(255,200,200,0.06), inset 3px 3px 8px rgba(61,13,24,0.12)";
+
 const testimonials = [
   {
     tempId: 0,
@@ -137,7 +140,7 @@ export function StaggerTestimonials() {
               style={{
                 width: cardSize.width,
                 height: cardSize.height,
-                borderRadius: "16px",
+                borderRadius: "20px",
                 cursor: isActive ? "default" : "pointer",
                 transformOrigin: "bottom center",
               }}
@@ -150,9 +153,9 @@ export function StaggerTestimonials() {
                     rotateY,
                     width: "100%",
                     height: "100%",
-                    borderRadius: "16px",
+                    borderRadius: "20px",
                     transformStyle: "preserve-3d",
-                    boxShadow: "0px 8px 0px 4px #E8E0DA",
+                    boxShadow: SHADOW_CLAY_BURGUNDY,
                   }}
                   className="bg-[#6B1E2E] border border-[#6B1E2E] p-8 flex flex-col justify-between"
                 >
@@ -163,8 +166,8 @@ export function StaggerTestimonials() {
                 </motion.div>
               ) : (
                 <div
-                  className="w-full h-full bg-[#FAFAFA] border border-[#E8E0DA] p-8 flex flex-col justify-between select-none"
-                  style={{ borderRadius: "16px" }}
+                  className="w-full h-full bg-[#FAFAFA] p-8 flex flex-col justify-between select-none"
+                  style={{ borderRadius: "20px", boxShadow: SHADOW_CLAY }}
                 >
                   <p className="font-medium text-base leading-relaxed text-[#1A1A1A] line-clamp-5">
                     &ldquo;{t.testimonial}&rdquo;
