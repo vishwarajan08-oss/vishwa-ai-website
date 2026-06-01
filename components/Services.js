@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
-import { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe, ChevronDown } from "lucide-react";
+import { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe } from "lucide-react";
 
 const iconMap = { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe };
 
@@ -31,15 +31,6 @@ const cardVariant = {
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
-};
-
-const rowVariant = {
-  hidden: { opacity: 0, x: -16 },
-  visible: (i) => ({
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.35, ease: EASE, delay: i * 0.05 },
-  }),
 };
 
 // Card used in preview (homepage) — unchanged
@@ -91,76 +82,63 @@ function ServiceCard({ service, index }) {
   );
 }
 
-// Accordion row for the full services page
-function AccordionRow({ service, index, isOpen, onToggle }) {
+// Panel card for the horizontal scroll (full services page)
+function ServicePanelCard({ service, index }) {
   const Icon = iconMap[service.icon];
+  const num = String(index + 1).padStart(2, "0");
+  const bg = index % 2 === 0 ? "#FAFAFA" : "#F5F0EE";
 
   return (
     <motion.div
-      custom={index}
-      variants={rowVariant}
-      className="relative border-b border-divider last:border-b-0 overflow-hidden"
+      className="relative flex flex-col justify-between h-full flex-shrink-0 border-r border-divider last:border-r-0 group"
+      style={{
+        width: "clamp(280px, 30vw, 420px)",
+        padding: "2.5rem 2rem 2rem",
+        backgroundColor: bg,
+      }}
+      whileHover={{ backgroundColor: "#FFFFFF" }}
+      transition={{ duration: 0.2 }}
     >
-      <motion.span
-        className="absolute left-0 top-0 bottom-0 w-[3px] bg-burgundy"
-        initial={{ scaleY: 0 }}
-        whileInView={{ scaleY: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.35, ease: EASE, delay: index * 0.04 + 0.2 }}
-        style={{ transformOrigin: "top" }}
+      {/* Hover top-line reveal */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[2px] bg-burgundy scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
         aria-hidden="true"
       />
 
-      <button
-        onClick={() => onToggle(index)}
-        className="w-full flex items-center gap-4 px-6 py-5 pl-8 text-left group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-inset"
-        aria-expanded={isOpen}
-      >
+      <div className="flex flex-col gap-5">
+        {/* Number */}
+        <span
+          className="text-7xl font-black leading-none select-none"
+          style={{ color: "rgba(107,30,46,0.07)" }}
+          aria-hidden="true"
+        >
+          {num}
+        </span>
+
+        {/* Icon */}
         {Icon && (
-          <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center border border-burgundy/20 text-burgundy transition-colors duration-200 group-hover:border-burgundy/50">
+          <div className="w-8 h-8 flex items-center justify-center border border-burgundy/25 text-burgundy flex-shrink-0">
             <Icon size={15} aria-hidden="true" />
           </div>
         )}
 
-        <span className="flex-1 text-sm font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200">
-          {service.title}
-        </span>
+        {/* Title + description */}
+        <div className="space-y-3">
+          <h3 className="text-lg font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200">
+            {service.title}
+          </h3>
+          <p className="text-sm text-[#636363] leading-relaxed">
+            {service.description}
+          </p>
+        </div>
+      </div>
 
-        <span className="flex-shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none hidden sm:inline-block">
+      {/* Tag */}
+      <div className="mt-6">
+        <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none">
           {service.tag}
         </span>
-
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.28, ease: EASE }}
-          className="flex-shrink-0 ml-2"
-          aria-hidden="true"
-        >
-          <ChevronDown size={16} className="text-[#8C8C8C]" />
-        </motion.div>
-      </button>
-
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="desc"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: EASE }}
-            style={{ overflow: "hidden" }}
-          >
-            <div className="px-8 pb-5 sm:pr-16 sm:pl-[4.5rem]">
-              <p className="text-sm text-[#636363] leading-relaxed">
-                {service.description}
-              </p>
-              <span className="inline-block mt-3 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none sm:hidden">
-                {service.tag}
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </div>
     </motion.div>
   );
 }
@@ -168,11 +146,14 @@ function AccordionRow({ service, index, isOpen, onToggle }) {
 export default function Services({ preview = false }) {
   const { label, title, items } = content.services;
   const displayItems = preview ? items.slice(0, 3) : items;
-  const [openIndex, setOpenIndex] = useState(0);
 
-  const handleToggle = (index) => {
-    setOpenIndex((prev) => (prev === index ? null : index));
-  };
+  // ── Horizontal scroll refs (full page only) ──────────────────────────
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef });
+
+  // 8 cards at ~30vw = ~240vw. Visible ~100vw (3 cards). Travel ~140vw.
+  const x = useTransform(scrollYProgress, [0, 1], ["0vw", "-140vw"]);
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   // ── Preview mode (homepage 3-card grid) ──────────────────────────────
   if (preview) {
@@ -228,9 +209,10 @@ export default function Services({ preview = false }) {
     );
   }
 
-  // ── Full services page (accordion) ───────────────────────────────────
+  // ── Full services page (horizontal scroll) ───────────────────────────
   return (
     <div className="pt-20">
+      {/* Hero */}
       <section className="py-24 bg-burgundy">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
@@ -256,34 +238,65 @@ export default function Services({ preview = false }) {
         </div>
       </section>
 
-      <section className="py-20 bg-bg border-t border-divider">
-        <div className="max-w-6xl mx-auto px-6">
+      {/* Horizontal scroll section */}
+      <div ref={sectionRef} style={{ height: "500vh" }} className="relative">
+        <div
+          className="sticky top-0 overflow-hidden bg-bg"
+          style={{ height: "100dvh", borderTop: "1px solid #E8E0DA" }}
+        >
+          {/* Section label + instruction */}
+          <div className="flex items-center justify-between px-8 pt-8 pb-0">
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: EASE }}
+              className="text-[11px] font-bold uppercase tracking-widest text-burgundy"
+            >
+              {label}
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-[11px] text-[#8C8C8C] tracking-wide"
+            >
+              Scroll to explore &rarr;
+            </motion.p>
+          </div>
 
+          {/* Cards rail */}
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            transition={{ staggerChildren: 0.05 }}
-            className="rounded-[20px] overflow-hidden bg-bg-alt"
-            style={{ boxShadow: SHADOW_CLAY }}
+            style={{ x }}
+            className="flex h-[calc(100dvh-100px)] mt-4 pl-8"
           >
-            {displayItems.map((service, index) => (
-              <AccordionRow
-                key={index}
-                service={service}
-                index={index}
-                isOpen={openIndex === index}
-                onToggle={handleToggle}
-              />
+            {items.map((service, index) => (
+              <ServicePanelCard key={index} service={service} index={index} />
             ))}
+            {/* End spacer */}
+            <div className="flex-shrink-0 w-8" />
           </motion.div>
 
+          {/* Progress bar */}
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-divider">
+            <motion.div
+              className="h-full bg-burgundy origin-left"
+              style={{ scaleX }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* CTA */}
+      <section className="py-20 bg-bg border-t border-divider">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            className="mt-16 py-12 px-10 bg-burgundy-dark text-center space-y-5"
+            className="py-12 px-10 bg-burgundy-dark text-center space-y-5"
           >
             <p className="text-xl md:text-2xl font-bold text-white leading-snug">
               Not sure where to start?
@@ -303,7 +316,6 @@ export default function Services({ preview = false }) {
               <span className="relative">Book a Free Workflow Audit</span>
             </Link>
           </motion.div>
-
         </div>
       </section>
     </div>
