@@ -1,7 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
 import { use3DTilt } from "@/lib/use3DTilt";
@@ -25,14 +26,7 @@ const slideInLeft = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE } },
 };
 
-const cardVariant = {
-  hidden: { opacity: 0, scale: 0.97 },
-  visible: (i) => ({
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: EASE, delay: i * 0.08 },
-  }),
-};
+const WAVE_Y = [16, 28, 20];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -42,16 +36,15 @@ const fadeUp = {
 function ServiceCard({ service, index }) {
   const Icon = iconMap[service.icon];
   const { ref, rotateX, rotateY, onMouseMove, onMouseLeave } = use3DTilt({ maxDeg: 6 });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const yOffset = WAVE_Y[index % 3];
 
   return (
-    <div style={{ perspective: "900px" }}>
+    <div style={{ perspective: "900px" }} className="h-full">
       <motion.div
         ref={ref}
-        custom={index}
-        variants={cardVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: yOffset }}
+        transition={{ duration: 0.45, ease: EASE }}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
         className="relative bg-bg-alt group cursor-default overflow-hidden rounded-[20px] flex flex-col h-full"
@@ -180,7 +173,7 @@ export default function Services({ preview = false }) {
       {/* All 10 services — 3-column clay card grid */}
       <section className="py-24 bg-bg border-t border-divider">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {items.map((service, index) => (
               <ServiceCard key={index} service={service} index={index} />
             ))}
