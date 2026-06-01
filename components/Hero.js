@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
+import { useState, useRef, useCallback } from "react";
 
 const TICKER_ITEMS = [
   "Wealth Management",
@@ -27,11 +27,27 @@ const lineVariants = {
 
 export default function Hero() {
   const [tickerPaused, setTickerPaused] = useState(false);
+  const heroRef = useRef(null);
+  const spotX = useMotionValue(30);
+  const spotY = useMotionValue(60);
+  const spotBg = useMotionTemplate`radial-gradient(600px circle at ${spotX}% ${spotY}%, rgba(107,30,46,0.07) 0%, transparent 65%)`;
+
+  const handleMouseMove = useCallback(
+    (e) => {
+      if (!heroRef.current) return;
+      const rect = heroRef.current.getBoundingClientRect();
+      spotX.set(((e.clientX - rect.left) / rect.width) * 100);
+      spotY.set(((e.clientY - rect.top) / rect.height) * 100);
+    },
+    [spotX, spotY]
+  );
 
   return (
     <section
+      ref={heroRef}
       id="top"
       className="relative flex flex-col min-h-dvh bg-bg overflow-hidden"
+      onMouseMove={handleMouseMove}
     >
       {/* Diagonal grain texture — 0.015 opacity so it's subliminal */}
       <div
@@ -54,6 +70,34 @@ export default function Hero() {
         aria-hidden="true"
         style={{
           background: "radial-gradient(ellipse at 30% 65%, rgba(107,30,46,0.04) 0%, transparent 55%)",
+        }}
+      />
+
+      {/* Cursor spotlight — follows mouse within hero */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{ background: spotBg }}
+      />
+
+      {/* Ambient floating orbs */}
+      <div
+        className="absolute top-[8%] right-[12%] w-72 h-72 rounded-full pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: "radial-gradient(circle, rgba(107,30,46,0.08) 0%, transparent 70%)",
+          filter: "blur(40px)",
+          animation: "float-slow 7s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute bottom-[18%] left-[8%] w-52 h-52 rounded-full pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: "radial-gradient(circle, rgba(201,184,168,0.1) 0%, transparent 70%)",
+          filter: "blur(32px)",
+          animation: "float-med 5.5s ease-in-out infinite",
+          animationDelay: "1.5s",
         }}
       />
 

@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ClientLayout from "@/components/ClientLayout";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,7 +33,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth`}>
+    <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased text-charcoal bg-bg min-h-screen flex flex-col">
         <a
           href="#main-content"
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
         >
           Skip to content
         </a>
+        <ScrollProgress />
         <Navbar />
         <main id="main-content" className="flex-grow">
           <ClientLayout>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import { Menu, X } from "lucide-react";
+import { useMagnetic } from "@/lib/useMagnetic";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -21,6 +22,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { ref: magRef, x: magX, y: magY, onMouseMove: magMove, onMouseLeave: magLeave } = useMagnetic({ strength: 0.3, radius: 70 });
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -75,13 +77,21 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <Link
-              href="/contact"
-              className="relative text-sm font-semibold px-5 py-2.5 bg-burgundy text-white overflow-hidden group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-burgundy"
+            <motion.div
+              ref={magRef}
+              style={{ x: magX, y: magY }}
+              onMouseMove={magMove}
+              onMouseLeave={magLeave}
+              className="inline-flex"
             >
-              <span className="absolute inset-0 bg-burgundy-dark translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out" aria-hidden="true" />
-              <span className="relative">Book a Consultation</span>
-            </Link>
+              <Link
+                href="/contact"
+                className="relative text-sm font-semibold px-5 py-2.5 bg-burgundy text-white overflow-hidden group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-burgundy"
+              >
+                <span className="absolute inset-0 bg-burgundy-dark translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out" aria-hidden="true" />
+                <span className="relative">Book a Consultation</span>
+              </Link>
+            </motion.div>
           </nav>
 
           {/* Mobile: CTA + Hamburger */}

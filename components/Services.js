@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
 import { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe } from "lucide-react";
+import { use3DTilt } from "@/lib/use3DTilt";
 
 const iconMap = { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe };
 
@@ -115,16 +116,21 @@ function ServiceCard({ service, index }) {
 // Card used in full services page — self-triggering whileInView, number first then content
 function FullServiceCard({ service, index }) {
   const Icon = iconMap[service.icon];
+  const { ref, rotateX, rotateY, onMouseMove, onMouseLeave } = use3DTilt({ maxDeg: 5 });
 
   return (
+    <div style={{ perspective: "900px" }}>
     <motion.div
+      ref={ref}
       custom={index}
       variants={fullCardContainer}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
       className="relative bg-bg-alt group cursor-default overflow-hidden rounded-[20px]"
-      style={{ padding: "2.5rem", boxShadow: SHADOW_CLAY }}
+      style={{ padding: "2.5rem", boxShadow: SHADOW_CLAY, rotateX, rotateY, transformStyle: "preserve-3d" }}
       whileHover={{
         y: -4,
         boxShadow: SHADOW_CLAY_HOVER,
@@ -167,6 +173,7 @@ function FullServiceCard({ service, index }) {
         </div>
       </motion.div>
     </motion.div>
+    </div>
   );
 }
 
