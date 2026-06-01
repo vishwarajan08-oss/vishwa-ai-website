@@ -11,6 +11,8 @@ const fieldFade = {
 };
 import { Send } from "lucide-react";
 
+const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
+
 export default function Contact() {
   const { label, title, subtitle, subtitle2, responseNote, ctaLabel, email } = content.contact;
 
@@ -96,6 +98,8 @@ export default function Contact() {
             whileInView="visible"
             viewport={viewport}
             transition={{ staggerChildren: 0.07, delayChildren: 0.15 }}
+            className="bg-[#FAFAFA] rounded-[20px] p-8"
+            style={{ boxShadow: SHADOW_CLAY }}
           >
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
               <AnimatePresence mode="wait">
@@ -109,11 +113,12 @@ export default function Contact() {
                       y: { duration: 0.25, ease: "easeOut" },
                       scale: { type: "spring", stiffness: 400, damping: 20 },
                     }}
-                    className={`p-4 text-xs font-medium border-l-2 ${
+                    className={`p-4 text-xs font-medium rounded-[12px] ${
                       status.type === "success"
-                        ? "bg-burgundy/5 text-charcoal/70 border-burgundy"
-                        : "bg-burgundy/8 text-burgundy border-burgundy"
+                        ? "bg-burgundy/5 text-charcoal/70"
+                        : "bg-burgundy/8 text-burgundy"
                     }`}
+                    style={{ boxShadow: SHADOW_CLAY }}
                     role="alert"
                   >
                     {status.message}
@@ -134,7 +139,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your name"
-                    className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
+                    className="w-full px-4 py-3 bg-[#F5F0EE] border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
                   />
                 </div>
                 <div className="space-y-2">
@@ -148,7 +153,7 @@ export default function Contact() {
                     value={formData.firm}
                     onChange={handleChange}
                     placeholder="e.g. Loftin Wealth Partners"
-                    className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
+                    className="w-full px-4 py-3 bg-[#F5F0EE] border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
                   />
                 </div>
               </motion.div>
@@ -165,7 +170,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="you@firm.com"
-                  className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
+                  className="w-full px-4 py-3 bg-[#F5F0EE] border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200"
                 />
               </motion.div>
 
@@ -181,7 +186,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell us about your operations and what you want to fix."
-                  className="w-full px-4 py-3 bg-white border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200 resize-none"
+                  className="w-full px-4 py-3 bg-[#F5F0EE] border border-divider text-charcoal text-sm placeholder:text-[#6D6D6D] focus:outline-none focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors duration-200 resize-none"
                 />
               </motion.div>
 

@@ -13,6 +13,8 @@ function formatDate(dateStr) {
 }
 
 const WAVE_Y = [16, 28, 20];
+const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
+const SHADOW_CLAY_HOVER = "0 14px 36px rgba(107,30,46,0.12), inset -5px -5px 10px rgba(255,255,255,0.85), inset 5px 5px 10px rgba(0,0,0,0.08)";
 
 function BlogCard({ article, index }) {
   const ref = useRef(null);
@@ -24,11 +26,11 @@ function BlogCard({ article, index }) {
       ref={ref}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: yOffset }}
       transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="group bg-white border border-divider hover:border-burgundy transition-all duration-300 flex flex-col cursor-pointer overflow-hidden"
-      style={{ boxShadow: "0 0 0 0 rgba(107,30,46,0)" }}
+      className="group bg-bg-alt rounded-[20px] flex flex-col cursor-pointer overflow-hidden"
+      style={{ boxShadow: SHADOW_CLAY }}
       whileHover={{
         y: -4,
-        boxShadow: "0 4px 20px rgba(107,30,46,0.08)",
+        boxShadow: SHADOW_CLAY_HOVER,
       }}
     >
       <Link href={`/blog/${article.slug}`} className="p-6 flex flex-col flex-1">
@@ -83,9 +85,9 @@ export default function BlogListPage() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={viewport}
-                  className="group bg-white border border-divider hover:border-burgundy transition-all duration-300 overflow-hidden"
-                  style={{ boxShadow: "0 0 0 0 rgba(107,30,46,0)" }}
-                  whileHover={{ boxShadow: "0 8px 32px rgba(107,30,46,0.10)" }}
+                  className="group bg-bg-alt rounded-[20px] overflow-hidden"
+                  style={{ boxShadow: SHADOW_CLAY }}
+                  whileHover={{ boxShadow: SHADOW_CLAY_HOVER }}
                 >
                   <Link href={`/blog/${article.slug}`} className="grid md:grid-cols-[3fr_2fr] min-h-[240px]">
                     <div className="p-10 flex flex-col justify-between">

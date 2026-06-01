@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
 import { ArrowLeft } from "lucide-react";
+
+const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
 import ReadingProgress from "@/components/ReadingProgress";
 
 function formatDate(dateStr) {
@@ -78,7 +80,7 @@ export default function BlogArticlePage({ article }) {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="border-t border-divider pt-10">
-              <div className="bg-bg-alt border border-divider p-8 space-y-4">
+              <div className="bg-bg-alt rounded-[20px] p-8 space-y-4" style={{ boxShadow: SHADOW_CLAY }}>
                 <p className="text-sm font-bold text-charcoal">Want to implement this for your firm?</p>
                 <p className="text-sm text-[#636363]">
                   Core Consulting works with a limited number of firms each quarter. If you're ready to modernize your operations, let's talk.

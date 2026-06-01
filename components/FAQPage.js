@@ -9,6 +9,8 @@ import { Plus, Minus, Search } from "lucide-react";
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
 const CATEGORIES = ["All", "Getting Started", "Implementation", "Pricing", "Results"];
+const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
+const SHADOW_CLAY_BURGUNDY = "0 8px 24px rgba(107,30,46,0.25), inset -3px -3px 8px rgba(255,200,200,0.06), inset 3px 3px 8px rgba(61,13,24,0.12)";
 
 const listVariants = {
   hidden: { opacity: 0, y: 10 },
@@ -171,11 +173,12 @@ export default function FAQPage() {
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`relative text-left text-sm font-semibold px-4 min-h-[44px] flex items-center py-2 cursor-pointer overflow-hidden border transition-colors duration-200 ${
+                    className={`relative text-left text-sm font-semibold px-4 min-h-[44px] flex items-center py-2 cursor-pointer overflow-hidden border rounded-[8px] transition-colors duration-200 ${
                       activeCategory === cat
                         ? "border-burgundy text-white"
                         : "bg-white border-divider text-[#636363] hover:border-burgundy hover:text-burgundy"
                     }`}
+                    style={activeCategory === cat ? { boxShadow: SHADOW_CLAY_BURGUNDY } : {}}
                     aria-pressed={activeCategory === cat}
                   >
                     {activeCategory === cat && (
@@ -234,7 +237,8 @@ export default function FAQPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={viewport}
-                className="mt-12 p-8 bg-white border border-divider space-y-4"
+                className="mt-12 p-8 bg-[#FAFAFA] rounded-[20px] space-y-4"
+                style={{ boxShadow: SHADOW_CLAY }}
               >
                 <p className="text-sm font-bold text-charcoal">Still have questions?</p>
                 <p className="text-sm text-[#6D6D6D] leading-relaxed">

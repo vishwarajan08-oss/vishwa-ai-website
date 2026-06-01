@@ -15,6 +15,8 @@ const iconMap = {
 };
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
+const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
+const SHADOW_CLAY_HOVER = "0 14px 36px rgba(107,30,46,0.12), inset -5px -5px 10px rgba(255,255,255,0.85), inset 5px 5px 10px rgba(0,0,0,0.08)";
 
 const founderLeft = {
   hidden: { opacity: 0, x: -32 },
@@ -207,9 +209,9 @@ export default function AboutPage() {
                 <motion.div
                   key={i}
                   variants={categoryItem}
-                  className="relative overflow-hidden p-6 border border-divider hover:border-burgundy transition-all duration-300 group space-y-3"
-                  style={{ backgroundColor: cardBg }}
-                  whileHover={{ boxShadow: "0 4px 20px rgba(107,30,46,0.06)" }}
+                  className="relative overflow-hidden p-6 rounded-[20px] group space-y-3 transition-all duration-300"
+                  style={{ backgroundColor: cardBg, boxShadow: SHADOW_CLAY }}
+                  whileHover={{ y: -4, boxShadow: SHADOW_CLAY_HOVER }}
                 >
                   <span
                     className="absolute left-0 top-0 bottom-0 w-0.5 bg-burgundy scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out"

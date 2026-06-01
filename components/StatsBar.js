@@ -40,6 +40,8 @@ function CountUp({ value, prefix, suffix, inView }) {
   );
 }
 
+const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
+
 export default function StatsBar() {
   const { stats } = content.trackRecord;
   const ref = useRef(null);
@@ -58,10 +60,15 @@ export default function StatsBar() {
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
           transition={{ staggerChildren: 0.1 }}
-          className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-divider"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4"
         >
           {stats.map((stat, i) => (
-            <motion.div key={i} variants={statItem} className="px-8 first:pl-0 last:pr-0 space-y-2">
+            <motion.div
+              key={i}
+              variants={statItem}
+              className="bg-bg-alt rounded-[20px] px-8 py-7 space-y-2"
+              style={{ boxShadow: SHADOW_CLAY }}
+            >
               <div className="text-3xl md:text-4xl font-black text-charcoal tracking-tight tabular-nums">
                 <CountUp
                   value={stat.value}
