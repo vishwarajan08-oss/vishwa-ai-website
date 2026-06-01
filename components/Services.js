@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
+import { use3DTilt } from "@/lib/use3DTilt";
 import {
   Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield,
   Search, Globe, MessageSquare, TrendingUp,
@@ -25,11 +26,11 @@ const slideInLeft = {
 };
 
 const cardVariant = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, scale: 0.97 },
   visible: (i) => ({
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, ease: EASE, delay: i * 0.08 },
+    scale: 1,
+    transition: { duration: 0.5, ease: EASE, delay: i * 0.08 },
   }),
 };
 
@@ -40,49 +41,58 @@ const fadeUp = {
 
 function ServiceCard({ service, index }) {
   const Icon = iconMap[service.icon];
+  const { ref, rotateX, rotateY, onMouseMove, onMouseLeave } = use3DTilt({ maxDeg: 6 });
 
   return (
-    <motion.div
-      custom={index}
-      variants={cardVariant}
-      className="relative bg-bg-alt group cursor-default overflow-hidden rounded-[20px]"
-      style={{ padding: "2rem", boxShadow: SHADOW_CLAY }}
-      whileHover={{
-        y: -4,
-        boxShadow: SHADOW_CLAY_HOVER,
-        transition: { duration: 0.25, ease: EASE },
-      }}
-    >
-      <div
-        className="absolute top-0 left-0 right-0 h-[2px] bg-burgundy scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
-        aria-hidden="true"
-      />
-      <motion.span
-        className="absolute left-0 top-0 bottom-0 w-[3px] bg-burgundy"
-        initial={{ scaleY: 0 }}
-        whileInView={{ scaleY: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.35, ease: EASE, delay: 0.2 }}
-        style={{ transformOrigin: "top" }}
-        aria-hidden="true"
-      />
-      {Icon && (
-        <div className="mb-4">
-          <Icon size={18} className="text-burgundy" aria-hidden="true" />
+    <div style={{ perspective: "900px" }}>
+      <motion.div
+        ref={ref}
+        custom={index}
+        variants={cardVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        className="relative bg-bg-alt group cursor-default overflow-hidden rounded-[20px] flex flex-col h-full"
+        style={{ padding: "2rem", boxShadow: SHADOW_CLAY, rotateX, rotateY, transformStyle: "preserve-3d" }}
+        whileHover={{
+          y: -4,
+          boxShadow: SHADOW_CLAY_HOVER,
+          transition: { duration: 0.25, ease: EASE },
+        }}
+      >
+        <span
+          className="absolute top-0 inset-x-0 h-[2px] bg-burgundy opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+          aria-hidden="true"
+        />
+        <motion.span
+          className="absolute left-0 top-0 bottom-0 w-[3px] bg-burgundy"
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.35, ease: EASE, delay: 0.2 }}
+          style={{ transformOrigin: "top" }}
+          aria-hidden="true"
+        />
+        {Icon && (
+          <div className="mb-4">
+            <Icon size={18} className="text-burgundy" aria-hidden="true" />
+          </div>
+        )}
+        <h3 className="text-base font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200 mb-3">
+          {service.title}
+        </h3>
+        <p className="text-sm text-[#6D6D6D] leading-relaxed mb-4">
+          {service.description}
+        </p>
+        <div className="mt-auto">
+          <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none">
+            {service.tag}
+          </span>
         </div>
-      )}
-      <h3 className="text-base font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200 mb-3">
-        {service.title}
-      </h3>
-      <p className="text-sm text-[#6D6D6D] leading-relaxed mb-4">
-        {service.description}
-      </p>
-      <div>
-        <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none">
-          {service.tag}
-        </span>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
 
@@ -110,17 +120,11 @@ export default function Services({ preview = false }) {
             </motion.h2>
           </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            transition={{ staggerChildren: 0.1 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-5"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {displayItems.map((service, index) => (
               <ServiceCard key={index} service={service} index={index} />
             ))}
-          </motion.div>
+          </div>
 
           <motion.div
             variants={fadeUp}
@@ -176,16 +180,11 @@ export default function Services({ preview = false }) {
       {/* All 10 services — 3-column clay card grid */}
       <section className="py-24 bg-bg border-t border-divider">
         <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
             {items.map((service, index) => (
               <ServiceCard key={index} service={service} index={index} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 

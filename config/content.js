@@ -69,13 +69,13 @@ export const content = {
       },
       {
         title: "Client Communication & Outreach",
-        description: "Advisors spend real hours every quarter writing letters that say roughly the same thing to different clients. We build systems that draft quarterly letters, market commentary, and account updates from your CRM data, then route each one for advisor review before it sends. The copy reads like the advisor wrote it because it's built on that client's actual history, not a generic template. Most firms cut communication prep time by more than half.",
+        description: "Quarterly letters, market commentary, account updates - we build systems that draft each one from your CRM data and route it for advisor review before it goes out. Copy draws from that client's actual history, not a template. Most firms cut prep time by more than half.",
         tag: "High Touch",
         icon: "MessageSquare",
       },
       {
         title: "Investment Research & Market Intelligence",
-        description: "Your advisors shouldn't be reading 40-page earnings transcripts. We build pipelines that pull SEC filings, earnings calls, and market reports overnight and deliver structured summaries before your team logs in. The output format is fixed to what your investment process actually uses — not raw text, but summaries that slot directly into your CRM and workflow.",
+        description: "Advisors shouldn't be reading 40-page earnings transcripts. We build pipelines that pull SEC filings, earnings calls, and market data overnight and deliver structured summaries before your team logs in - formatted to slot directly into your CRM and workflow.",
         tag: "Research-Driven",
         icon: "TrendingUp",
       },
