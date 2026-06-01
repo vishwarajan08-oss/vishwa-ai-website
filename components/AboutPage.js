@@ -38,6 +38,16 @@ const stagger008 = {
   visible: { transition: { staggerChildren: 0.08 } },
 };
 
+const chipContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+};
+
+const chipItem = {
+  hidden: { opacity: 0, y: 8, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.35, ease: EASE } },
+};
+
 const differentiatorItem = {
   hidden: { opacity: 0, y: 16 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
@@ -53,23 +63,34 @@ const founders = [
     name: "Vishwa Rajan",
     role: "Co-Founder",
     photo: "/vishwa.jpg",
+    chips: ["Co-Founder, Core Consulting", "Analyst Intern, Blaylock Van LLC", "Co-Founder, Fynoptic"],
     bio: "Vishwa interns at Loftin Wealth Partners, working directly under the CEO on a $350M book of business. He serves as Atlanta Chapter President of the Junior Economic Club, an organization with over 2,000 members and $100K+ in managed sponsorships. He co-founded Fynoptic, a financial literacy platform backed by Georgia state legislators and partnered with Invesco and Emory's GIMG.",
   },
   {
     name: "Naiya Patel",
     role: "Co-Founder",
     photo: "/naiya.jpg",
+    chips: ["Co-Founder, Core Consulting", "AI Strategy Lead", "Research Lead, Fynoptic"],
     bio: "Naiya serves as Executive Director of Communications at Fynoptic, where she leads strategic partnerships and institutional outreach. She has partnered with Goodwin Investment Advisory on operational initiatives, driving over 20% efficiency improvements. Her background spans financial services communications, platform growth, and stakeholder engagement across the wealth management industry.",
   },
 ];
 
+function splitLead(text) {
+  const idx = text.indexOf(". ");
+  if (idx === -1) return { lead: text, body: "" };
+  return { lead: text.slice(0, idx + 1), body: text.slice(idx + 2) };
+}
+
 export default function AboutPage() {
   const { label, headline, subhead, whyWeStarted, ourApproach, differentiators, categories, lookingAhead } = content.about;
+
+  const whyLead = splitLead(whyWeStarted.body);
+  const approachLead = splitLead(ourApproach.body);
 
   return (
     <div className="pt-20">
 
-      {/* ── Hero banner — burgundy bg ─────────────────────────────────────── */}
+      {/* ── Hero banner ──────────────────────────────────────────────────── */}
       <section className="py-24 bg-burgundy">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
@@ -92,44 +113,55 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Why We Started + Our Approach — warm off-white, left accent ────── */}
+      {/* ── Why We Started + How We Work — pull-quote layout ─────────────── */}
       <section className="py-20 bg-bg-alt" style={{ borderTop: "1px solid rgba(107,30,46,0.15)" }}>
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16">
 
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            className="space-y-4"
-          >
-            <motion.h3 variants={fadeInUp} className="text-xl font-bold text-charcoal">
-              {whyWeStarted.title}
-            </motion.h3>
-            <motion.p variants={fadeInUp} className="text-sm text-[#636363] leading-relaxed">
-              {whyWeStarted.body}
-            </motion.p>
-          </motion.div>
+          {[
+            { section: whyWeStarted, lead: whyLead.lead, body: whyLead.body },
+            { section: ourApproach, lead: approachLead.lead, body: approachLead.body },
+          ].map(({ section, lead, body }, i) => (
+            <motion.div
+              key={i}
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewport}
+              className="space-y-4"
+            >
+              {/* Decorative quote mark */}
+              <motion.div
+                variants={fadeInUp}
+                aria-hidden="true"
+                className="text-6xl font-black text-burgundy leading-none select-none"
+                style={{ opacity: 0.12, marginBottom: "-0.5rem" }}
+              >
+                &ldquo;
+              </motion.div>
 
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            className="space-y-4"
-          >
-            <motion.h3 variants={fadeInUp} className="text-xl font-bold text-charcoal">
-              {ourApproach.title}
-            </motion.h3>
-            <motion.p variants={fadeInUp} className="text-sm text-[#636363] leading-relaxed">
-              {ourApproach.body}
-            </motion.p>
-          </motion.div>
+              {/* Section label */}
+              <motion.p variants={fadeInUp} className="text-[11px] font-bold uppercase tracking-widest text-burgundy">
+                {section.title}
+              </motion.p>
+
+              {/* Lead sentence — large */}
+              <motion.p variants={fadeInUp} className="text-xl font-semibold text-charcoal leading-snug">
+                {lead}
+              </motion.p>
+
+              {/* Remaining body — small */}
+              {body && (
+                <motion.p variants={fadeInUp} className="text-sm text-[#636363] leading-relaxed">
+                  {body}
+                </motion.p>
+              )}
+            </motion.div>
+          ))}
 
         </div>
       </section>
 
-      {/* ── What Makes Core Different — dark burgundy bg ─────────────────── */}
+      {/* ── What Makes Core Different ─────────────────────────────────────── */}
       <section className="py-20 bg-burgundy-dark" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
@@ -180,7 +212,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Six Categories — alternating card backgrounds ──────────────────── */}
+      {/* ── Six Categories ─────────────────────────────────────────────────── */}
       <section className="py-20 bg-bg" style={{ borderTop: "1px solid #E8E0DA" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
@@ -235,7 +267,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Founders — warm off-white, large centered photos ──────────────── */}
+      {/* ── Founders ──────────────────────────────────────────────────────── */}
       <section className="py-20 bg-bg-alt" style={{ borderTop: "1px solid #E8E0DA" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
@@ -257,48 +289,75 @@ export default function AboutPage() {
             transition={{ staggerChildren: 0.15 }}
             className="flex flex-col sm:flex-row items-start justify-center gap-12 sm:gap-16"
           >
-            {founders.map((founder, i) => (
-              <motion.div
-                key={i}
-                variants={i === 0 ? founderLeft : founderRight}
-                className="flex flex-col items-center text-center w-full sm:w-80"
-              >
-                {/* Photo with burgundy ring */}
+            {founders.map((founder, i) => {
+              const { lead: bioLead, body: bioBody } = splitLead(founder.bio);
+              return (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  whileHover={{ scale: 1.03 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, ease: EASE }}
-                  className="relative w-[200px] h-[200px] rounded-full overflow-hidden flex-shrink-0 mb-5 mx-auto"
-                  style={{ outline: "3px solid #6B1E2E", outlineOffset: "3px" }}
+                  key={i}
+                  variants={i === 0 ? founderLeft : founderRight}
+                  className="flex flex-col items-center text-center w-full sm:w-80"
                 >
-                  <Image
-                    src={founder.photo}
-                    alt={founder.name}
-                    fill
-                    className="object-cover object-center"
-                    sizes="200px"
-                  />
+                  {/* Photo */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    whileHover={{ scale: 1.03 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, ease: EASE }}
+                    className="relative w-[200px] h-[200px] rounded-full overflow-hidden flex-shrink-0 mb-5 mx-auto"
+                    style={{ outline: "3px solid #6B1E2E", outlineOffset: "3px" }}
+                  >
+                    <Image
+                      src={founder.photo}
+                      alt={founder.name}
+                      fill
+                      className="object-cover object-center"
+                      sizes="200px"
+                    />
+                  </motion.div>
+
+                  {/* Name + role */}
+                  <p className="text-base font-bold text-charcoal mb-1">{founder.name}</p>
+                  <p className="text-xs font-semibold text-burgundy uppercase tracking-widest mb-4">
+                    {founder.role}
+                  </p>
+
+                  {/* Credential chips */}
+                  <motion.div
+                    variants={chipContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="flex flex-wrap justify-center gap-2 mb-4"
+                  >
+                    {founder.chips.map((chip, ci) => (
+                      <motion.span
+                        key={ci}
+                        variants={chipItem}
+                        className="border border-divider rounded-full px-3 py-1 text-[10px] font-semibold text-charcoal tracking-wide"
+                      >
+                        {chip}
+                      </motion.span>
+                    ))}
+                  </motion.div>
+
+                  {/* Bio — lead sentence bold, rest normal */}
+                  <p className="text-sm font-semibold text-charcoal leading-snug mb-2 text-center">
+                    {bioLead}
+                  </p>
+                  {bioBody && (
+                    <p className="text-xs text-[#636363] leading-relaxed text-center">
+                      {bioBody}
+                    </p>
+                  )}
                 </motion.div>
-
-                {/* Name + role */}
-                <p className="text-base font-bold text-charcoal mb-1">{founder.name}</p>
-                <p className="text-xs font-semibold text-burgundy uppercase tracking-widest mb-4">
-                  {founder.role}
-                </p>
-
-                {/* Bio */}
-                <p className="text-sm text-[#636363] leading-relaxed text-center">
-                  {founder.bio}
-                </p>
-              </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
       </section>
 
-      {/* ── Looking Ahead — dark banner, centered ─────────────────────────── */}
+      {/* ── Looking Ahead ─────────────────────────────────────────────────── */}
       <section className="py-24 bg-burgundy-dark" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.div
@@ -312,7 +371,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.55, ease: EASE }}
               className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-snug"
             >
               {lookingAhead}

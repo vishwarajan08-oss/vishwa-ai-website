@@ -55,7 +55,15 @@ function PhaseCard({ phase, index, forwardedRef }) {
         transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="flex flex-col gap-3"
       >
-        <span className="text-4xl font-black text-[#E8E0DA] leading-none">
+        <span
+          className="text-4xl font-black leading-none transition-all duration-500"
+          style={{
+            color: isInView ? "#6B1E2E" : "#C9B8A8",
+            textShadow: isInView
+              ? "0 0 20px rgba(107,30,46,0.45), 0 0 40px rgba(107,30,46,0.2)"
+              : "none",
+          }}
+        >
           {phase.number}
         </span>
       </motion.div>

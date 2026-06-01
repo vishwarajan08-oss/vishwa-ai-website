@@ -1,11 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
-import { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe } from "lucide-react";
-import { use3DTilt } from "@/lib/use3DTilt";
+import { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe, ChevronDown } from "lucide-react";
 
 const iconMap = { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe };
 
@@ -33,25 +33,13 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
 };
 
-// Full-page card: transparent orchestrator — children stagger within it
-const fullCardContainer = {
-  hidden: {},
+const rowVariant = {
+  hidden: { opacity: 0, x: -16 },
   visible: (i) => ({
-    transition: {
-      delay: i * 0.1,
-      staggerChildren: 0.1,
-    },
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.35, ease: EASE, delay: i * 0.05 },
   }),
-};
-
-const contentGroupVariant = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
-};
-
-const borderStripeVariant = {
-  hidden: { scaleY: 0 },
-  visible: { scaleY: 1, transition: { duration: 0.4, ease: EASE } },
 };
 
 // Card used in preview (homepage) — unchanged
@@ -70,12 +58,10 @@ function ServiceCard({ service, index }) {
         transition: { duration: 0.25, ease: EASE },
       }}
     >
-      {/* Top accent — draws left to right on hover */}
       <div
         className="absolute top-0 left-0 right-0 h-[2px] bg-burgundy scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
         aria-hidden="true"
       />
-      {/* Left stripe — animates in on scroll */}
       <motion.span
         className="absolute left-0 top-0 bottom-0 w-[3px] bg-burgundy"
         initial={{ scaleY: 0 }}
@@ -85,25 +71,17 @@ function ServiceCard({ service, index }) {
         style={{ transformOrigin: "top" }}
         aria-hidden="true"
       />
-
-      {/* Icon */}
       {Icon && (
         <div className="mb-4">
           <Icon size={18} className="text-burgundy" aria-hidden="true" />
         </div>
       )}
-
-      {/* Title */}
       <h3 className="text-base font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200 mb-3">
         {service.title}
       </h3>
-
-      {/* Description */}
       <p className="text-sm text-[#6D6D6D] leading-relaxed mb-4">
         {service.description}
       </p>
-
-      {/* Tag pill */}
       <div>
         <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none">
           {service.tag}
@@ -113,80 +91,94 @@ function ServiceCard({ service, index }) {
   );
 }
 
-// Card used in full services page — self-triggering whileInView, number first then content
-function FullServiceCard({ service, index }) {
+// Accordion row for the full services page
+function AccordionRow({ service, index, isOpen, onToggle }) {
   const Icon = iconMap[service.icon];
-  const { ref, rotateX, rotateY, onMouseMove, onMouseLeave } = use3DTilt({ maxDeg: 5 });
 
   return (
-    <div style={{ perspective: "900px" }}>
     <motion.div
-      ref={ref}
       custom={index}
-      variants={fullCardContainer}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      className="relative bg-bg-alt group cursor-default overflow-hidden rounded-[20px]"
-      style={{ padding: "2.5rem", boxShadow: SHADOW_CLAY, rotateX, rotateY, transformStyle: "preserve-3d" }}
-      whileHover={{
-        y: -4,
-        boxShadow: SHADOW_CLAY_HOVER,
-        transition: { duration: 0.25, ease: EASE },
-      }}
+      variants={rowVariant}
+      className="relative border-b border-divider last:border-b-0 overflow-hidden"
     >
-      {/* Top accent — draws left to right on hover */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[2px] bg-burgundy scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
-        aria-hidden="true"
-      />
-      {/* Left stripe — animates in on scroll via parent variant */}
       <motion.span
-        variants={borderStripeVariant}
         className="absolute left-0 top-0 bottom-0 w-[3px] bg-burgundy"
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.35, ease: EASE, delay: index * 0.04 + 0.2 }}
         style={{ transformOrigin: "top" }}
         aria-hidden="true"
       />
 
-      {/* Icon + title + description + tag */}
-      <motion.div variants={contentGroupVariant}>
+      <button
+        onClick={() => onToggle(index)}
+        className="w-full flex items-center gap-4 px-6 py-5 pl-8 text-left group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-inset"
+        aria-expanded={isOpen}
+      >
         {Icon && (
-          <div className="mb-5">
-            <Icon size={20} className="text-burgundy" aria-hidden="true" />
+          <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center border border-burgundy/20 text-burgundy transition-colors duration-200 group-hover:border-burgundy/50">
+            <Icon size={15} aria-hidden="true" />
           </div>
         )}
 
-        <h3 className="text-lg font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200 mb-3">
+        <span className="flex-1 text-sm font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200">
           {service.title}
-        </h3>
+        </span>
 
-        <p className="text-sm text-[#6D6D6D] leading-relaxed mb-4">
-          {service.description}
-        </p>
+        <span className="flex-shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none hidden sm:inline-block">
+          {service.tag}
+        </span>
 
-        <div>
-          <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none">
-            {service.tag}
-          </span>
-        </div>
-      </motion.div>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.28, ease: EASE }}
+          className="flex-shrink-0 ml-2"
+          aria-hidden="true"
+        >
+          <ChevronDown size={16} className="text-[#8C8C8C]" />
+        </motion.div>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="desc"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: EASE }}
+            style={{ overflow: "hidden" }}
+          >
+            <div className="px-8 pb-5 sm:pr-16 sm:pl-[4.5rem]">
+              <p className="text-sm text-[#636363] leading-relaxed">
+                {service.description}
+              </p>
+              <span className="inline-block mt-3 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none sm:hidden">
+                {service.tag}
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
-    </div>
   );
 }
 
 export default function Services({ preview = false }) {
   const { label, title, items } = content.services;
   const displayItems = preview ? items.slice(0, 3) : items;
+  const [openIndex, setOpenIndex] = useState(0);
 
-  // ── Preview mode (homepage 3-card grid) ────────────────────────────────
+  const handleToggle = (index) => {
+    setOpenIndex((prev) => (prev === index ? null : index));
+  };
+
+  // ── Preview mode (homepage 3-card grid) ──────────────────────────────
   if (preview) {
     return (
       <section id="services" className="py-24 bg-bg border-t border-divider">
         <div className="max-w-6xl mx-auto px-6">
-
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -236,7 +228,7 @@ export default function Services({ preview = false }) {
     );
   }
 
-  // ── Full services page (2-column card grid) ────────────────────────────
+  // ── Full services page (accordion) ───────────────────────────────────
   return (
     <div className="pt-20">
       <section className="py-24 bg-burgundy">
@@ -267,14 +259,25 @@ export default function Services({ preview = false }) {
       <section className="py-20 bg-bg border-t border-divider">
         <div className="max-w-6xl mx-auto px-6">
 
-          {/* 2-column grid — each card self-triggers on scroll */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            transition={{ staggerChildren: 0.05 }}
+            className="rounded-[20px] overflow-hidden bg-bg-alt"
+            style={{ boxShadow: SHADOW_CLAY }}
+          >
             {displayItems.map((service, index) => (
-              <FullServiceCard key={index} service={service} index={index} />
+              <AccordionRow
+                key={index}
+                service={service}
+                index={index}
+                isOpen={openIndex === index}
+                onToggle={handleToggle}
+              />
             ))}
-          </div>
+          </motion.div>
 
-          {/* CTA banner */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
