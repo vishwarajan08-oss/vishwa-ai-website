@@ -8,6 +8,9 @@ import Testimonials from "@/components/Testimonials";
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
 
+const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
+const SHADOW_CLAY_HOVER = "0 14px 36px rgba(107,30,46,0.12), inset -5px -5px 10px rgba(255,255,255,0.85), inset 5px 5px 10px rgba(0,0,0,0.08)";
+
 const cardVariant = {
   hidden: { opacity: 0, y: 40 },
   visible: (i) => ({
@@ -40,18 +43,19 @@ export default function TrackRecord() {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-80px" }}
                 whileHover={{
-                  y: -6,
-                  boxShadow: "0 12px 32px rgba(61,13,24,0.13)",
+                  y: -4,
+                  boxShadow: SHADOW_CLAY_HOVER,
                   transition: { duration: 0.2, ease: "easeOut" },
                 }}
-                className="bg-white border border-divider relative group"
+                className="bg-bg-alt relative group rounded-[20px] overflow-hidden"
+                style={{ boxShadow: SHADOW_CLAY }}
               >
                 <span
                   className="absolute top-0 inset-x-0 h-[2px] bg-burgundy opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 pointer-events-none"
                   aria-hidden="true"
                 />
                 {/* Case index strip */}
-                <div className="px-10 md:px-14 py-4 border-b border-divider bg-bg-alt flex items-center justify-between">
+                <div className="px-10 md:px-14 py-4 border-b border-divider bg-bg flex items-center justify-between">
                   <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#595959]">
                     Case {String(index + 1).padStart(2, "0")}
                   </span>
