@@ -1,13 +1,19 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
-import { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe } from "lucide-react";
+import {
+  Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield,
+  Search, Globe, MessageSquare, TrendingUp,
+} from "lucide-react";
 
-const iconMap = { Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield, Search, Globe };
+const iconMap = {
+  Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield,
+  Search, Globe, MessageSquare, TrendingUp,
+};
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
 
@@ -82,22 +88,23 @@ function ServiceCard({ service, index }) {
   );
 }
 
-// Panel card for the horizontal scroll (full services page)
+// Panel card for the snake scroll layout
 function ServicePanelCard({ service, index }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
   const Icon = iconMap[service.icon];
   const num = String(index + 1).padStart(2, "0");
   const bg = index % 2 === 0 ? "#FAFAFA" : "#F5F0EE";
 
   return (
-    <motion.div
-      className="relative flex flex-col justify-between h-full flex-shrink-0 border-r border-divider last:border-r-0 group"
+    <div
+      ref={ref}
+      className="relative flex flex-col justify-between flex-shrink-0 border-r border-divider last:border-r-0 group h-full overflow-hidden"
       style={{
-        width: "clamp(280px, 30vw, 420px)",
-        padding: "2.5rem 2rem 2rem",
+        width: "clamp(260px, 28vw, 380px)",
+        padding: "1.75rem 1.5rem 1.5rem",
         backgroundColor: bg,
       }}
-      whileHover={{ backgroundColor: "#FFFFFF" }}
-      transition={{ duration: 0.2 }}
     >
       {/* Hover top-line reveal */}
       <div
@@ -105,11 +112,16 @@ function ServicePanelCard({ service, index }) {
         aria-hidden="true"
       />
 
-      <div className="flex flex-col gap-5">
-        {/* Number */}
+      <div className="flex flex-col gap-3">
+        {/* Glowing number */}
         <span
-          className="text-7xl font-black leading-none select-none"
-          style={{ color: "rgba(107,30,46,0.07)" }}
+          className="text-6xl font-black leading-none select-none transition-all duration-500"
+          style={{
+            color: isInView ? "#6B1E2E" : "#C9B8A8",
+            textShadow: isInView
+              ? "0 0 20px rgba(107,30,46,0.45), 0 0 40px rgba(107,30,46,0.2)"
+              : "none",
+          }}
           aria-hidden="true"
         >
           {num}
@@ -117,29 +129,29 @@ function ServicePanelCard({ service, index }) {
 
         {/* Icon */}
         {Icon && (
-          <div className="w-8 h-8 flex items-center justify-center border border-burgundy/25 text-burgundy flex-shrink-0">
-            <Icon size={15} aria-hidden="true" />
+          <div className="w-7 h-7 flex items-center justify-center border border-burgundy/25 text-burgundy flex-shrink-0">
+            <Icon size={13} aria-hidden="true" />
           </div>
         )}
 
         {/* Title + description */}
-        <div className="space-y-3">
-          <h3 className="text-lg font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200">
+        <div className="space-y-2">
+          <h3 className="text-base font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200">
             {service.title}
           </h3>
-          <p className="text-sm text-[#636363] leading-relaxed">
+          <p className="text-xs text-[#636363] leading-relaxed line-clamp-5">
             {service.description}
           </p>
         </div>
       </div>
 
       {/* Tag */}
-      <div className="mt-6">
-        <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none">
+      <div className="mt-4 flex-shrink-0">
+        <span className="inline-block text-[10px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none">
           {service.tag}
         </span>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -147,13 +159,19 @@ export default function Services({ preview = false }) {
   const { label, title, items } = content.services;
   const displayItems = preview ? items.slice(0, 3) : items;
 
-  // ── Horizontal scroll refs (full page only) ──────────────────────────
+  // Snake scroll refs (full page only)
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: sectionRef });
 
-  // 8 cards at ~30vw = ~240vw. Visible ~100vw (3 cards). Travel ~140vw.
-  const x = useTransform(scrollYProgress, [0, 1], ["0vw", "-140vw"]);
+  // Row 1 (items 0-4): slides left during first half of scroll
+  const x1 = useTransform(scrollYProgress, [0, 0.5], ["0vw", "-56vw"]);
+  // Row 2 (items 5-9): starts showing end cards, slides right during second half
+  // At -50vw: shows cards 8,9,10 (far right of 5-card 140vw row). At 0: shows 6,7,8.
+  const x2 = useTransform(scrollYProgress, [0.5, 1], ["-56vw", "0vw"]);
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  const row1 = items.slice(0, 5);
+  const row2 = items.slice(5, 10);
 
   // ── Preview mode (homepage 3-card grid) ──────────────────────────────
   if (preview) {
@@ -209,7 +227,7 @@ export default function Services({ preview = false }) {
     );
   }
 
-  // ── Full services page (horizontal scroll) ───────────────────────────
+  // ── Full services page (snake scroll) ────────────────────────────────
   return (
     <div className="pt-20">
       {/* Hero */}
@@ -238,16 +256,19 @@ export default function Services({ preview = false }) {
         </div>
       </section>
 
-      {/* Horizontal scroll section */}
-      <div ref={sectionRef} style={{ height: "500vh" }} className="relative">
+      {/* Snake scroll section */}
+      <div ref={sectionRef} style={{ height: "600vh" }} className="relative">
         <div
           className="sticky top-0 overflow-hidden bg-bg"
-          style={{ height: "100dvh", borderTop: "1px solid #E8E0DA" }}
+          style={{
+            height: "min(680px, 88dvh)",
+            borderTop: "1px solid #E8E0DA",
+          }}
         >
-          {/* Section label + instruction */}
-          <div className="flex items-center justify-between px-8 pt-8 pb-0">
+          {/* Header */}
+          <div className="flex items-center justify-between px-8 h-14 flex-shrink-0 border-b border-divider">
             <motion.p
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, ease: EASE }}
@@ -266,17 +287,34 @@ export default function Services({ preview = false }) {
             </motion.p>
           </div>
 
-          {/* Cards rail */}
-          <motion.div
-            style={{ x }}
-            className="flex h-[calc(100dvh-100px)] mt-4 pl-8"
+          {/* Row 1 — pans left */}
+          <div
+            className="overflow-hidden flex-shrink-0"
+            style={{ height: "calc((100% - 57px) / 2)" }}
           >
-            {items.map((service, index) => (
-              <ServicePanelCard key={index} service={service} index={index} />
-            ))}
-            {/* End spacer */}
-            <div className="flex-shrink-0 w-8" />
-          </motion.div>
+            <motion.div style={{ x: x1 }} className="flex h-full">
+              {row1.map((service, index) => (
+                <ServicePanelCard key={index} service={service} index={index} />
+              ))}
+              <div className="flex-shrink-0 w-8" />
+            </motion.div>
+          </div>
+
+          {/* Divider between rows */}
+          <div className="h-px bg-divider flex-shrink-0" />
+
+          {/* Row 2 — pans right (snake back) */}
+          <div
+            className="overflow-hidden flex-shrink-0"
+            style={{ height: "calc((100% - 57px) / 2)" }}
+          >
+            <motion.div style={{ x: x2 }} className="flex h-full">
+              {row2.map((service, index) => (
+                <ServicePanelCard key={index} service={service} index={index + 5} />
+              ))}
+              <div className="flex-shrink-0 w-8" />
+            </motion.div>
+          </div>
 
           {/* Progress bar */}
           <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-divider">
