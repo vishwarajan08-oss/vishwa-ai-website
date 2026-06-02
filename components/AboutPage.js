@@ -148,11 +148,16 @@ export default function AboutPage() {
                 {lead}
               </motion.p>
 
-              {/* Remaining body — small */}
-              {body && (
-                <motion.p variants={fadeInUp} className="text-sm text-[#636363] leading-relaxed">
-                  {body}
-                </motion.p>
+              {/* Bullets */}
+              {section.bullets && (
+                <motion.ul variants={fadeInUp} className="list-none space-y-1.5">
+                  {section.bullets.map((b, i) => (
+                    <li key={i} className="text-sm text-[#636363] flex items-start gap-2">
+                      <span aria-hidden="true" className="text-burgundy mt-0.5 flex-shrink-0">-</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </motion.ul>
               )}
             </motion.div>
           ))}

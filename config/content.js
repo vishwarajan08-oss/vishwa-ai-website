@@ -14,68 +14,111 @@ export const content = {
     items: [
       {
         title: "Workflow Automation & Integration",
-        description:
-          "We find the manual work that costs your team the most time and replace it with systems that run quietly in the background. Meeting notes, follow-up emails, onboarding checklists, internal reports. Most clients recover 20% of their operational hours within 90 days.",
+        lead: "We replace manual work with systems that run quietly in the background.",
+        bullets: [
+          "Meeting notes, follow-up emails, onboarding checklists",
+          "Internal reports automated from your CRM data",
+          "Most clients recover 20%+ of operational hours within 90 days",
+        ],
         tag: "Fastest ROI",
         icon: "Zap",
       },
       {
         title: "AI Strategy & Advisory",
-        description:
-          "Before we touch a single tool, we audit how your firm actually operates. Then we identify the two or three places where AI creates real, measurable impact. This is where most firms waste money by skipping straight to implementation.",
+        lead: "Before we touch a single tool, we audit how your firm actually operates.",
+        bullets: [
+          "Identify the 2-3 places where AI creates real, measurable impact",
+          "Most firms waste money by skipping straight to implementation",
+          "Strategy first, tools second",
+        ],
         tag: "Start Here",
         icon: "Lightbulb",
       },
       {
         title: "End-to-End AI Implementation",
-        description:
-          "From the initial audit to full deployment. We assess your existing workflow, select the right tools, and build the systems. CRM, research, client reporting, back-office operations. No tool bloat, no guesswork.",
+        lead: "From the initial audit to full deployment.",
+        bullets: [
+          "Assess workflows, select tools, build systems",
+          "CRM, research, client reporting, back-office operations",
+          "No tool bloat, no guesswork",
+        ],
         tag: "Most Popular",
         icon: "Cpu",
       },
       {
         title: "Technology with a Human Focus",
-        description:
-          "Advisory relationships run on trust. Every system we build is designed to give advisors more time for clients, not to automate away what makes the relationship valuable. We also follow privacy-first data handling on every engagement.",
+        lead: "Every system we build gives advisors more time for clients.",
+        bullets: [
+          "Advisory relationships run on trust - we protect that",
+          "Privacy-first data handling on every engagement",
+          "Technology enhances the relationship, doesn't replace it",
+        ],
         tag: "Relationship-Safe",
         icon: "Heart",
       },
       {
         title: "Ongoing Optimization & Training",
-        description:
-          "AI implementations don't maintain themselves. We provide quarterly audits, continuous monitoring, and hands-on training so your systems keep working as your firm grows and the tools evolve.",
+        lead: "AI implementations don't maintain themselves.",
+        bullets: [
+          "Quarterly audits and continuous monitoring",
+          "Hands-on training as tools evolve",
+          "Systems that keep working as your firm grows",
+        ],
         tag: "Long-Term",
         icon: "RefreshCw",
       },
       {
         title: "Compliance-Aware Deployments",
-        description:
-          "Every tool we recommend is vetted against the compliance requirements of independent advisory firms. We understand the regulatory environment and design accordingly.",
+        lead: "Every tool we recommend is vetted against the compliance requirements of independent advisory firms.",
+        bullets: [
+          "Deep understanding of the RIA regulatory environment",
+          "Designed for fiduciary standards from the start",
+          "No tools that create compliance exposure",
+        ],
         tag: "Risk-Reduced",
         icon: "Shield",
       },
       {
         title: "Research & Tool Evaluation",
-        description:
-          "We evaluate AI tools against real advisory workflows before recommending anything. Our research team of 30 interns from Brown, UC Irvine, and UGA runs continuous evaluations so we always know what actually works.",
+        lead: "We evaluate AI tools against real advisory workflows before recommending anything.",
+        bullets: [
+          "30 research interns from Brown, UC Irvine, and UGA",
+          "Continuous evaluation across every major AI category",
+          "You get what actually works, not what's trending",
+        ],
         tag: "Research-Backed",
         icon: "Search",
       },
       {
         title: "Web Development & Digital Presence",
-        description: "We design and build production websites for wealth management firms and financial services companies. Clean, fast, professional web presence — built with modern tooling, optimized for conversion, and maintained over time.",
+        lead: "We design and build production websites for wealth management firms.",
+        bullets: [
+          "Modern tooling, optimized for conversion",
+          "Clean, fast, professional web presence",
+          "Built and maintained over time",
+        ],
         tag: "New",
         icon: "Globe",
       },
       {
         title: "Client Communication & Outreach",
-        description: "Quarterly letters, market commentary, account updates - we build systems that draft each one from your CRM data and route it for advisor review before it goes out. Copy draws from that client's actual history, not a template. Most firms cut prep time by more than half.",
+        lead: "We build systems that draft client communications from your CRM data.",
+        bullets: [
+          "Quarterly letters, market commentary, account updates",
+          "Each draft draws from that client's actual history, not a template",
+          "Most firms cut prep time by more than half",
+        ],
         tag: "High Touch",
         icon: "MessageSquare",
       },
       {
         title: "Investment Research & Market Intelligence",
-        description: "Advisors shouldn't be reading 40-page earnings transcripts. We build pipelines that pull SEC filings, earnings calls, and market data overnight and deliver structured summaries before your team logs in - formatted to slot directly into your CRM and workflow.",
+        lead: "Advisors shouldn't be reading 40-page earnings transcripts.",
+        bullets: [
+          "Pipelines that pull SEC filings, earnings calls, and market data overnight",
+          "Structured summaries delivered before your team logs in",
+          "Formatted to slot directly into your CRM and workflow",
+        ],
         tag: "Research-Driven",
         icon: "TrendingUp",
       },
@@ -176,11 +219,21 @@ export const content = {
       "Core Consulting helps advisory firms put AI to work in the places that actually matter.",
     whyWeStarted: {
       title: "Why We Started",
-      body: "Most advisory firms run on fragmented workflows and manual processes that haven't changed in years. AI is moving faster than most firms can track, and the gap between what's possible and what firms are actually doing keeps growing. We started Core Consulting to close that gap, without disrupting the trust-based nature of financial advising.",
+      body: "Most advisory firms run on fragmented workflows and manual processes that haven't changed in years.",
+      bullets: [
+        "AI is moving faster than most firms can track",
+        "The gap between what's possible and what's deployed keeps growing",
+        "We started Core Consulting to close that gap - without disrupting the trust-based nature of advising",
+      ],
     },
     ourApproach: {
       title: "How We Work",
-      body: "We believe AI should make advisors better at their jobs, not replace what makes those jobs worth having. Our focus is practical. We identify where time is being lost, build systems around those friction points, and stay involved until they work. Advisors get more time for clients. That's the goal.",
+      body: "AI should make advisors better at their jobs, not replace what makes those jobs worth having.",
+      bullets: [
+        "Identify where time is being lost",
+        "Build systems around those friction points, stay involved until they work",
+        "Advisors get more time for clients - that's the goal",
+      ],
     },
     differentiators: [
       { title: "Built for Wealth Management", icon: "Target" },

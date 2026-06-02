@@ -169,9 +169,22 @@ export default function Hero() {
                 transition={{ delay: 0.38, duration: 0.55, ease: EASE }}
                 className="lg:pl-16 lg:border-l lg:border-divider flex flex-col gap-7"
               >
-                <p className="text-sm leading-relaxed text-[#6D6D6D] max-w-xs">
-                  We build and deploy AI systems for wealth management firms. The work is practical, not theoretical. Most clients see measurable results within 90 days.
-                </p>
+                <div className="max-w-xs space-y-2">
+                  <p className="text-sm leading-relaxed text-[#6D6D6D]">
+                    We build and deploy AI systems for wealth management firms.
+                  </p>
+                  <ul className="list-none space-y-1">
+                    {[
+                      "Practical work - no theoretical frameworks",
+                      "Most clients see measurable results within 90 days",
+                    ].map((b, i) => (
+                      <li key={i} className="text-xs text-[#8A8A8A] flex items-start gap-2">
+                        <span aria-hidden="true" className="text-burgundy mt-0.5 flex-shrink-0">-</span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
                 <div className="flex flex-col sm:flex-row items-start gap-3">
                   {/* Primary — fill from left */}

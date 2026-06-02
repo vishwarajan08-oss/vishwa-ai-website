@@ -70,9 +70,17 @@ function ServiceCard({ service, index }) {
         <h3 className="text-base font-bold text-charcoal leading-snug group-hover:text-burgundy transition-colors duration-200 mb-3">
           {service.title}
         </h3>
-        <p className="text-sm text-[#6D6D6D] leading-relaxed mb-4">
-          {service.description}
+        <p className="text-sm text-[#6D6D6D] leading-relaxed mb-2">
+          {service.lead}
         </p>
+        <ul className="list-none space-y-1 mb-4">
+          {service.bullets.map((b, i) => (
+            <li key={i} className="text-xs text-[#6D6D6D] flex items-start gap-2">
+              <span className="text-burgundy mt-0.5 flex-shrink-0" aria-hidden="true">-</span>
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
         <div className="mt-auto">
           <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-burgundy text-white leading-none">
             {service.tag}
@@ -154,12 +162,23 @@ export default function Services({ preview = false }) {
             >
               {title}
             </motion.h1>
-            <motion.p
-              variants={slideInLeft}
-              className="text-base text-taupe leading-relaxed max-w-2xl"
-            >
-              We don&rsquo;t start with tools. We start with your workflows, identify where time is being lost, and build AI systems around those friction points. Each engagement is scoped to what creates real impact, not what looks impressive in a proposal.
-            </motion.p>
+            <motion.div variants={slideInLeft} className="max-w-2xl space-y-3">
+              <p className="text-base text-taupe leading-relaxed">
+                We start with your workflows, not your tools.
+              </p>
+              <ul className="list-none space-y-1.5">
+                {[
+                  "Identify where time is being lost before recommending anything",
+                  "Build AI systems around those specific friction points",
+                  "Scope every engagement to real impact, not what looks good in a proposal",
+                ].map((b, i) => (
+                  <li key={i} className="text-sm text-taupe/70 flex items-start gap-2">
+                    <span aria-hidden="true" className="mt-0.5 flex-shrink-0">-</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </motion.div>
         </div>
       </section>
