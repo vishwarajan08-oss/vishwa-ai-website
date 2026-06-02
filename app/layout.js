@@ -24,18 +24,18 @@ export const metadata = {
     icon: "/favicon-32x32.png",
     apple: "/apple-touch-icon.png",
   },
-  title: "Core Consulting | AI for Wealth Management",
+  title: "Core Consulting AI",
   description: "Implementing intelligent systems across wealth management, financial research, and operations. Your team spends less time on process and more time on clients.",
   metadataBase: new URL("https://vishwa-ai-consulting.vercel.app"),
   openGraph: {
-    title: "Core Consulting | AI for Wealth Management",
+    title: "Core Consulting AI",
     description: "Implementing intelligent systems across wealth management, financial research, and operations.",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Core Consulting | AI for Wealth Management",
+    title: "Core Consulting AI",
     description: "Implementing intelligent systems across wealth management, financial research, and operations.",
   },
 };
