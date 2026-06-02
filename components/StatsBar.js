@@ -40,7 +40,7 @@ function CountUp({ value, prefix, suffix, inView }) {
   );
 }
 
-const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
+const SHADOW_CLAY = "0 8px 32px rgba(107,30,46,0.35), inset -4px -4px 8px rgba(255,255,255,0.08), inset 4px 4px 8px rgba(0,0,0,0.15)";
 
 export default function StatsBar() {
   const { stats } = content.trackRecord;
@@ -66,10 +66,10 @@ export default function StatsBar() {
             <motion.div
               key={i}
               variants={statItem}
-              className="bg-bg-alt rounded-[20px] px-8 py-7 space-y-2"
+              className="bg-[#6B1E2E] rounded-[20px] px-8 py-7 space-y-2"
               style={{ boxShadow: SHADOW_CLAY }}
             >
-              <div className="text-3xl md:text-4xl font-black text-charcoal tracking-tight tabular-nums">
+              <div className="text-3xl md:text-4xl font-black text-white tracking-tight tabular-nums">
                 <CountUp
                   value={stat.value}
                   prefix={stat.prefix}
@@ -77,7 +77,7 @@ export default function StatsBar() {
                   inView={inView}
                 />
               </div>
-              <div className="text-xs text-[#595959] leading-snug max-w-[140px]">
+              <div className="text-xs text-white/70 leading-snug max-w-[140px]">
                 {stat.label}
               </div>
             </motion.div>
