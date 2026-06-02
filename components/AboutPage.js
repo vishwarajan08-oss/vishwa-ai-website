@@ -90,7 +90,7 @@ export default function AboutPage() {
     <div style={{ paddingTop: "var(--navbar-height)" }}>
 
       {/* ── Hero banner ──────────────────────────────────────────────────── */}
-      <section className="py-24 bg-burgundy">
+      <section data-cursor-dark className="py-24 bg-burgundy">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
@@ -307,7 +307,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Looking Ahead ─────────────────────────────────────────────────── */}
-      <section className="py-24 bg-burgundy-dark" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+      <section data-cursor-dark className="py-24 bg-burgundy-dark" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.div
             variants={stagger}
