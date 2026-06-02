@@ -1,7 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
 import Testimonials from "@/components/Testimonials";
@@ -9,6 +10,40 @@ import { use3DTilt } from "@/lib/use3DTilt";
 import { SHADOW_CLAY, SHADOW_CLAY_HOVER, SHADOW_CLAY_BURGUNDY } from "@/lib/tokens";
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
+
+const BAR_WIDTHS = [20, 100, 100];
+
+function MetricBar({ width }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const prefersReduced = useReducedMotion();
+
+  return (
+    <div ref={ref} className="space-y-2">
+      <div className="flex justify-between items-center">
+        <span className="text-[10px] tracking-[0.16em] uppercase font-bold text-[#595959]">
+          Impact
+        </span>
+        <span className="text-[10px] font-bold text-burgundy tabular-nums">
+          {width}%
+        </span>
+      </div>
+      <div className="h-[4px] w-full bg-[#E8E0DA] rounded-full overflow-hidden">
+        <motion.div
+          className="h-full bg-burgundy rounded-full"
+          initial={{ scaleX: 0 }}
+          animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={
+            prefersReduced
+              ? { duration: 0 }
+              : { duration: 1.2, ease: EASE, delay: 0.3 }
+          }
+          style={{ width: `${width}%`, transformOrigin: "left" }}
+        />
+      </div>
+    </div>
+  );
+}
 
 const cardVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -24,7 +59,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
 };
 
-function CaseCard({ cs, index }) {
+function CaseCard({ cs, index, barWidth }) {
   const { ref, rotateX, rotateY, onMouseMove, onMouseLeave } = use3DTilt({ maxDeg: 6 });
 
   return (
@@ -98,6 +133,9 @@ function CaseCard({ cs, index }) {
             )}
           </motion.div>
 
+          {/* ── Metric bar ──────────────────────────────────────── */}
+          <MetricBar width={barWidth} />
+
           {/* ── Bottom: Bullet list ──────────────────────────────── */}
           <motion.ul
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.05, delayChildren: 0.45 } } }}
@@ -139,7 +177,7 @@ export default function TrackRecord() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex flex-col gap-16">
             {cases.map((cs, index) => (
-              <CaseCard key={index} cs={cs} index={index} />
+              <CaseCard key={index} cs={cs} index={index} barWidth={BAR_WIDTHS[index]} />
             ))}
           </div>
         </div>
