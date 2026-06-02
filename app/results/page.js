@@ -1,5 +1,6 @@
 import ResultsHero from "@/components/ResultsHero";
 import StatsBar from "@/components/StatsBar";
+import ClientTicker from "@/components/ClientTicker";
 import TrackRecord from "@/components/TrackRecord";
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function ResultsPage() {
       <div style={{ paddingTop: "var(--navbar-height)" }} />
       <ResultsHero />
       <StatsBar />
+      <ClientTicker />
       <TrackRecord />
     </>
   );
