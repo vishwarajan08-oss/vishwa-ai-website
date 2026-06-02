@@ -243,7 +243,7 @@ export default function FAQPage() {
               >
                 <p className="text-sm font-bold text-charcoal">Still have questions?</p>
                 <p className="text-sm text-[#6D6D6D] leading-relaxed">
-                  We&rsquo;re happy to answer anything before you commit to a conversation. Reach out directly and we&rsquo;ll get back to you within one business day.
+                  Questions before you commit? Reach out directly. We get back within one business day.
                 </p>
                 <Link
                   href="/contact"

@@ -17,7 +17,7 @@ const wordVariant = {
   },
 };
 
-const CTA_HEADING = "Let's build something that actually works.";
+const CTA_HEADING = "Build something that actually works.";
 
 export default function HomeCTA() {
   const { ref, x, y, onMouseMove, onMouseLeave } = useMagnetic({ strength: 0.35, radius: 80 });
@@ -51,7 +51,7 @@ export default function HomeCTA() {
             variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } } }}
             className="text-sm text-[#C9B8A8] leading-relaxed"
           >
-            We work with a limited number of firms each quarter. If you&rsquo;re serious about running leaner operations, let&rsquo;s talk.
+            We take on a limited number of firms each quarter and stay closely involved throughout.
           </motion.p>
           <motion.div
             variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE, delay: 0.1 } } }}

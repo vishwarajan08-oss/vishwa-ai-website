@@ -136,8 +136,8 @@ export default function Vision() {
               Why it matters to move now.
             </h2>
             <p className="text-sm text-[#636363] leading-relaxed mb-8">
-              Firms that build this infrastructure today will run leaner and faster than
-              competitors who wait. That gap compounds. It doesn&apos;t close.
+              Firms that build this infrastructure today will run leaner and serve clients
+              better than competitors who wait. The longer they wait, the harder it gets.
             </p>
             <Link
               href="/contact"
@@ -157,9 +157,9 @@ export default function Vision() {
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 }}
           >
             <p className="text-sm text-[#636363] leading-relaxed">
-              We work with a small number of firms at a time. That&apos;s intentional. Every
-              engagement gets direct attention from the people who built the system, not a
-              junior team working from a playbook.
+              We work with a small number of firms at a time. Every engagement gets direct
+              attention from the people who built the system, not a junior team working from
+              a playbook.
             </p>
           </motion.div>
         </div>

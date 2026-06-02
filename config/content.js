@@ -162,9 +162,9 @@ export const content = {
     label: "Get In Touch",
     title: "Let's Talk",
     subtitle:
-      "We take on a limited number of firms each quarter to make sure every engagement is thorough and high-impact.",
+      "We take on a limited number of firms each quarter. Every engagement gets our direct attention from start to finish.",
     subtitle2:
-      "If you're serious about improving your operations, reach out.",
+      "Book a call and tell us what you want to fix.",
     responseNote: "We typically respond within one business day.",
     ctaLabel: "Send Message",
     email: "coreconsulting.ai@gmail.com",
@@ -173,14 +173,14 @@ export const content = {
     label: "About",
     headline: "Making AI Work for Wealth Management",
     subhead:
-      "Core Consulting helps advisory firms adopt AI in a way that's practical, measured, and built around how they already work.",
+      "Core Consulting helps advisory firms put AI to work in the places that actually matter.",
     whyWeStarted: {
       title: "Why We Started",
       body: "Most advisory firms run on fragmented workflows and manual processes that haven't changed in years. AI is moving faster than most firms can track, and the gap between what's possible and what firms are actually doing keeps growing. We started Core Consulting to close that gap, without disrupting the trust-based nature of financial advising.",
     },
     ourApproach: {
       title: "How We Work",
-      body: "We believe AI should make advisors better at their jobs, not replace what makes those jobs worth having. Our focus is on practical implementation: improving workflows, freeing up time, and building systems that give advisors more capacity for client relationships and strategic thinking. We identify the highest-impact areas first and build around them.",
+      body: "We believe AI should make advisors better at their jobs, not replace what makes those jobs worth having. Our focus is practical. We identify where time is being lost, build systems around those friction points, and stay involved until they work. Advisors get more time for clients. That's the goal.",
     },
     differentiators: [
       { title: "Built for Wealth Management", icon: "Target" },
@@ -234,6 +234,6 @@ export const content = {
         bio: "Focuses on systems implementation, workflow automation, and scalable AI infrastructure development.",
       },
     ],
-    lookingAhead: "The next generation of advisory firms will combine trusted client relationships with intelligent operational systems. We're helping firms build that before their competitors figure it out.",
+    lookingAhead: "The firms gaining ground right now aren't the biggest ones. They're the ones running on better systems. We help build those systems before the window closes.",
   },
 };

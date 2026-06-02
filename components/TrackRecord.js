@@ -158,7 +158,7 @@ export default function TrackRecord() {
           >
             <div className="space-y-2 text-center sm:text-left">
               <p className="text-2xl md:text-3xl font-black text-white tracking-tight leading-snug">
-                Ready to see results like these?
+                This is the kind of work we do.
               </p>
               <p className="text-sm text-[#C9B8A8] leading-relaxed">
                 We work with a limited number of firms each quarter.
