@@ -3,10 +3,18 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FileSearch2, Zap, BarChart2, Users } from "lucide-react";
+import { FileSearch2, Zap, BarChart2, Users, Building2, TrendingUp, Clock } from "lucide-react";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
 import RoadmapNav from "@/components/RoadmapNav";
 import { SHADOW_CLAY } from "@/lib/tokens";
+
+const EASE = [0.25, 0.46, 0.45, 0.94];
+
+const WHY_NOW_STATS = [
+  { icon: Building2, number: "4 Firms",  label: "Served across LPL Financial's network" },
+  { icon: TrendingUp, number: "20%+",    label: "Efficiency gain within 90 days" },
+  { icon: Clock,      number: "30 Days", label: "To first live system after kickoff" },
+];
 
 const PHASES = [
   {
@@ -186,13 +194,36 @@ export default function Vision() {
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 }}
+            transition={{ duration: 0.5, ease: EASE, delay: 0.15 }}
           >
-            <p className="text-sm text-[#636363] leading-relaxed">
-              We work with a small number of firms at a time. Every engagement gets direct
-              attention from the people who built the system, not a junior team working from
-              a playbook.
-            </p>
+            <div className="flex flex-col gap-3">
+              {WHY_NOW_STATS.map((stat, i) => {
+                const StatIcon = stat.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.4, ease: EASE, delay: 0.2 + i * 0.1 }}
+                    className="flex items-center gap-4 px-5 py-4 rounded-[14px] bg-bg"
+                    style={{ boxShadow: SHADOW_CLAY }}
+                  >
+                    <div className="w-8 h-8 flex-shrink-0 rounded-[8px] bg-burgundy flex items-center justify-center">
+                      <StatIcon size={14} className="text-white" strokeWidth={2.5} />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-black text-charcoal tracking-tight">
+                        {stat.number}
+                      </span>
+                      <span className="text-xs text-[#636363] leading-snug">
+                        {stat.label}
+                      </span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </motion.div>
         </div>
 
