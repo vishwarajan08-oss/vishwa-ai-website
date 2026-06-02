@@ -3,12 +3,15 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { FileSearch2, Zap, BarChart2, Users } from "lucide-react";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
 import RoadmapNav from "@/components/RoadmapNav";
+import { SHADOW_CLAY } from "@/lib/tokens";
 
 const PHASES = [
   {
     number: "01",
+    icon: FileSearch2,
     title: "Discovery & Workflow Mapping",
     description:
       "Before we recommend anything, we sit down with the people who actually do the work. Advisors, ops staff, compliance, client services. We find out where time is going and where things break down. That's what everything else is built on.",
@@ -16,6 +19,7 @@ const PHASES = [
   },
   {
     number: "02",
+    icon: Zap,
     title: "Agentic AI Development & Implementation",
     description:
       "We build what the discovery tells us to build. Custom agentic systems, tool integrations, and automated workflows. All designed around how your firm actually runs. Nothing generic, nothing speculative.",
@@ -23,6 +27,7 @@ const PHASES = [
   },
   {
     number: "03",
+    icon: BarChart2,
     title: "Audit & Optimization Quarter",
     description:
       "The first 90 days after we deploy, we stay involved. We watch how the systems perform, run training sessions with your team, and fix what needs fixing. You don't sign off on something until it's actually working.",
@@ -30,6 +35,7 @@ const PHASES = [
   },
   {
     number: "04",
+    icon: Users,
     title: "Retained Partnership",
     description:
       "Some firms keep us on after the audit quarter. We monitor the systems, stay current on new tools, and run quarterly check-ins. It's straightforward ongoing support. Nothing more complicated than that.",
@@ -81,6 +87,12 @@ function PhaseCard({ phase, index, forwardedRef }) {
         <span className="text-[10px] font-black tracking-[0.2em] uppercase text-burgundy">
           Phase {phase.number}
         </span>
+        <div
+          className="w-9 h-9 rounded-[10px] bg-bg flex items-center justify-center flex-shrink-0"
+          style={{ boxShadow: SHADOW_CLAY }}
+        >
+          <phase.icon size={16} className="text-burgundy" strokeWidth={2} />
+        </div>
       </motion.div>
 
       {/* Right — content */}
