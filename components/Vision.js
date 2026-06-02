@@ -46,21 +46,40 @@ function PhaseCard({ phase, index, forwardedRef }) {
         ref.current = el;
         if (forwardedRef) forwardedRef.current = el;
       }}
-      className="grid grid-cols-1 md:grid-cols-[80px_1fr] lg:grid-cols-[120px_1fr] gap-8 py-16 border-b border-[#E8E0DA] last:border-b-0"
+      className="relative grid grid-cols-1 md:grid-cols-[80px_1fr] lg:grid-cols-[120px_1fr] gap-8 py-16 border-b border-[#E8E0DA] last:border-b-0"
     >
-      {/* Left — number */}
+      {/* Watermark number */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute"
+        style={{
+          fontSize: "clamp(80px, 12vw, 120px)",
+          fontWeight: 900,
+          lineHeight: 1,
+          color: "#6B1E2E",
+          opacity: 0.06,
+          top: "24px",
+          left: "-8px",
+          textShadow: "0 0 60px rgba(107,30,46,0.3)",
+          letterSpacing: "-0.04em",
+          userSelect: "none",
+          zIndex: 0,
+        }}
+      >
+        {phase.number}
+      </span>
+
+      {/* Left — phase label */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="flex flex-col gap-3"
+        className="flex flex-col gap-3 pt-1"
+        style={{ position: "relative", zIndex: 1 }}
       >
-        <span
-          className="text-4xl font-black leading-none text-burgundy"
-          style={{ textShadow: "0 0 20px rgba(107,30,46,0.45), 0 0 40px rgba(107,30,46,0.2)" }}
-        >
-          {phase.number}
+        <span className="text-[10px] font-black tracking-[0.2em] uppercase text-burgundy">
+          Phase {phase.number}
         </span>
       </motion.div>
 
@@ -71,6 +90,7 @@ function PhaseCard({ phase, index, forwardedRef }) {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
         className="space-y-4"
+        style={{ position: "relative", zIndex: 1 }}
       >
         <h3 className="text-2xl font-bold text-[#1A1A1A] leading-snug">
           {phase.title}
