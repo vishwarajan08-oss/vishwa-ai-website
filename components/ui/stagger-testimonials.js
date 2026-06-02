@@ -50,7 +50,7 @@ export function StaggerTestimonials() {
         className="flex gap-5"
         animate={{ x: ["0%", "-50%"] }}
         transition={{
-          duration: 35,
+          duration: 25,
           repeat: Infinity,
           ease: "linear",
           repeatType: "loop",
