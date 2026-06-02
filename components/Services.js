@@ -55,17 +55,12 @@ function ServiceCard({ service, index }) {
           transition: { duration: 0.25, ease: EASE },
         }}
       >
-        <span
-          className="absolute top-0 inset-x-0 h-[2px] bg-burgundy opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
-          aria-hidden="true"
-        />
         <motion.span
-          className="absolute left-0 top-0 bottom-0 w-[3px] bg-burgundy"
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
+          className="absolute top-0 inset-x-0 h-[2px] bg-burgundy pointer-events-none"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.35, ease: EASE, delay: 0.2 }}
-          style={{ transformOrigin: "top" }}
+          transition={{ duration: 0.4, ease: EASE, delay: 0.25 }}
           aria-hidden="true"
         />
         {Icon && (

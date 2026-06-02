@@ -194,7 +194,7 @@ export default function AboutPage() {
                   whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
                 >
                   <span
-                    className="absolute left-0 top-0 bottom-0 w-0.5 bg-taupe scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out"
+                    className="absolute top-0 inset-x-0 h-[2px] bg-taupe/0 group-hover:bg-taupe/40 transition-colors duration-300 pointer-events-none"
                     aria-hidden="true"
                   />
                   {Icon && (
@@ -246,7 +246,7 @@ export default function AboutPage() {
                   whileHover={{ y: -4, boxShadow: SHADOW_CLAY_HOVER }}
                 >
                   <span
-                    className="absolute left-0 top-0 bottom-0 w-0.5 bg-burgundy scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out"
+                    className="absolute top-0 inset-x-0 h-[2px] bg-burgundy/0 group-hover:bg-burgundy/30 transition-colors duration-300 pointer-events-none"
                     aria-hidden="true"
                   />
                   {Icon && (
