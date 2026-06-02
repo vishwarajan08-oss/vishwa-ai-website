@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
 import { use3DTilt } from "@/lib/use3DTilt";
@@ -36,14 +36,15 @@ const fadeUp = {
 function ServiceCard({ service, index }) {
   const Icon = iconMap[service.icon];
   const { ref, rotateX, rotateY, onMouseMove, onMouseLeave } = use3DTilt({ maxDeg: 6 });
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const yOffset = WAVE_Y[index % 3];
 
   return (
     <div style={{ perspective: "900px" }} className="h-full">
       <motion.div
         ref={ref}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: yOffset }}
+        initial={{ opacity: 0, y: yOffset }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.45, ease: EASE }}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}

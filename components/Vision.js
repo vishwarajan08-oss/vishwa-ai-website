@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
 import RoadmapNav from "@/components/RoadmapNav";
@@ -39,7 +39,6 @@ const PHASES = [
 
 function PhaseCard({ phase, index, forwardedRef }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <div
@@ -51,18 +50,15 @@ function PhaseCard({ phase, index, forwardedRef }) {
     >
       {/* Left — number */}
       <motion.div
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="flex flex-col gap-3"
       >
         <span
-          className="text-4xl font-black leading-none transition-all duration-500"
-          style={{
-            color: isInView ? "#6B1E2E" : "#C9B8A8",
-            textShadow: isInView
-              ? "0 0 20px rgba(107,30,46,0.45), 0 0 40px rgba(107,30,46,0.2)"
-              : "none",
-          }}
+          className="text-4xl font-black leading-none text-burgundy"
+          style={{ textShadow: "0 0 20px rgba(107,30,46,0.45), 0 0 40px rgba(107,30,46,0.2)" }}
         >
           {phase.number}
         </span>
@@ -70,7 +66,9 @@ function PhaseCard({ phase, index, forwardedRef }) {
 
       {/* Right — content */}
       <motion.div
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
         className="space-y-4"
       >

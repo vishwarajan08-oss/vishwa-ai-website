@@ -189,10 +189,12 @@ export default function AboutPage() {
                 <motion.div
                   key={i}
                   variants={differentiatorItem}
-                  className="relative overflow-hidden p-6 border border-white/10 group space-y-3 transition-all duration-300 hover:border-white/20"
-                  style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
-                  whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+                  className="relative overflow-hidden p-6 border border-white/10 group space-y-3 transition-colors duration-300 hover:border-white/20 bg-white/[0.06]"
                 >
+                  <span
+                    className="absolute inset-0 bg-white opacity-0 group-hover:opacity-[0.04] transition-opacity duration-300 pointer-events-none"
+                    aria-hidden="true"
+                  />
                   <span
                     className="absolute top-0 inset-x-0 h-[2px] bg-taupe/0 group-hover:bg-taupe/40 transition-colors duration-300 pointer-events-none"
                     aria-hidden="true"
