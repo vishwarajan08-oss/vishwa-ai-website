@@ -62,7 +62,7 @@ function CaseCard({ cs, index }) {
 
           {/* ── Top: Firm label + Engagement title ──────────────── */}
           <div className="space-y-2">
-            <p className="text-[11px] font-bold tracking-[0.18em] uppercase text-burgundy">
+            <p className="text-xs font-bold tracking-[0.18em] uppercase text-burgundy">
               {cs.firmLabel}
             </p>
             <h3 className="text-2xl md:text-3xl font-bold text-charcoal leading-snug">
@@ -91,7 +91,7 @@ function CaseCard({ cs, index }) {
               {cs.metricCallout}
             </p>
             {cs.metricDescriptor && (
-              <p className="text-sm text-[#C9B8A8] mt-2 relative leading-snug">
+              <p className="text-base text-[#C9B8A8] mt-2 relative leading-snug">
                 {cs.metricDescriptor}
               </p>
             )}
@@ -115,7 +115,7 @@ function CaseCard({ cs, index }) {
                   className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-burgundy mt-[7px]"
                   aria-hidden="true"
                 />
-                <span className="text-sm text-[#2A2A2A] leading-relaxed">
+                <span className="text-base text-[#2A2A2A] leading-relaxed">
                   {bullet}
                 </span>
               </motion.li>

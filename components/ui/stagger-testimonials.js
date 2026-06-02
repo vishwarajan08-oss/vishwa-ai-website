@@ -56,17 +56,34 @@ export function StaggerTestimonials() {
           repeatType: "loop",
         }}
       >
-        {items.map((t, i) => (
-          <div
-            key={i}
-            className="flex-shrink-0 w-[340px] bg-[#FAFAFA] border border-[#E8E0DA] rounded-2xl p-6 flex flex-col gap-3"
-          >
-            <p className="text-sm font-medium text-[#1A1A1A] leading-relaxed">
-              &ldquo;{t.testimonial}&rdquo;
-            </p>
-            <p className="text-xs text-[#C9B8A8]">{t.by}</p>
-          </div>
-        ))}
+        {items.map((t, i) => {
+          const isBurgundy = t.tempId % 2 === 0;
+          return (
+            <div
+              key={i}
+              className={`flex-shrink-0 w-[340px] rounded-2xl p-6 flex flex-col gap-3 ${
+                isBurgundy
+                  ? "bg-[#6B1E2E]"
+                  : "bg-[#FAFAFA] border border-[#E8E0DA]"
+              }`}
+            >
+              <p
+                className={`text-sm font-medium leading-relaxed ${
+                  isBurgundy ? "text-white" : "text-[#1A1A1A]"
+                }`}
+              >
+                &ldquo;{t.testimonial}&rdquo;
+              </p>
+              <p
+                className={`text-sm ${
+                  isBurgundy ? "text-white/75" : "text-[#6B1E2E]"
+                }`}
+              >
+                {t.by}
+              </p>
+            </div>
+          );
+        })}
       </motion.div>
     </div>
   );
