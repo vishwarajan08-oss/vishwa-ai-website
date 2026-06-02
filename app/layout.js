@@ -21,7 +21,8 @@ const spectral = Spectral({
 
 export const metadata = {
   icons: {
-    icon: "/favicon.svg",
+    icon: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
   },
   title: "Core Consulting | AI for Wealth Management",
   description: "Implementing intelligent systems across wealth management, financial research, and operations. Your team spends less time on process and more time on clients.",
