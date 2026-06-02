@@ -65,6 +65,7 @@ function FAQItem({ faq, index }) {
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-start justify-between py-5 px-5 text-left cursor-pointer group gap-4 focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2 focus-visible:outline-none"
         aria-expanded={open}
+        aria-controls={`faq-answer-${index}`}
       >
         <span
           className={`text-sm font-bold leading-snug transition-colors duration-200 flex-1 ${
@@ -85,6 +86,7 @@ function FAQItem({ faq, index }) {
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
+            id={`faq-answer-${index}`}
             key="answer"
             initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
             animate={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}

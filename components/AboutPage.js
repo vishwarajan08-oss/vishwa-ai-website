@@ -302,7 +302,7 @@ export default function AboutPage() {
                   >
                     <Image
                       src={founder.photo}
-                      alt={founder.name}
+                      alt={`${founder.name}, Co-Founder of Core Consulting`}
                       fill
                       className="object-cover object-center"
                       sizes="200px"

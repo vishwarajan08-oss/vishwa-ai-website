@@ -14,12 +14,6 @@ export default function Testimonials() {
           viewport={viewport}
           className="max-w-xl mb-16"
         >
-          <motion.p
-            variants={fadeInUp}
-            className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-3"
-          >
-            Client Feedback
-          </motion.p>
           <motion.h2
             variants={fadeInUp}
             className="text-3xl font-extrabold tracking-tight text-[#1A1A1A]"

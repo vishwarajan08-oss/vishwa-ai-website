@@ -132,9 +132,6 @@ export default function Vision() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <p className="text-xs font-bold uppercase tracking-widest text-[#6B1E2E] mb-4">
-              Why This Matters Now
-            </p>
             <h2 className="text-2xl font-bold text-[#1A1A1A] leading-snug mb-4">
               Why it matters to move now.
             </h2>
