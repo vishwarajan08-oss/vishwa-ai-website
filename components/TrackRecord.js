@@ -76,6 +76,7 @@ function CaseCard({ cs, index }) {
             whileInView={{ clipPath: "inset(0% 0 0 0)" }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.5, ease: EASE, delay: 0.2 }}
+            data-cursor-dark
             className="py-8 px-8 md:px-10 bg-[#3D0D18] rounded-[12px] relative overflow-hidden"
             style={{ boxShadow: SHADOW_CLAY_BURGUNDY }}
           >
@@ -147,7 +148,7 @@ export default function TrackRecord() {
       <Testimonials />
 
       {/* ── Closing CTA Strip ────────────────────────────────────────────── */}
-      <section className="py-20 bg-burgundy border-t border-burgundy/30">
+      <section data-cursor-dark className="py-20 bg-burgundy border-t border-burgundy/30">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div
             variants={fadeUp}

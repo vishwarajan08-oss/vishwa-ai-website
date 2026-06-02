@@ -147,7 +147,7 @@ export default function Services({ preview = false }) {
   return (
     <div style={{ paddingTop: "var(--navbar-height)" }}>
       {/* Hero */}
-      <section className="py-24 bg-burgundy">
+      <section data-cursor-dark className="py-24 bg-burgundy">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -202,6 +202,7 @@ export default function Services({ preview = false }) {
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
+            data-cursor-dark
             className="py-12 px-10 bg-burgundy-dark text-center space-y-5"
           >
             <p className="text-xl md:text-2xl font-bold text-white leading-snug">

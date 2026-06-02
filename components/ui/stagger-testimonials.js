@@ -61,6 +61,7 @@ export function StaggerTestimonials() {
           return (
             <div
               key={i}
+              data-cursor-dark={isBurgundy ? "" : undefined}
               className={`flex-shrink-0 w-[340px] rounded-2xl p-6 flex flex-col gap-3 ${
                 isBurgundy
                   ? "bg-[#6B1E2E]"

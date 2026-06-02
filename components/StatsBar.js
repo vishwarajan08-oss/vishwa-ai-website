@@ -66,6 +66,7 @@ export default function StatsBar() {
             <motion.div
               key={i}
               variants={statItem}
+              data-cursor-dark
               className="bg-[#6B1E2E] rounded-[20px] px-8 py-7 space-y-2"
               style={{ boxShadow: SHADOW_CLAY }}
             >

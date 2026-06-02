@@ -23,7 +23,7 @@ export default function HomeCTA() {
   const { ref, x, y, onMouseMove, onMouseLeave } = useMagnetic({ strength: 0.35, radius: 80 });
 
   return (
-    <section className="py-24 bg-burgundy-dark border-t border-burgundy/20">
+    <section data-cursor-dark className="py-24 bg-burgundy-dark border-t border-burgundy/20">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial="hidden"

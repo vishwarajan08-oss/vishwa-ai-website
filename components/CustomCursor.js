@@ -7,9 +7,14 @@ const RING_DEFAULT = 28;
 const RING_HOVER = 52;
 const SPRING = { stiffness: 150, damping: 18 };
 const RING_SPRING = { stiffness: 250, damping: 22 };
+const COLOR_TRANSITION = { duration: 0.2 };
+
+const LIGHT = { dot: "#6B1E2E", ring: "rgba(107,30,46,0.45)" };
+const DARK = { dot: "#FAFAFA", ring: "rgba(250,240,238,0.5)" };
 
 export default function CustomCursor() {
   const [isFine, setIsFine] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   const dotX = useMotionValue(-200);
   const dotY = useMotionValue(-200);
@@ -30,6 +35,7 @@ export default function CustomCursor() {
       dotY.set(e.clientY);
       rawX.set(e.clientX);
       rawY.set(e.clientY);
+      setIsDark(!!e.target.closest("[data-cursor-dark]"));
     };
 
     const enter = (e) => {
@@ -58,10 +64,14 @@ export default function CustomCursor() {
 
   if (!isFine) return null;
 
+  const colors = isDark ? DARK : LIGHT;
+
   return (
     <>
       <motion.div
         className="fixed rounded-full pointer-events-none z-[9999]"
+        animate={{ backgroundColor: colors.dot }}
+        transition={COLOR_TRANSITION}
         style={{
           width: 6,
           height: 6,
@@ -69,12 +79,13 @@ export default function CustomCursor() {
           y: dotY,
           translateX: "-50%",
           translateY: "-50%",
-          backgroundColor: "#6B1E2E",
         }}
         aria-hidden="true"
       />
       <motion.div
         className="fixed rounded-full pointer-events-none z-[9998]"
+        animate={{ borderColor: colors.ring }}
+        transition={COLOR_TRANSITION}
         style={{
           width: ringSizeSpring,
           height: ringSizeSpring,
@@ -82,7 +93,8 @@ export default function CustomCursor() {
           y: ringY,
           translateX: "-50%",
           translateY: "-50%",
-          border: "1.5px solid rgba(107,30,46,0.45)",
+          borderWidth: "1.5px",
+          borderStyle: "solid",
         }}
         aria-hidden="true"
       />

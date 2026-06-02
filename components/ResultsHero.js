@@ -5,7 +5,7 @@ import { fadeInUp, stagger, viewport } from "@/lib/animations";
 
 export default function ResultsHero() {
   return (
-    <section className="py-24 bg-burgundy">
+    <section data-cursor-dark className="py-24 bg-burgundy">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           variants={stagger}
