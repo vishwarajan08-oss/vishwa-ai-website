@@ -160,52 +160,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── What Makes Core Different ─────────────────────────────────────── */}
-      <section className="py-20 bg-burgundy-dark" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            className="mb-12"
-          >
-            <motion.h2 variants={fadeInUp} className="text-3xl font-extrabold tracking-tight text-white">
-              What Makes Core Different
-            </motion.h2>
-          </motion.div>
-
-          <motion.ul
-            variants={stagger007}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            className="divide-y divide-white/10"
-          >
-            {differentiators.map((item, i) => {
-              const Icon = iconMap[item.icon];
-              return (
-                <motion.li
-                  key={i}
-                  variants={differentiatorItem}
-                  className="group flex items-center gap-5 py-5 transition-colors duration-200 hover:text-taupe"
-                >
-                  {Icon && (
-                    <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center border border-taupe/20 text-taupe group-hover:border-taupe/50 transition-colors duration-200">
-                      <Icon size={15} aria-hidden="true" />
-                    </div>
-                  )}
-                  <p className="text-sm font-bold text-white leading-snug group-hover:text-taupe transition-colors duration-200 flex-1">
-                    {item.title}
-                  </p>
-                  <span className="flex-shrink-0 w-4 h-px bg-taupe/20 group-hover:bg-taupe/60 transition-colors duration-200" aria-hidden="true" />
-                </motion.li>
-              );
-            })}
-          </motion.ul>
-        </div>
-      </section>
-
       {/* ── Six Categories ─────────────────────────────────────────────────── */}
       <section className="py-20 bg-bg" style={{ borderTop: "1px solid #E8E0DA" }}>
         <div className="max-w-6xl mx-auto px-6">
