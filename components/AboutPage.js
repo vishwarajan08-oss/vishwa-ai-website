@@ -99,15 +99,9 @@ export default function AboutPage() {
             viewport={viewport}
             className="max-w-3xl space-y-5"
           >
-            <motion.p variants={fadeInUp} className="text-xs font-bold uppercase tracking-widest text-taupe">
-              {label}
-            </motion.p>
             <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
               {headline}
             </motion.h1>
-            <motion.p variants={fadeInUp} className="text-base text-taupe leading-relaxed max-w-2xl">
-              {subhead}
-            </motion.p>
           </motion.div>
         </div>
       </section>

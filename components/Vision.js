@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FileSearch2, Zap, BarChart2, Users, Building2, TrendingUp, Clock } from "lucide-react";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
 import RoadmapNav from "@/components/RoadmapNav";
 import { SHADOW_CLAY } from "@/lib/tokens";
@@ -11,15 +10,14 @@ import { SHADOW_CLAY } from "@/lib/tokens";
 const EASE = [0.25, 0.46, 0.45, 0.94];
 
 const WHY_NOW_STATS = [
-  { icon: Building2, number: "4 Firms",  label: "Served across LPL Financial's network" },
-  { icon: TrendingUp, number: "20%+",    label: "Efficiency gain within 90 days" },
-  { icon: Clock,      number: "30 Days", label: "To first live system after kickoff" },
+  { number: "4 Firms",  label: "Served across LPL Financial's network" },
+  { number: "20%+",    label: "Efficiency gain within 90 days" },
+  { number: "30 Days", label: "To first live system after kickoff" },
 ];
 
 const PHASES = [
   {
     number: "01",
-    icon: FileSearch2,
     title: "Discovery & Workflow Mapping",
     description:
       "Before we recommend anything, we sit down with the people who actually do the work. Advisors, ops staff, compliance, client services. We find out where time is going and where things break down. That's what everything else is built on.",
@@ -27,7 +25,6 @@ const PHASES = [
   },
   {
     number: "02",
-    icon: Zap,
     title: "Agentic AI Development & Implementation",
     description:
       "We build what the discovery tells us to build. Custom agentic systems, tool integrations, and automated workflows. All designed around how your firm actually runs. Nothing generic, nothing speculative.",
@@ -35,7 +32,6 @@ const PHASES = [
   },
   {
     number: "03",
-    icon: BarChart2,
     title: "Audit & Optimization Quarter",
     description:
       "The first 90 days after we deploy, we stay involved. We watch how the systems perform, run training sessions with your team, and fix what needs fixing. You don't sign off on something until it's actually working.",
@@ -43,7 +39,6 @@ const PHASES = [
   },
   {
     number: "04",
-    icon: Users,
     title: "Retained Partnership",
     description:
       "Some firms keep us on after the audit quarter. We monitor the systems, stay current on new tools, and run quarterly check-ins. It's straightforward ongoing support. Nothing more complicated than that.",
@@ -95,12 +90,6 @@ function PhaseCard({ phase, index, forwardedRef }) {
         <span className="text-[10px] font-black tracking-[0.2em] uppercase text-burgundy">
           Phase {phase.number}
         </span>
-        <div
-          className="w-9 h-9 rounded-[10px] bg-bg flex items-center justify-center flex-shrink-0"
-          style={{ boxShadow: SHADOW_CLAY }}
-        >
-          <phase.icon size={16} className="text-burgundy" strokeWidth={2} />
-        </div>
       </motion.div>
 
       {/* Right — content */}
@@ -197,32 +186,26 @@ export default function Vision() {
             transition={{ duration: 0.5, ease: EASE, delay: 0.15 }}
           >
             <div className="flex flex-col gap-3">
-              {WHY_NOW_STATS.map((stat, i) => {
-                const StatIcon = stat.icon;
-                return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: 16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.4, ease: EASE, delay: 0.2 + i * 0.1 }}
-                    className="flex items-center gap-4 px-5 py-4 rounded-[14px] bg-bg"
-                    style={{ boxShadow: SHADOW_CLAY }}
-                  >
-                    <div className="w-8 h-8 flex-shrink-0 rounded-[8px] bg-burgundy flex items-center justify-center">
-                      <StatIcon size={14} className="text-white" strokeWidth={2.5} />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-sm font-black text-charcoal tracking-tight">
-                        {stat.number}
-                      </span>
-                      <span className="text-xs text-[#636363] leading-snug">
-                        {stat.label}
-                      </span>
-                    </div>
-                  </motion.div>
-                );
-              })}
+              {WHY_NOW_STATS.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.4, ease: EASE, delay: 0.2 + i * 0.1 }}
+                  className="flex items-center gap-4 px-5 py-4 rounded-[14px] bg-bg"
+                  style={{ boxShadow: SHADOW_CLAY }}
+                >
+                  <div className="flex flex-col">
+                    <span className="text-sm font-black text-charcoal tracking-tight">
+                      {stat.number}
+                    </span>
+                    <span className="text-xs text-[#636363] leading-snug">
+                      {stat.label}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>

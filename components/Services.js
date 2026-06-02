@@ -162,23 +162,6 @@ export default function Services({ preview = false }) {
             >
               {title}
             </motion.h1>
-            <motion.div variants={slideInLeft} className="max-w-2xl space-y-3">
-              <p className="text-base text-taupe leading-relaxed">
-                We start with your workflows, not your tools.
-              </p>
-              <ul className="list-none space-y-1.5">
-                {[
-                  "Identify where time is being lost before recommending anything",
-                  "Build AI systems around those specific friction points",
-                  "Scope every engagement to real impact, not what looks good in a proposal",
-                ].map((b, i) => (
-                  <li key={i} className="text-sm text-taupe/70 flex items-start gap-2">
-                    <span aria-hidden="true" className="mt-0.5 flex-shrink-0">-</span>
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
           </motion.div>
         </div>
       </section>
