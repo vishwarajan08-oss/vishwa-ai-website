@@ -135,7 +135,7 @@ export default function Hero() {
                     animate="visible"
                     className="block"
                   >
-                    <span className="font-light text-[#8C8C8C]">AI </span>
+                    <span className="font-light text-[#888888]">AI </span>
                     <span className="font-black text-charcoal">services</span>
                   </motion.span>
 
@@ -144,7 +144,7 @@ export default function Hero() {
                     variants={lineVariants}
                     initial="hidden"
                     animate="visible"
-                    className="block font-light text-[#8C8C8C] mt-1"
+                    className="block font-light text-[#888888] mt-1"
                   >
                     for the firms that
                   </motion.span>

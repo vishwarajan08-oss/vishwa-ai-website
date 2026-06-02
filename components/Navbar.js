@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,11 +18,16 @@ const navLinks = [
   { name: "FAQ", href: "/faq" },
 ];
 
+const FOCUSABLE = 'a[href], button:not([disabled])';
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const { ref: magRef, x: magX, y: magY, onMouseMove: magMove, onMouseLeave: magLeave } = useMagnetic({ strength: 0.3, radius: 70 });
+  const drawerRef = useRef(null);
+  const hamburgerRef = useRef(null);
+  const previousFocusRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -38,6 +43,49 @@ export default function Navbar() {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
+
+  // Focus management
+  useEffect(() => {
+    if (mobileOpen) {
+      previousFocusRef.current = document.activeElement;
+      const frame = requestAnimationFrame(() => {
+        if (drawerRef.current) {
+          const focusable = drawerRef.current.querySelectorAll(FOCUSABLE);
+          if (focusable.length) focusable[0].focus();
+        }
+      });
+      return () => cancelAnimationFrame(frame);
+    } else {
+      if (previousFocusRef.current) {
+        previousFocusRef.current.focus();
+        previousFocusRef.current = null;
+      }
+    }
+  }, [mobileOpen]);
+
+  const handleDrawerKeyDown = useCallback((e) => {
+    if (!drawerRef.current) return;
+    if (e.key === "Escape") {
+      setMobileOpen(false);
+      return;
+    }
+    if (e.key !== "Tab") return;
+    const focusable = Array.from(drawerRef.current.querySelectorAll(FOCUSABLE));
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -103,10 +151,12 @@ export default function Navbar() {
               Book a Consultation
             </Link>
             <button
+              ref={hamburgerRef}
               onClick={() => setMobileOpen(!mobileOpen)}
               className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center text-[#636363] hover:text-charcoal transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
+              aria-controls="mobile-nav"
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -128,12 +178,15 @@ export default function Navbar() {
               aria-hidden="true"
             />
             <motion.nav
+              id="mobile-nav"
+              ref={drawerRef}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-bg border-l border-divider flex flex-col lg:hidden"
               aria-label="Mobile navigation"
+              onKeyDown={handleDrawerKeyDown}
             >
               <div className="flex items-center justify-between p-6 border-b border-divider">
                 <Logo size="small" />
