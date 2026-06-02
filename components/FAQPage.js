@@ -6,11 +6,10 @@ import Link from "next/link";
 import { faqs } from "@/config/faq";
 import { fadeInUp, stagger, viewport } from "@/lib/animations";
 import { Plus, Minus, Search } from "lucide-react";
+import { SHADOW_CLAY, SHADOW_CLAY_BURGUNDY } from "@/lib/tokens";
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
 const CATEGORIES = ["All", "Getting Started", "Implementation", "Pricing", "Results"];
-const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
-const SHADOW_CLAY_BURGUNDY = "0 8px 24px rgba(107,30,46,0.25), inset -3px -3px 8px rgba(255,200,200,0.06), inset 3px 3px 8px rgba(61,13,24,0.12)";
 
 const listVariants = {
   hidden: { opacity: 0, y: 10 },
@@ -120,7 +119,7 @@ export default function FAQPage() {
   }, [activeCategory, searchQuery]);
 
   return (
-    <div className="pt-20 bg-bg-alt min-h-screen">
+    <div style={{ paddingTop: "var(--navbar-height)" }} className="bg-bg-alt min-h-screen">
 
       {/* Page header */}
       <section className="py-16 bg-burgundy">

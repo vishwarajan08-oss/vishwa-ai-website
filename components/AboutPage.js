@@ -8,6 +8,7 @@ import {
   Target, Workflow, Users, TrendingUp, LayoutGrid, Lock,
   LineChart, Calculator, Megaphone, UserCheck, FileText, Settings,
 } from "lucide-react";
+import { SHADOW_CLAY, SHADOW_CLAY_HOVER } from "@/lib/tokens";
 
 const iconMap = {
   Target, Workflow, Users, TrendingUp, LayoutGrid, Lock,
@@ -15,8 +16,6 @@ const iconMap = {
 };
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
-const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
-const SHADOW_CLAY_HOVER = "0 14px 36px rgba(107,30,46,0.12), inset -5px -5px 10px rgba(255,255,255,0.85), inset 5px 5px 10px rgba(0,0,0,0.08)";
 
 const founderLeft = {
   hidden: { opacity: 0, x: -32 },
@@ -88,7 +87,7 @@ export default function AboutPage() {
   const approachLead = splitLead(ourApproach.body);
 
   return (
-    <div className="pt-20">
+    <div style={{ paddingTop: "var(--navbar-height)" }}>
 
       {/* ── Hero banner ──────────────────────────────────────────────────── */}
       <section className="py-24 bg-burgundy">

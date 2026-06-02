@@ -6,12 +6,9 @@ import { content } from "@/config/content";
 import { viewport } from "@/lib/animations";
 import Testimonials from "@/components/Testimonials";
 import { use3DTilt } from "@/lib/use3DTilt";
+import { SHADOW_CLAY, SHADOW_CLAY_HOVER, SHADOW_CLAY_BURGUNDY } from "@/lib/tokens";
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
-
-const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
-const SHADOW_CLAY_HOVER = "0 14px 36px rgba(107,30,46,0.12), inset -5px -5px 10px rgba(255,255,255,0.85), inset 5px 5px 10px rgba(0,0,0,0.08)";
-const SHADOW_CLAY_BURGUNDY = "0 8px 24px rgba(107,30,46,0.25), inset -3px -3px 8px rgba(255,200,200,0.06), inset 3px 3px 8px rgba(61,13,24,0.12)";
 
 const cardVariant = {
   hidden: { opacity: 0, y: 40 },

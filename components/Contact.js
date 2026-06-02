@@ -10,8 +10,7 @@ const fieldFade = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
 };
 import { Send } from "lucide-react";
-
-const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
+import { SHADOW_CLAY } from "@/lib/tokens";
 
 export default function Contact() {
   const { label, title, subtitle, subtitle2, responseNote, ctaLabel, email } = content.contact;

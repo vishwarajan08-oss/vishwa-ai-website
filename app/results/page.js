@@ -10,7 +10,7 @@ export const metadata = {
 export default function ResultsPage() {
   return (
     <>
-      <div className="pt-20" />
+      <div style={{ paddingTop: "var(--navbar-height)" }} />
       <ResultsHero />
       <StatsBar />
       <TrackRecord />

@@ -10,6 +10,7 @@ import {
   Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield,
   Search, Globe, MessageSquare, TrendingUp,
 } from "lucide-react";
+import { SHADOW_CLAY, SHADOW_CLAY_HOVER } from "@/lib/tokens";
 
 const iconMap = {
   Zap, Lightbulb, Cpu, Heart, RefreshCw, Shield,
@@ -17,9 +18,6 @@ const iconMap = {
 };
 
 const EASE = [0.25, 0.46, 0.45, 0.94];
-
-const SHADOW_CLAY = "0 8px 24px rgba(107,30,46,0.08), inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(0,0,0,0.06)";
-const SHADOW_CLAY_HOVER = "0 14px 36px rgba(107,30,46,0.12), inset -5px -5px 10px rgba(255,255,255,0.85), inset 5px 5px 10px rgba(0,0,0,0.08)";
 
 const slideInLeft = {
   hidden: { opacity: 0, x: -32 },
@@ -139,7 +137,7 @@ export default function Services({ preview = false }) {
 
   // ── Full services page (clay card grid) ──────────────────────────────
   return (
-    <div className="pt-20">
+    <div style={{ paddingTop: "var(--navbar-height)" }}>
       {/* Hero */}
       <section className="py-24 bg-burgundy">
         <div className="max-w-6xl mx-auto px-6">
