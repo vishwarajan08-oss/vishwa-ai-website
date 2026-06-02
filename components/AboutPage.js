@@ -176,41 +176,34 @@ export default function AboutPage() {
             </motion.h2>
           </motion.div>
 
-          <motion.div
+          <motion.ul
             variants={stagger007}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+            className="divide-y divide-white/10"
           >
             {differentiators.map((item, i) => {
               const Icon = iconMap[item.icon];
               return (
-                <motion.div
+                <motion.li
                   key={i}
                   variants={differentiatorItem}
-                  className="relative overflow-hidden p-6 border border-white/10 group space-y-3 transition-colors duration-300 hover:border-white/20 bg-white/[0.06]"
+                  className="group flex items-center gap-5 py-5 transition-colors duration-200 hover:text-taupe"
                 >
-                  <span
-                    className="absolute inset-0 bg-white opacity-0 group-hover:opacity-[0.04] transition-opacity duration-300 pointer-events-none"
-                    aria-hidden="true"
-                  />
-                  <span
-                    className="absolute top-0 inset-x-0 h-[2px] bg-taupe/0 group-hover:bg-taupe/40 transition-colors duration-300 pointer-events-none"
-                    aria-hidden="true"
-                  />
                   {Icon && (
-                    <div className="w-8 h-8 flex items-center justify-center border border-taupe/20 text-taupe">
+                    <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center border border-taupe/20 text-taupe group-hover:border-taupe/50 transition-colors duration-200">
                       <Icon size={15} aria-hidden="true" />
                     </div>
                   )}
-                  <p className="text-sm font-bold text-white leading-snug group-hover:text-taupe transition-colors duration-200">
+                  <p className="text-sm font-bold text-white leading-snug group-hover:text-taupe transition-colors duration-200 flex-1">
                     {item.title}
                   </p>
-                </motion.div>
+                  <span className="flex-shrink-0 w-4 h-px bg-taupe/20 group-hover:bg-taupe/60 transition-colors duration-200" aria-hidden="true" />
+                </motion.li>
               );
             })}
-          </motion.div>
+          </motion.ul>
         </div>
       </section>
 
