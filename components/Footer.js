@@ -18,7 +18,7 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-burgundy-dark" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+    <footer data-cursor-dark className="bg-burgundy-dark" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
       <motion.div
         variants={fadeInUp}
         initial="hidden"
